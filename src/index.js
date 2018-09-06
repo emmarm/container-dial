@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+import registerServiceWorker from './registerServiceWorker';
 import appReducer from './reducers';
 import Page from './components/Page';
-import registerServiceWorker from './registerServiceWorker';
+import getTheme from './utils/getTheme';
 
 const store = createStore(
   appReducer,
@@ -18,9 +19,11 @@ const renderApp = () => {
     name: 'personal'
   };
 
+  const theme = getTheme(container.color);
+
   ReactDOM.render(
     <Provider store={store}>
-      <Page container={container} />
+      <Page container={container} theme={theme} />
     </Provider>,
     document.getElementById('page')
   );
