@@ -1,8 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import Page from "./components/Page";
-import registerServiceWorker from "./registerServiceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<Page />, document.getElementById("page"));
+import './index.css';
+import appReducer from './reducers';
+import Page from './components/Page';
+import registerServiceWorker from './registerServiceWorker';
+
+const store = createStore(appReducer);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Page />
+  </Provider>,
+  document.getElementById('page')
+);
+
 registerServiceWorker();
