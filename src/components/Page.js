@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Page = ({ theme, children }) => (
-  <div>
-    <div style={{ backgroundColor: theme.primary }}>{children}</div>
+  <div className="page__container">
+    <div className="page" style={{ backgroundColor: theme.primary }}>
+      {children}
+    </div>
   </div>
 );
 

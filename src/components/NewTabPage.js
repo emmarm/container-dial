@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Page from './Page';
+import GridList from './GridList';
+import Dial from './Dial';
 import DIALS from './DIALS';
 
 class NewTabPage extends React.Component {
@@ -11,19 +13,26 @@ class NewTabPage extends React.Component {
     setContainer(container);
     setTheme(theme);
   }
+
   renderDials = container =>
-    DIALS.filter(dial => dial.container === container.name).map(({ name }) => (
-      <div key={name} ariaLabel={name} name={name}>
-        {name}
-      </div>
-    ));
+    DIALS.filter(dial => dial.container === container.name).map(
+      ({ name, favicon }) => (
+        <Dial
+          key={name}
+          ariaLabel={name}
+          name={name}
+          theme={this.props.theme}
+          icon={favicon}
+        />
+      )
+    );
 
   render() {
     const { container, theme } = this.props;
     return (
       <Page theme={theme}>
-        <h1>{container.name}</h1>
-        {this.renderDials(container)}
+        <h1 className="page__title">{container.name}</h1>
+        <GridList>{this.renderDials(container)}</GridList>
       </Page>
     );
   }

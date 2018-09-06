@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.page__container {
+  height: 100vh;
+  position: relative;
+  width: 100vw;
+}
+
+.page {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.page__title {
+  color: rgb(215, 253, 247);
+  text-align: center;
+  margin: 40px;
+}
+
+.grid-list {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, 220px);
+  justify-content: center;
+  margin: 40px;
+}
+
+.dial {
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 80px;
+  background: white;
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1), 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+}
+
+.dial:hover {
+  color: rgb(20, 110, 110);
+}
+
+.dial--hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(121, 238, 238, 0.3);
+  display: none;
+}
+
+.dial:hover > .dial--hover {
+  display: block;
+}
+
+.dial__title-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dial__title {
+  text-align: center;
+}
+
+.dial__icon {
+  width: 80px;
+  height: 80px;
+  background-size: 105%;
+  background-position: center;
+}
