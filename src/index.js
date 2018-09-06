@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import registerServiceWorker from './registerServiceWorker';
 import appReducer from './reducers';
-import Page from './components/Page';
+import NewTabPage from './components/NewTabPage';
 import getTheme from './utils/getTheme';
 
 const store = createStore(
@@ -16,14 +16,14 @@ const store = createStore(
 const renderApp = () => {
   const container = {
     color: 'turquoise',
-    name: 'personal'
+    name: 'Personal'
   };
 
   const theme = getTheme(container.color);
 
   ReactDOM.render(
     <Provider store={store}>
-      <Page container={container} theme={theme} />
+      <NewTabPage container={container} theme={theme} />
     </Provider>,
     document.getElementById('page')
   );
