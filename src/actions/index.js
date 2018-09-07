@@ -1,23 +1,23 @@
 import getRandomPhoto from '../utils/getRandomPhoto';
 
-const addDial = dial => ({
-  type: 'ADD_DIAL',
-  payload: dial
-});
-
-const setTheme = theme => ({
+export const setTheme = theme => ({
   type: 'SET_THEME',
   payload: theme
 });
 
-const setContainer = container => ({
+export const setContainer = container => ({
   type: 'SET_CONTAINER',
   payload: container
 });
 
-const startSetBackground = container => {
+export const startSetBackground = container => {
   return async dispatch => {
-    const image = await getRandomPhoto(container.color);
+    let image;
+    try {
+      image = await getRandomPhoto(container.color);
+    } catch (err) {
+      image = '';
+    }
 
     const containerWithImage = {
       container: container.name,
@@ -29,9 +29,7 @@ const startSetBackground = container => {
   };
 };
 
-const setBackground = container => ({
+export const setBackground = container => ({
   type: 'SET_BACKGROUND',
   payload: container
 });
-
-export { addDial, setTheme, setContainer, startSetBackground };
