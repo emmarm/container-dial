@@ -7,7 +7,7 @@ const DEFAULT_STATE = {
   name: 'Default'
 };
 
-const containerReducer = (state = { ...DEFAULT_STATE }, action) => {
+const containerReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case 'SET_CONTAINER':
       return action.payload;

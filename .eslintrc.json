@@ -1,14 +1,15 @@
 {
   "env": {
+    "node": true,
     "browser": true,
     "commonjs": true,
     "es6": true,
     "jest": true
   },
   "extends": [
+    "plugin:prettier/recommended",
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:react/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
