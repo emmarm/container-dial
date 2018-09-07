@@ -28,7 +28,12 @@ Page.propTypes = {
     light: PropTypes.string,
     dark: PropTypes.string
   }),
-  children: PropTypes.arrayOf(PropTypes.object)
+  children: PropTypes.arrayOf(PropTypes.object),
+  background: PropTypes.shape({
+    container: PropTypes.string,
+    image: PropTypes.object,
+    imageDate: PropTypes.string
+  })
 };
 
 const mapStateToProps = state => ({

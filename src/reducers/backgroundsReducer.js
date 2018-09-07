@@ -1,6 +1,6 @@
 const DEFAULT_STATE = [
   {
-    container: 'Default',
+    container: '',
     image: null,
     imageDate: null
   }

@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Dial = ({ name, theme, icon }) => (
+const Dial = ({ name, icon }) => (
   <button className="dial">
     <div className="dial--hover" />
     <div className="dial__title-area">
@@ -9,5 +10,10 @@ const Dial = ({ name, theme, icon }) => (
     <div className="dial__icon" style={{ backgroundImage: `url('${icon}')` }} />
   </button>
 );
+
+Dial.propTypes = {
+  name: PropTypes.string,
+  icon: PropTypes.string
+};
 
 export default Dial;

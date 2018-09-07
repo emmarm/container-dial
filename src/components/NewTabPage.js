@@ -40,7 +40,9 @@ class NewTabPage extends React.Component {
     const { container, theme } = this.props;
     return (
       <Page theme={theme}>
-        <h1 className="page__title">{container.name}</h1>
+        <h1 className="page__title" style={{ color: theme.light }}>
+          {container.name}
+        </h1>
         <GridList>{this.renderDials(container)}</GridList>
       </Page>
     );
@@ -56,7 +58,10 @@ NewTabPage.propTypes = {
     primary: PropTypes.string,
     light: PropTypes.string,
     dark: PropTypes.string
-  })
+  }),
+  setContainer: PropTypes.func.isRequired,
+  setTheme: PropTypes.func.isRequired,
+  startSetBackground: PropTypes.func.isRequired
 };
 
 export default connect(
