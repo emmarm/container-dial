@@ -1,17 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import * as actions from '../actions';
 import Page from './Page';
 import GridList from './GridList';
 import Dial from './Dial';
 import DIALS from './DIALS';
 
 class NewTabPage extends React.Component {
-  async componentDidMount() {
-    const { container, theme, setContainer, setTheme } = this.props;
+  componentDidMount() {
+    const {
+      container,
+      theme,
+      setContainer,
+      setTheme,
+      startSetBackground
+    } = this.props;
 
     setContainer(container);
     setTheme(theme);
+    startSetBackground(container);
   }
 
   renderDials = container =>
@@ -50,4 +59,7 @@ NewTabPage.propTypes = {
   })
 };
 
-export default NewTabPage;
+export default connect(
+  undefined,
+  actions
+)(NewTabPage);

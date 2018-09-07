@@ -1,13 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Page = ({ theme, children }) => (
-  <div className="page__container">
-    <div className="page" style={{ backgroundColor: theme.primary }}>
-      {children}
+const Page = ({ background, theme, children }) => {
+  const bg =
+    background && background.image
+      ? `url('${background.image.urls.full}')`
+      : `linear-gradient(to bottom ${theme.primary}, ${theme.primary})`;
+
+  return (
+    <div className="page__container">
+      <div
+        className="page"
+        style={{
+          backgroundImage: bg
+        }}
+      >
+        {children}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 Page.propTypes = {
   theme: PropTypes.shape({
@@ -18,4 +31,12 @@ Page.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object)
 };
 
-export default Page;
+const mapStateToProps = state => ({
+  background: state.backgrounds.filter(
+    background => background.container === state.container.name
+  )[0],
+  container: state.container,
+  theme: state.theme
+});
+
+export default connect(mapStateToProps)(Page);
