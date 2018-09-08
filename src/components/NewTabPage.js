@@ -6,9 +6,8 @@ import * as actions from '../actions';
 import Page from './Page';
 import GridList from './GridList';
 import Dial from './Dial';
-import DIALS from './DIALS';
 
-class NewTabPage extends React.Component {
+export class NewTabPage extends React.Component {
   componentDidMount() {
     const {
       container,
@@ -23,9 +22,10 @@ class NewTabPage extends React.Component {
     startSetBackground(container);
   }
 
-  renderDials = container =>
-    DIALS.filter(dial => dial.container === container.name).map(
-      ({ name, favicon }) => (
+  renderDials = (dials, container) =>
+    dials
+      .filter(dial => dial.container === container.name)
+      .map(({ name, favicon }) => (
         <Dial
           key={name}
           ariaLabel={name}
@@ -33,14 +33,13 @@ class NewTabPage extends React.Component {
           theme={this.props.theme}
           icon={favicon}
         />
-      )
-    );
+      ));
 
   render() {
-    const { container, theme } = this.props;
+    const { container, theme, dials } = this.props;
     return (
       <Page theme={theme}>
-        <GridList>{this.renderDials(container)}</GridList>
+        <GridList>{this.renderDials(dials, container)}</GridList>
       </Page>
     );
   }
@@ -56,6 +55,7 @@ NewTabPage.propTypes = {
     light: PropTypes.string,
     dark: PropTypes.string
   }),
+  dials: PropTypes.arrayOf(PropTypes.object),
   setContainer: PropTypes.func.isRequired,
   setTheme: PropTypes.func.isRequired,
   startSetBackground: PropTypes.func.isRequired

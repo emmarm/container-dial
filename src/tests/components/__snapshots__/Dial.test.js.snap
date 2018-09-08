@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dial Component matches snapshot 1`] = `
+<button
+  className="dial"
+>
+  <div
+    className="dial--hover"
+  />
+  <div
+    className="dial__title-area"
+  >
+    <p
+      className="dial__title"
+    >
+      test
+    </p>
+  </div>
+  <div
+    className="dial__icon"
+    style={
+      Object {
+        "backgroundImage": "url('icon.jpg')",
+      }
+    }
+  />
+</button>
+`;
