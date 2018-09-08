@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Page = ({ background, theme, container, children }) => {
+export const Page = ({ background, theme, container, children }) => {
   const bg =
     background && background.image
       ? `url('${background.image.urls.full}')`

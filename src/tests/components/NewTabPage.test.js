@@ -26,7 +26,6 @@ describe('NewTabPage component', () => {
 
   it('calls setContainer, setTheme, and startSetBackground functions', () => {
     const { setContainer, setTheme, startSetBackground } = props;
-    const wrapper = shallow(<NewTabPage {...props} />);
     expect(setContainer).toHaveBeenCalled();
     expect(setTheme).toHaveBeenCalled();
     expect(startSetBackground).toHaveBeenCalled();
