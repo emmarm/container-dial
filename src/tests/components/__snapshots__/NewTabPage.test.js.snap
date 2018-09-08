@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewTabPage component matches snapshot 1`] = `
+<Connect(Component)
+  theme={
+    Object {
+      "dark": "#000",
+      "light": "#fff",
+      "primary": "#333",
+    }
+  }
+>
+  <GridList>
+    <Dial
+      ariaLabel="Youtube"
+      icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
+      key="Youtube"
+      name="Youtube"
+      theme={
+        Object {
+          "dark": "#000",
+          "light": "#fff",
+          "primary": "#333",
+        }
+      }
+    />
+    <Dial
+      ariaLabel="Daily Cooking Quest"
+      key="Daily Cooking Quest"
+      name="Daily Cooking Quest"
+      theme={
+        Object {
+          "dark": "#000",
+          "light": "#fff",
+          "primary": "#333",
+        }
+      }
+    />
+    <Dial
+      ariaLabel="Mozilla Developer Documentation"
+      key="Mozilla Developer Documentation"
+      name="Mozilla Developer Documentation"
+      theme={
+        Object {
+          "dark": "#000",
+          "light": "#fff",
+          "primary": "#333",
+        }
+      }
+    />
+  </GridList>
+</Connect(Component)>
+`;

@@ -1,10 +1,4 @@
-const DEFAULT_STATE = [
-  {
-    container: '',
-    image: null,
-    imageDate: null
-  }
-];
+const DEFAULT_STATE = [];
 
 const backgroundsReducer = (state = DEFAULT_STATE, action) => {
   const { payload } = action;
@@ -12,12 +6,11 @@ const backgroundsReducer = (state = DEFAULT_STATE, action) => {
     case 'SET_BACKGROUND':
       // if container already exists in state
       if (
-        state.filter(background => background.container === payload.name)
-          .length > 0
+        state.find(background => background.container === payload.container)
       ) {
         return state.map(background => {
           // only for matching container
-          if (background.container === payload.name) {
+          if (background.container === payload.container) {
             // and only if image is not yet updated
             if (background.imageDate !== new Date().toDateString()) {
               // then update the matching container

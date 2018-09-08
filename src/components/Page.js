@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Page = ({ background, theme, children }) => {
+export const Page = ({ background, theme, container, children }) => {
   const bg =
     background && background.image
       ? `url('${background.image.urls.full}')`
@@ -10,12 +10,10 @@ const Page = ({ background, theme, children }) => {
 
   return (
     <div className="page__container">
-      <div
-        className="page"
-        style={{
-          backgroundImage: bg
-        }}
-      >
+      <div className="page" style={{ backgroundImage: bg }}>
+        <h1 className="page__title" style={{ color: theme.light }}>
+          {container.name}
+        </h1>
         {children}
       </div>
     </div>
@@ -33,7 +31,8 @@ Page.propTypes = {
     container: PropTypes.string,
     image: PropTypes.object,
     imageDate: PropTypes.string
-  })
+  }),
+  container: PropTypes.objectOf(PropTypes.string)
 };
 
 const mapStateToProps = state => ({

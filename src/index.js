@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 import appReducer from './reducers';
 import NewTabPage from './components/NewTabPage';
 import getTheme from './utils/getTheme';
+import DIALS from './DIALS';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -27,7 +28,7 @@ const renderApp = () => {
 
   ReactDOM.render(
     <Provider store={store}>
-      <NewTabPage container={container} theme={theme} />
+      <NewTabPage container={container} theme={theme} dials={DIALS} />
     </Provider>,
     document.getElementById('page')
   );
