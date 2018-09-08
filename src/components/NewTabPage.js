@@ -40,9 +40,6 @@ class NewTabPage extends React.Component {
     const { container, theme } = this.props;
     return (
       <Page theme={theme}>
-        <h1 className="page__title" style={{ color: theme.light }}>
-          {container.name}
-        </h1>
         <GridList>{this.renderDials(container)}</GridList>
       </Page>
     );

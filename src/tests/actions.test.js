@@ -33,7 +33,7 @@ describe('actions', () => {
     });
   });
 
-  it('calls setBackground from startSetBackground', () => {
+  it('calls setBackground from startSetBackground', done => {
     const store = mockStore({});
     const container = { name: 'Personal', color: 'pink' };
     const containerWithImage = {
@@ -45,6 +45,7 @@ describe('actions', () => {
     return store.dispatch(startSetBackground(container)).then(() => {
       const actions = store.getActions();
       expect(actions[0]).toEqual(setBackground(containerWithImage));
+      done();
     });
   });
 
