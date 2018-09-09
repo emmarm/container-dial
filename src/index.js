@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
+import Modal from 'react-modal';
 
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -19,8 +20,10 @@ const store = createStore(
 );
 
 const renderApp = () => {
+  Modal.setAppElement(document.getElementById('root'));
+
   const container = {
-    color: 'pink',
+    color: 'orange',
     name: 'Personal'
   };
 

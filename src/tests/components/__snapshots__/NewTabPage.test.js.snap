@@ -10,6 +10,15 @@ exports[`NewTabPage component matches snapshot 1`] = `
     }
   }
 >
+  <AddDialModal
+    container={
+      Object {
+        "name": "Default",
+      }
+    }
+    handleHideAddDialModal={[Function]}
+    isOpen={false}
+  />
   <GridList>
     <Dial
       ariaLabel="Youtube"
@@ -50,7 +59,9 @@ exports[`NewTabPage component matches snapshot 1`] = `
         }
       }
     />
-    <AddDialButton />
+    <AddDialButton
+      handleShowAddDialModal={[Function]}
+    />
   </GridList>
 </Connect(Component)>
 `;

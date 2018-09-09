@@ -25,13 +25,15 @@ export class NewTabPage extends React.Component {
     startSetBackground(container);
   }
 
-  handleShowAddDialModal = () => {
+  handleShowAddDialModal = e => {
+    e.preventDefault();
     this.setState(() => ({
       showAddDialModal: true
     }));
   };
 
-  handleHideAddDialModal = () => {
+  handleHideAddDialModal = e => {
+    e.preventDefault();
     this.setState(() => ({
       showAddDialModal: false
     }));
@@ -54,12 +56,11 @@ export class NewTabPage extends React.Component {
     const { container, theme, dials } = this.props;
     return (
       <Page theme={theme}>
-        {this.state.showAddDialModal && (
-          <AddDialModal
-            handleHideAddDialModal={this.handleHideAddDialModal}
-            container={container}
-          />
-        )}
+        <AddDialModal
+          handleHideAddDialModal={this.handleHideAddDialModal}
+          container={container}
+          isOpen={this.state.showAddDialModal}
+        />
         <GridList>
           {this.renderDials(dials, container)}
           <AddDialButton handleShowAddDialModal={this.handleShowAddDialModal} />
