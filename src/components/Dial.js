@@ -6,7 +6,12 @@ const Dial = ({ name, icon }) => (
     <div className="dial__title-area">
       <p className="dial__title">{name}</p>
     </div>
-    <div className="dial__icon" style={{ backgroundImage: `url('${icon}')` }} />
+    <div
+      className="dial__icon"
+      style={{
+        backgroundImage: `url('${icon}')`
+      }}
+    />
   </button>
 );
 

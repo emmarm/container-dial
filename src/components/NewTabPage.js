@@ -7,8 +7,10 @@ import Page from './Page';
 import GridList from './GridList';
 import Dial from './Dial';
 import AddDialButton from './AddDialButton';
+import AddDialModal from './AddDialModal';
 
 export class NewTabPage extends React.Component {
+  state = { showAddDialModal: false };
   componentDidMount() {
     const {
       container,
@@ -22,6 +24,18 @@ export class NewTabPage extends React.Component {
     setTheme(theme);
     startSetBackground(container);
   }
+
+  handleShowAddDialModal = () => {
+    this.setState(() => ({
+      showAddDialModal: true
+    }));
+  };
+
+  handleHideAddDialModal = () => {
+    this.setState(() => ({
+      showAddDialModal: false
+    }));
+  };
 
   renderDials = (dials, container) =>
     dials
@@ -40,9 +54,15 @@ export class NewTabPage extends React.Component {
     const { container, theme, dials } = this.props;
     return (
       <Page theme={theme}>
+        {this.state.showAddDialModal && (
+          <AddDialModal
+            handleHideAddDialModal={this.handleHideAddDialModal}
+            container={container}
+          />
+        )}
         <GridList>
           {this.renderDials(dials, container)}
-          <AddDialButton />
+          <AddDialButton handleShowAddDialModal={this.handleShowAddDialModal} />
         </GridList>
       </Page>
     );

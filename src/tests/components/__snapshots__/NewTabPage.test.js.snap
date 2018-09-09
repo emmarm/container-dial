@@ -26,6 +26,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
     />
     <Dial
       ariaLabel="Daily Cooking Quest"
+      icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Daily Cooking Quest"
       name="Daily Cooking Quest"
       theme={
@@ -38,6 +39,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
     />
     <Dial
       ariaLabel="Mozilla Developer Documentation"
+      icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Mozilla Developer Documentation"
       name="Mozilla Developer Documentation"
       theme={

@@ -20,8 +20,8 @@ const store = createStore(
 
 const renderApp = () => {
   const container = {
-    color: 'green',
-    name: 'Default'
+    color: 'pink',
+    name: 'Personal'
   };
 
   const theme = getTheme(container.color);
