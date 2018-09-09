@@ -20,7 +20,7 @@ const store = createStore(
 );
 
 const renderApp = () => {
-  Modal.setAppElement(document.getElementById('root'));
+  Modal.setAppElement(document.getElementById('page'));
 
   const container = {
     color: 'orange',
