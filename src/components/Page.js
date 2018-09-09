@@ -6,7 +6,7 @@ export const Page = ({ background, theme, container, children }) => {
   const bg =
     background && background.image
       ? `url('${background.image.urls.full}')`
-      : `linear-gradient(to bottom ${theme.primary}, ${theme.primary})`;
+      : `linear-gradient(to bottom, ${theme.primary}, ${theme.primary})`;
 
   return (
     <div className="page__container">

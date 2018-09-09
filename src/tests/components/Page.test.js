@@ -46,7 +46,7 @@ describe('Page component', () => {
     );
     const bg = wrapper.find('.page');
     expect(bg.prop('style')).toEqual({
-      backgroundImage: `linear-gradient(to bottom ${props.theme.primary}, ${
+      backgroundImage: `linear-gradient(to bottom, ${props.theme.primary}, ${
         props.theme.primary
       })`
     });

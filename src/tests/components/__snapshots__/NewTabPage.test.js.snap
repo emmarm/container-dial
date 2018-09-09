@@ -48,6 +48,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
         }
       }
     />
+    <AddDialButton />
   </GridList>
 </Connect(Component)>
 `;

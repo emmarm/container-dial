@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Page from './Page';
 import GridList from './GridList';
 import Dial from './Dial';
+import AddDialButton from './AddDialButton';
 
 export class NewTabPage extends React.Component {
   componentDidMount() {
@@ -39,7 +40,10 @@ export class NewTabPage extends React.Component {
     const { container, theme, dials } = this.props;
     return (
       <Page theme={theme}>
-        <GridList>{this.renderDials(dials, container)}</GridList>
+        <GridList>
+          {this.renderDials(dials, container)}
+          <AddDialButton />
+        </GridList>
       </Page>
     );
   }

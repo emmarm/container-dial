@@ -46,7 +46,8 @@ const DIALS = [
   {
     name: 'Daily Cooking Quest',
     url: 'www.dailycookingquest.com',
-    container: 'Default'
+    container: 'Default',
+    favicon: 'https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png'
   },
   {
     name: 'Sean Croxton',
@@ -57,7 +58,8 @@ const DIALS = [
   {
     name: 'Mozilla Developer Documentation',
     url: 'developer.mozilla.org',
-    container: 'Default'
+    container: 'Default',
+    favicon: 'https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png'
   }
 ];
 
