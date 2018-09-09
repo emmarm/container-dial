@@ -8,6 +8,15 @@ const AddDialModal = ({ handleHideAddDialModal, container, isOpen, theme }) => (
     onRequestClose={handleHideAddDialModal}
     closeTimeoutMS={150}
     className="add-dial-modal"
+    style={{
+      overlay: {
+        background: `linear-gradient(to bottom, ${theme.dark}55, ${
+          theme.dark
+        }55),
+        linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.6))`
+      },
+      content: { background: 'white' }
+    }}
   >
     <h2 className="add-dial-modal__title">
       New{' '}

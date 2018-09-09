@@ -18,6 +18,13 @@ exports[`NewTabPage component matches snapshot 1`] = `
     }
     handleHideAddDialModal={[Function]}
     isOpen={false}
+    theme={
+      Object {
+        "dark": "#000",
+        "light": "#fff",
+        "primary": "#333",
+      }
+    }
   />
   <GridList>
     <Dial

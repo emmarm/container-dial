@@ -10,7 +10,7 @@ import AddDialButton from './AddDialButton';
 import AddDialModal from './AddDialModal';
 
 export class NewTabPage extends React.Component {
-  state = { showAddDialModal: true };
+  state = { showAddDialModal: false };
   componentDidMount() {
     const {
       container,

@@ -20,6 +20,15 @@ body {
   left: 0;
 }
 
+.page__overlay {
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .page__title {
   text-align: center;
   margin: 40px;
@@ -99,19 +108,17 @@ body {
   box-shadow: rgba(50, 50, 93, 0.1) 0px 15px 35px,
     rgba(0, 0, 0, 0.07) 0px 5px 15px;
   outline: none;
-  background: rgba(255, 255, 255, 0.9);
 }
 
 .add-dial-modal__title {
   font-weight: 100;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #888;
 }
 
 .add-dial-modal__form {
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
 }
 
 .add-dial-modal__field {
@@ -132,7 +139,7 @@ body {
 .add-dial-modal__buttons {
   display: flex;
   justify-content: space-around;
-  margin: 30px;
+  margin: 25px;
 }
 
 .add-dial-modal__button {

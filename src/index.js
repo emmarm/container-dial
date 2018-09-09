@@ -23,7 +23,7 @@ const renderApp = () => {
   Modal.setAppElement(document.getElementById('page'));
 
   const container = {
-    color: 'purple',
+    color: 'pink',
     name: 'Personal'
   };
 
