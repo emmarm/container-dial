@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Dial = ({ name, icon }) => (
+const Dial = ({ siteName, icon }) => (
   <button className="dial">
     <div className="dial__title-area">
-      <p className="dial__title">{name}</p>
+      <p className="dial__title">{siteName}</p>
     </div>
     <div
       className="dial__icon"
@@ -16,7 +16,7 @@ const Dial = ({ name, icon }) => (
 );
 
 Dial.propTypes = {
-  name: PropTypes.string,
+  siteName: PropTypes.string,
   icon: PropTypes.string
 };
 

@@ -39,18 +39,19 @@ export class NewTabPage extends React.Component {
     }));
   };
 
-  renderDials = (dials, container) =>
-    dials
+  renderDials = (dials, container) => {
+    return dials
       .filter(dial => dial.container === container.name)
-      .map(({ name, favicon }) => (
+      .map(({ siteName, favicon }) => (
         <Dial
-          key={name}
-          ariaLabel={name}
-          name={name}
+          key={siteName}
+          ariaLabel={siteName}
+          siteName={siteName}
           theme={this.props.theme}
           icon={favicon}
         />
       ));
+  };
 
   render() {
     const { container, theme, dials } = this.props;
@@ -87,7 +88,11 @@ NewTabPage.propTypes = {
   startSetBackground: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+  dials: state.dials
+});
+
 export default connect(
-  undefined,
+  mapStateToProps,
   actions
 )(NewTabPage);

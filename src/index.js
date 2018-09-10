@@ -10,7 +10,6 @@ import registerServiceWorker from './registerServiceWorker';
 import appReducer from './reducers';
 import NewTabPage from './components/NewTabPage';
 import getTheme from './utils/getTheme';
-import DIALS from './DIALS';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -23,15 +22,15 @@ const renderApp = () => {
   Modal.setAppElement(document.getElementById('page'));
 
   const container = {
-    color: 'pink',
-    name: 'Personal'
+    color: 'yellow',
+    name: 'Travel'
   };
 
   const theme = getTheme(container.color);
 
   ReactDOM.render(
     <Provider store={store}>
-      <NewTabPage container={container} theme={theme} dials={DIALS} />
+      <NewTabPage container={container} theme={theme} />
     </Provider>,
     document.getElementById('page')
   );

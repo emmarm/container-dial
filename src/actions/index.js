@@ -29,6 +29,11 @@ export const startSetBackground = container => {
   };
 };
 
+export const addDial = dial => ({
+  type: 'ADD_DIAL',
+  payload: dial
+});
+
 export const setBackground = container => ({
   type: 'SET_BACKGROUND',
   payload: container
