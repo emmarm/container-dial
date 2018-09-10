@@ -33,7 +33,7 @@ export class NewTabPage extends React.Component {
   };
 
   handleHideAddDialModal = e => {
-    e.preventDefault();
+    e && e.preventDefault();
     this.setState(() => ({
       showAddDialModal: false
     }));

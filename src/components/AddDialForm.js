@@ -8,24 +8,64 @@ import getFavicon from '../utils/getFavicon';
 class AddDialForm extends Component {
   state = {
     siteName: '',
-    siteUrl: ''
+    siteUrl: '',
+    nameError: '',
+    urlError: '',
+    nameTouched: false,
+    urlTouched: false
   };
 
   onSiteNameChange = e => {
     const siteName = e.target.value;
-    this.setState(() => ({ siteName }));
+    this.setState(() => ({ siteName, nameTouched: true }));
   };
 
   onSiteUrlChange = e => {
     const siteUrl = e.target.value;
-    this.setState(() => ({ siteUrl }));
+    this.setState(() => ({ siteUrl, urlTouched: true }));
+  };
+
+  onSiteUrlBlur = e => {
+    const { value } = e.target;
+    const url = value.replace(/^(?:https?:\/\/)?(.*)$/, 'https://$1');
+
+    const isValidUrl = string => {
+      try {
+        new URL(string);
+        return true;
+      } catch (err) {
+        return false;
+      }
+    };
+
+    if (!value) {
+      return this.setState(() => ({
+        urlError: 'Required'
+      }));
+    } else if (!isValidUrl(url)) {
+      return this.setState(() => ({
+        urlError: 'Invalid URL'
+      }));
+    } else {
+      this.setState(() => ({
+        urlError: ''
+      }));
+    }
   };
 
   handleSubmit = async e => {
     e.preventDefault();
     const { siteName, siteUrl } = this.state;
     const { container, addDial, handleHideAddDialModal } = this.props;
-    const favicon = await getFavicon(siteUrl);
+
+    let favicon;
+    try {
+      const icon = await getFavicon(siteUrl);
+
+      favicon = icon;
+    } catch (err) {
+      favicon = 'error';
+    }
     const dial = {
       siteName,
       siteUrl,
@@ -34,10 +74,18 @@ class AddDialForm extends Component {
     };
 
     addDial(dial);
-    handleHideAddDialModal(e);
+    handleHideAddDialModal();
   };
 
   render() {
+    const {
+      siteName,
+      siteUrl,
+      nameError,
+      urlError,
+      nameTouched,
+      urlTouched
+    } = this.state;
     return (
       <form className="add-dial-modal__form">
         <div className="add-dial-modal__field">
@@ -50,7 +98,7 @@ class AddDialForm extends Component {
             type="text"
             placeholder="e.g. Facebook"
             onChange={this.onSiteNameChange}
-            value={this.state.siteName}
+            value={siteName}
           />
         </div>
 
@@ -64,9 +112,11 @@ class AddDialForm extends Component {
             type="text"
             placeholder="e.g. https://facebook.com"
             onChange={this.onSiteUrlChange}
-            value={this.state.siteUrl}
+            onBlur={this.onSiteUrlBlur}
+            value={siteUrl}
           />
         </div>
+        {urlError}
 
         <div className="add-dial-modal__buttons">
           <button
@@ -80,6 +130,7 @@ class AddDialForm extends Component {
             className="add-dial-modal__button button--primary"
             onClick={this.handleSubmit}
             style={{ backgroundColor: this.props.theme.primary }}
+            disabled={nameError || urlError || !nameTouched || !urlTouched}
           >
             Add Dial
           </button>

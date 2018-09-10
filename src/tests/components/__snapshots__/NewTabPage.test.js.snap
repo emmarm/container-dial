@@ -31,7 +31,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
       ariaLabel="Youtube"
       icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Youtube"
-      name="Youtube"
+      siteName="Youtube"
       theme={
         Object {
           "dark": "#000",
@@ -44,7 +44,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
       ariaLabel="Daily Cooking Quest"
       icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Daily Cooking Quest"
-      name="Daily Cooking Quest"
+      siteName="Daily Cooking Quest"
       theme={
         Object {
           "dark": "#000",
@@ -57,7 +57,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
       ariaLabel="Mozilla Developer Documentation"
       icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Mozilla Developer Documentation"
-      name="Mozilla Developer Documentation"
+      siteName="Mozilla Developer Documentation"
       theme={
         Object {
           "dark": "#000",

@@ -31,7 +31,7 @@ Page.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object),
   background: PropTypes.shape({
     container: PropTypes.string,
-    image: PropTypes.object,
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     imageDate: PropTypes.string
   }),
   container: PropTypes.objectOf(PropTypes.string)

@@ -108,6 +108,7 @@ body {
   box-shadow: rgba(50, 50, 93, 0.1) 0px 15px 35px,
     rgba(0, 0, 0, 0.07) 0px 5px 15px;
   outline: none;
+  min-width: 420px;
 }
 
 .add-dial-modal__title {
@@ -152,6 +153,11 @@ body {
   font-size: 20px;
   font-weight: 300;
   cursor: pointer;
+}
+
+.button--primary:disabled {
+  background-color: #666 !important;
+  cursor: auto;
 }
 
 .button--secondary {
