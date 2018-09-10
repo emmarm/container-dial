@@ -5,7 +5,13 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 import * as actions from '../actions';
-const { setTheme, setContainer, startSetBackground, setBackground } = actions;
+const {
+  setTheme,
+  setContainer,
+  startSetBackground,
+  setBackground,
+  addDial
+} = actions;
 
 describe('actions', () => {
   it('sets up setTheme action', () => {
@@ -59,6 +65,20 @@ describe('actions', () => {
     expect(action).toEqual({
       type: 'SET_BACKGROUND',
       payload: background
+    });
+  });
+
+  it('sets up addDial action', () => {
+    const dial = {
+      container: 'Personal',
+      siteName: 'Goodreads',
+      siteUrl: 'https://goodreads.com',
+      favicon: 'https://www.goodreads.com/favicon.ico'
+    };
+    const action = addDial(dial);
+    expect(action).toEqual({
+      type: 'ADD_DIAL',
+      payload: dial
     });
   });
 });

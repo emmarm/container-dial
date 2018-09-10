@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions';
 import getFavicon from '../utils/getFavicon';
 
-class AddDialForm extends Component {
+export class AddDialForm extends Component {
   state = {
     siteName: '',
     siteUrl: '',
@@ -18,6 +18,15 @@ class AddDialForm extends Component {
   onSiteNameChange = e => {
     const siteName = e.target.value;
     this.setState(() => ({ siteName, nameTouched: true }));
+  };
+
+  onSiteNameBlur = e => {
+    const { value } = e.target;
+    if (!value) {
+      return this.setState(() => ({ nameError: 'Required' }));
+    } else {
+      return this.setState(() => ({ nameError: '' }));
+    }
   };
 
   onSiteUrlChange = e => {
@@ -87,7 +96,7 @@ class AddDialForm extends Component {
       urlTouched
     } = this.state;
     return (
-      <form className="add-dial-modal__form">
+      <form className="add-dial-modal__form" onSubmit={this.handleSubmit}>
         <div className="add-dial-modal__field">
           <label htmlFor="site-name" className="field__label">
             Site Name
@@ -98,6 +107,7 @@ class AddDialForm extends Component {
             type="text"
             placeholder="e.g. Facebook"
             onChange={this.onSiteNameChange}
+            onBlur={this.onSiteNameBlur}
             value={siteName}
           />
         </div>
@@ -128,7 +138,6 @@ class AddDialForm extends Component {
 
           <button
             className="add-dial-modal__button button--primary"
-            onClick={this.handleSubmit}
             style={{ backgroundColor: this.props.theme.primary }}
             disabled={nameError || urlError || !nameTouched || !urlTouched}
           >
