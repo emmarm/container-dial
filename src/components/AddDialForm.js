@@ -140,6 +140,7 @@ export class AddDialForm extends Component {
             className="add-dial-modal__button button--primary"
             style={{ backgroundColor: this.props.theme.primary }}
             disabled={nameError || urlError || !nameTouched || !urlTouched}
+            type="submit"
           >
             Add Dial
           </button>

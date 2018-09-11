@@ -84,6 +84,4 @@ describe('AddDialForm component', () => {
       expect(wrapper.state('urlError')).toBe('');
     });
   });
-
-  describe('form submit', () => {});
 });

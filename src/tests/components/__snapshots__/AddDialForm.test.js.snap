@@ -60,6 +60,7 @@ exports[`AddDialForm component matches snapshot 1`] = `
           "backgroundColor": "#333",
         }
       }
+      type="submit"
     >
       Add Dial
     </button>
