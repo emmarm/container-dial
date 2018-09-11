@@ -1,6 +1,7 @@
 import backgroundsReducer from '../reducers/backgroundsReducer';
 import containerReducer from '../reducers/containerReducer';
 import themeReducer from '../reducers/themeReducer';
+import dialsReducer from '../reducers/dialsReducer';
 
 describe('reducers', () => {
   describe('backgroundReducer', () => {
@@ -90,6 +91,25 @@ describe('reducers', () => {
       const action = { type: 'SET_THEME', payload };
       const state = themeReducer(defaultState, action);
       expect(state).toEqual(payload);
+    });
+  });
+
+  describe('dialsReducer', () => {
+    it('sets up dialsReducer default state', () => {
+      const state = dialsReducer(undefined, { type: '@@init' });
+      expect(state).toEqual([]);
+    });
+
+    it('adds new dial to dialsReducer', () => {
+      const payload = {
+        container: 'Personal',
+        siteName: 'Goodreads',
+        siteUrl: 'https://goodreads.com',
+        favicon: 'https://www.goodreads.com/favicon.ico'
+      };
+      const action = { type: 'ADD_DIAL', payload };
+      const state = dialsReducer([], action);
+      expect(state).toEqual([payload]);
     });
   });
 });

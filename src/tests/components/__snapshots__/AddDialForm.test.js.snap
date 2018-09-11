@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddDialForm component matches snapshot 1`] = `
+<form
+  className="add-dial-modal__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="add-dial-modal__field"
+  >
+    <label
+      className="field__label"
+      htmlFor="site-name"
+    >
+      Site Name
+    </label>
+    <input
+      className="field__input"
+      id="site-name"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="e.g. Facebook"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="add-dial-modal__field"
+  >
+    <label
+      className="field__label"
+      htmlFor="site-url"
+    >
+      Site URL
+    </label>
+    <input
+      className="field__input"
+      id="site-url"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="e.g. https://facebook.com"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="add-dial-modal__buttons"
+  >
+    <button
+      className="add-dial-modal__button button--secondary"
+      onClick={[Function]}
+    >
+      Cancel
+    </button>
+    <button
+      className="add-dial-modal__button button--primary"
+      disabled={true}
+      style={
+        Object {
+          "backgroundColor": "#333",
+        }
+      }
+      type="submit"
+    >
+      Add Dial
+    </button>
+  </div>
+</form>
+`;

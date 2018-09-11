@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { NewTabPage } from '../../components/NewTabPage';
-import DIALS from '../../DIALS';
+import DIALS from '../seedData/DIALS';
 
 describe('NewTabPage component', () => {
   const props = {

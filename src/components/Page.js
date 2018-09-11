@@ -6,15 +6,17 @@ export const Page = ({ background, theme, container, children }) => {
   const bg =
     background && background.image
       ? `url('${background.image.urls.full}')`
-      : `linear-gradient(to bottom ${theme.primary}, ${theme.primary})`;
+      : `linear-gradient(to bottom, ${theme.primary}, ${theme.primary})`;
 
   return (
     <div className="page__container">
       <div className="page" style={{ backgroundImage: bg }}>
-        <h1 className="page__title" style={{ color: theme.light }}>
-          {container.name}
-        </h1>
-        {children}
+        <div className="page__overlay">
+          <h1 className="page__title" style={{ color: theme.light }}>
+            {container.name}
+          </h1>
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -29,7 +31,7 @@ Page.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object),
   background: PropTypes.shape({
     container: PropTypes.string,
-    image: PropTypes.object,
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     imageDate: PropTypes.string
   }),
   container: PropTypes.objectOf(PropTypes.string)

@@ -10,12 +10,28 @@ exports[`NewTabPage component matches snapshot 1`] = `
     }
   }
 >
+  <AddDialModal
+    container={
+      Object {
+        "name": "Default",
+      }
+    }
+    handleHideAddDialModal={[Function]}
+    isOpen={false}
+    theme={
+      Object {
+        "dark": "#000",
+        "light": "#fff",
+        "primary": "#333",
+      }
+    }
+  />
   <GridList>
     <Dial
       ariaLabel="Youtube"
       icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Youtube"
-      name="Youtube"
+      siteName="Youtube"
       theme={
         Object {
           "dark": "#000",
@@ -26,8 +42,9 @@ exports[`NewTabPage component matches snapshot 1`] = `
     />
     <Dial
       ariaLabel="Daily Cooking Quest"
+      icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Daily Cooking Quest"
-      name="Daily Cooking Quest"
+      siteName="Daily Cooking Quest"
       theme={
         Object {
           "dark": "#000",
@@ -38,8 +55,9 @@ exports[`NewTabPage component matches snapshot 1`] = `
     />
     <Dial
       ariaLabel="Mozilla Developer Documentation"
+      icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Mozilla Developer Documentation"
-      name="Mozilla Developer Documentation"
+      siteName="Mozilla Developer Documentation"
       theme={
         Object {
           "dark": "#000",
@@ -47,6 +65,9 @@ exports[`NewTabPage component matches snapshot 1`] = `
           "primary": "#333",
         }
       }
+    />
+    <AddDialButton
+      handleShowAddDialModal={[Function]}
     />
   </GridList>
 </Connect(Component)>

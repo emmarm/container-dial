@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Dial from '../../components/Dial';
 
 describe('Dial Component', () => {
-  const props = { name: 'test', icon: 'icon.jpg' };
+  const props = { siteName: 'test', icon: 'icon.jpg' };
   const wrapper = shallow(<Dial {...props} />);
 
   it('matches snapshot', () => {
@@ -13,7 +13,7 @@ describe('Dial Component', () => {
 
   it('applies name prop correctly', () => {
     const title = wrapper.find('.dial__title');
-    expect(title.text()).toBe(props.name);
+    expect(title.text()).toBe(props.siteName);
   });
 
   it('applies icon prop correctly', () => {

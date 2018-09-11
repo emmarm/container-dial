@@ -5,9 +5,6 @@ exports[`Dial Component matches snapshot 1`] = `
   className="dial"
 >
   <div
-    className="dial--hover"
-  />
-  <div
     className="dial__title-area"
   >
     <p

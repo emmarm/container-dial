@@ -12,16 +12,20 @@ exports[`Page component matches snapshot 1`] = `
       }
     }
   >
-    <h1
-      className="page__title"
-      style={
-        Object {
-          "color": "#fff",
-        }
-      }
+    <div
+      className="page__overlay"
     >
-      Default
-    </h1>
+      <h1
+        className="page__title"
+        style={
+          Object {
+            "color": "#fff",
+          }
+        }
+      >
+        Default
+      </h1>
+    </div>
   </div>
 </div>
 `;
