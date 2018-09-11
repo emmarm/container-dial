@@ -32,6 +32,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
       icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Youtube"
       siteName="Youtube"
+      siteUrl="www.youtube.com"
       theme={
         Object {
           "dark": "#000",
@@ -45,6 +46,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
       icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Daily Cooking Quest"
       siteName="Daily Cooking Quest"
+      siteUrl="www.dailycookingquest.com"
       theme={
         Object {
           "dark": "#000",
@@ -58,6 +60,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
       icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
       key="Mozilla Developer Documentation"
       siteName="Mozilla Developer Documentation"
+      siteUrl="developer.mozilla.org"
       theme={
         Object {
           "dark": "#000",

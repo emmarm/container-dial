@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions';
 import getFavicon from '../utils/getFavicon';
 
-export class AddDialForm extends Component {
+export class DialForm extends Component {
   state = {
     siteName: '',
     siteUrl: '',
@@ -65,7 +65,7 @@ export class AddDialForm extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const { siteName, siteUrl } = this.state;
-    const { container, addDial, handleHideAddDialModal } = this.props;
+    const { container, addDial, handleHideDialModal } = this.props;
 
     let favicon;
     try {
@@ -83,7 +83,7 @@ export class AddDialForm extends Component {
     };
 
     addDial(dial);
-    handleHideAddDialModal();
+    handleHideDialModal();
   };
 
   render() {
@@ -96,8 +96,8 @@ export class AddDialForm extends Component {
       urlTouched
     } = this.state;
     return (
-      <form className="add-dial-modal__form" onSubmit={this.handleSubmit}>
-        <div className="add-dial-modal__field">
+      <form className="dial-modal__form" onSubmit={this.handleSubmit}>
+        <div className="dial-modal__field">
           <label htmlFor="site-name" className="field__label">
             Site Name
           </label>
@@ -112,7 +112,7 @@ export class AddDialForm extends Component {
           />
         </div>
 
-        <div className="add-dial-modal__field">
+        <div className="dial-modal__field">
           <label htmlFor="site-url" className="field__label">
             Site URL
           </label>
@@ -128,16 +128,16 @@ export class AddDialForm extends Component {
         </div>
         {urlError}
 
-        <div className="add-dial-modal__buttons">
+        <div className="dial-modal__buttons">
           <button
-            onClick={this.props.handleHideAddDialModal}
-            className="add-dial-modal__button button--secondary"
+            onClick={this.props.handleHideDialModal}
+            className="dial-modal__button button--secondary"
           >
             Cancel
           </button>
 
           <button
-            className="add-dial-modal__button button--primary"
+            className="dial-modal__button button--primary"
             style={{ backgroundColor: this.props.theme.primary }}
             disabled={nameError || urlError || !nameTouched || !urlTouched}
             type="submit"
@@ -150,8 +150,8 @@ export class AddDialForm extends Component {
   }
 }
 
-AddDialForm.propTypes = {
-  handleHideAddDialModal: PropTypes.func.isRequired,
+DialForm.propTypes = {
+  handleHideDialModal: PropTypes.func.isRequired,
   theme: PropTypes.objectOf(PropTypes.string)
 };
 
@@ -162,4 +162,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   actions
-)(AddDialForm);
+)(DialForm);

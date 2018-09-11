@@ -98,7 +98,7 @@ body {
   cursor: pointer;
 }
 
-.add-dial-modal {
+.dial-modal {
   align-items: center;
   box-shadow: rgba(50, 50, 93, 0.1) 0px 15px 35px,
     rgba(0, 0, 0, 0.07) 0px 5px 15px;
@@ -112,18 +112,18 @@ body {
   width: 50vw;
 }
 
-.add-dial-modal__title {
+.dial-modal__title {
   color: #888;
   font-weight: 100;
   margin-bottom: 30px;
 }
 
-.add-dial-modal__form {
+.dial-modal__form {
   display: flex;
   flex-direction: column;
 }
 
-.add-dial-modal__field {
+.dial-modal__field {
   align-items: center;
   display: grid;
   grid-template-columns: 120px 300px;
@@ -138,13 +138,13 @@ body {
   padding: 8px;
 }
 
-.add-dial-modal__buttons {
+.dial-modal__buttons {
   display: flex;
   justify-content: space-around;
   margin: 25px;
 }
 
-.add-dial-modal__button {
+.dial-modal__button {
   border: none;
   border-radius: 4px;
   box-shadow: rgba(50, 50, 93, 0.1) 0px 7px 14px,
