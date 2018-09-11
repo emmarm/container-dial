@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Dial = ({ siteName, icon }) => (
-  <button className="dial">
+const Dial = ({ siteName, siteUrl, icon }) => (
+  <a href={siteUrl} className="dial">
     <div className="dial__title-area">
       <p className="dial__title">{siteName}</p>
     </div>
@@ -12,7 +12,7 @@ const Dial = ({ siteName, icon }) => (
         backgroundImage: `url('${icon}')`
       }}
     />
-  </button>
+  </a>
 );
 
 Dial.propTypes = {

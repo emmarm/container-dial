@@ -43,11 +43,12 @@ export class NewTabPage extends React.Component {
   renderDials = (dials, container) => {
     return dials
       .filter(dial => dial.container === container.name)
-      .map(({ siteName, favicon }) => (
+      .map(({ siteName, siteUrl, favicon }) => (
         <Dial
           key={siteName}
           ariaLabel={siteName}
           siteName={siteName}
+          siteUrl={siteUrl}
           theme={this.props.theme}
           icon={favicon}
         />
