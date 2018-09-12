@@ -19,16 +19,10 @@ exports[`NewTabPage component matches snapshot 1`] = `
     dial={null}
     handleHideDialModal={[Function]}
     isOpen={false}
-    theme={
-      Object {
-        "dark": "#000",
-        "light": "#fff",
-        "primary": "#333",
-      }
-    }
   />
   <GridList>
     <div
+      className="dial__container"
       key="Youtube"
     >
       <Dial
@@ -62,6 +56,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
       />
     </div>
     <div
+      className="dial__container"
       key="Daily Cooking Quest"
     >
       <Dial
@@ -95,6 +90,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
       />
     </div>
     <div
+      className="dial__container"
       key="Mozilla Developer Documentation"
     >
       <Dial

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import * as actions from '../actions';
 
@@ -20,6 +21,14 @@ const DeleteConfirm = ({
     <button onClick={handleDelete}>Delete</button>
   </div>
 );
+
+DeleteConfirm.propTypes = {
+  dial: PropTypes.objectOf(PropTypes.string),
+  toggleShowDeleteConfirm: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  container: PropTypes.objectOf(PropTypes.string),
+  theme: PropTypes.objectOf(PropTypes.string)
+};
 
 const mapStateToProps = state => ({
   container: state.container,

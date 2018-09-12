@@ -79,7 +79,8 @@ DialModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   container: PropTypes.objectOf(PropTypes.string),
   theme: PropTypes.objectOf(PropTypes.string),
-  dial: PropTypes.objectOf(PropTypes.string)
+  dial: PropTypes.objectOf(PropTypes.string),
+  deleteDial: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
