@@ -10,64 +10,121 @@ exports[`NewTabPage component matches snapshot 1`] = `
     }
   }
 >
-  <AddDialModal
+  <Connect(DialModal)
     container={
       Object {
         "name": "Default",
       }
     }
-    handleHideAddDialModal={[Function]}
+    dial={null}
+    handleHideDialModal={[Function]}
     isOpen={false}
-    theme={
-      Object {
-        "dark": "#000",
-        "light": "#fff",
-        "primary": "#333",
-      }
-    }
   />
   <GridList>
-    <Dial
-      ariaLabel="Youtube"
-      icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
+    <div
+      className="dial__container"
       key="Youtube"
-      siteName="Youtube"
-      theme={
-        Object {
-          "dark": "#000",
-          "light": "#fff",
-          "primary": "#333",
+    >
+      <Dial
+        ariaLabel="Youtube"
+        dial={
+          Object {
+            "container": "Default",
+            "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+            "siteName": "Youtube",
+            "siteUrl": "www.youtube.com",
+          }
         }
-      }
-    />
-    <Dial
-      ariaLabel="Daily Cooking Quest"
-      icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
+        theme={
+          Object {
+            "dark": "#000",
+            "light": "#fff",
+            "primary": "#333",
+          }
+        }
+      />
+      <EditDialButton
+        dial={
+          Object {
+            "container": "Default",
+            "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+            "siteName": "Youtube",
+            "siteUrl": "www.youtube.com",
+          }
+        }
+        handleShowDialModal={[Function]}
+      />
+    </div>
+    <div
+      className="dial__container"
       key="Daily Cooking Quest"
-      siteName="Daily Cooking Quest"
-      theme={
-        Object {
-          "dark": "#000",
-          "light": "#fff",
-          "primary": "#333",
+    >
+      <Dial
+        ariaLabel="Daily Cooking Quest"
+        dial={
+          Object {
+            "container": "Default",
+            "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+            "siteName": "Daily Cooking Quest",
+            "siteUrl": "www.dailycookingquest.com",
+          }
         }
-      }
-    />
-    <Dial
-      ariaLabel="Mozilla Developer Documentation"
-      icon="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png"
+        theme={
+          Object {
+            "dark": "#000",
+            "light": "#fff",
+            "primary": "#333",
+          }
+        }
+      />
+      <EditDialButton
+        dial={
+          Object {
+            "container": "Default",
+            "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+            "siteName": "Daily Cooking Quest",
+            "siteUrl": "www.dailycookingquest.com",
+          }
+        }
+        handleShowDialModal={[Function]}
+      />
+    </div>
+    <div
+      className="dial__container"
       key="Mozilla Developer Documentation"
-      siteName="Mozilla Developer Documentation"
-      theme={
-        Object {
-          "dark": "#000",
-          "light": "#fff",
-          "primary": "#333",
+    >
+      <Dial
+        ariaLabel="Mozilla Developer Documentation"
+        dial={
+          Object {
+            "container": "Default",
+            "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+            "siteName": "Mozilla Developer Documentation",
+            "siteUrl": "developer.mozilla.org",
+          }
         }
-      }
-    />
+        theme={
+          Object {
+            "dark": "#000",
+            "light": "#fff",
+            "primary": "#333",
+          }
+        }
+      />
+      <EditDialButton
+        dial={
+          Object {
+            "container": "Default",
+            "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+            "siteName": "Mozilla Developer Documentation",
+            "siteUrl": "developer.mozilla.org",
+          }
+        }
+        handleShowDialModal={[Function]}
+      />
+    </div>
     <AddDialButton
-      handleShowAddDialModal={[Function]}
+      handleShowDialModal={[Function]}
     />
   </GridList>
 </Connect(Component)>

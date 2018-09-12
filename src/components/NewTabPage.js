@@ -7,10 +7,13 @@ import Page from './Page';
 import GridList from './GridList';
 import Dial from './Dial';
 import AddDialButton from './AddDialButton';
-import AddDialModal from './AddDialModal';
+import DialModal from './DialModal';
+import EditDialButton from './EditDialButton';
+
+const DEFAULT_STATE = { showDialModal: false, dial: null };
 
 export class NewTabPage extends React.Component {
-  state = { showAddDialModal: false };
+  state = DEFAULT_STATE;
 
   componentDidMount() {
     const {
@@ -26,47 +29,44 @@ export class NewTabPage extends React.Component {
     startSetBackground(container);
   }
 
-  handleShowAddDialModal = e => {
-    e.preventDefault();
+  handleShowDialModal = dial => {
+    dial.siteName && this.setState(() => ({ dial }));
+
     this.setState(() => ({
-      showAddDialModal: true
+      showDialModal: true
     }));
   };
 
-  handleHideAddDialModal = e => {
+  handleHideDialModal = e => {
     e && e.preventDefault();
-    this.setState(() => ({
-      showAddDialModal: false
-    }));
+    this.setState(() => DEFAULT_STATE);
   };
 
   renderDials = (dials, container) => {
-    return dials
-      .filter(dial => dial.container === container.name)
-      .map(({ siteName, favicon }) => (
-        <Dial
-          key={siteName}
-          ariaLabel={siteName}
-          siteName={siteName}
-          theme={this.props.theme}
-          icon={favicon}
+    return dials.filter(dial => dial.container === container.name).map(dial => (
+      <div className="dial__container" key={dial.siteName}>
+        <Dial ariaLabel={dial.siteName} theme={this.props.theme} dial={dial} />
+        <EditDialButton
+          dial={dial}
+          handleShowDialModal={this.handleShowDialModal}
         />
-      ));
+      </div>
+    ));
   };
 
   render() {
     const { container, theme, dials } = this.props;
     return (
       <Page theme={theme}>
-        <AddDialModal
-          handleHideAddDialModal={this.handleHideAddDialModal}
+        <DialModal
+          handleHideDialModal={this.handleHideDialModal}
           container={container}
-          isOpen={this.state.showAddDialModal}
-          theme={this.props.theme}
+          isOpen={this.state.showDialModal}
+          dial={this.state.dial}
         />
         <GridList>
           {this.renderDials(dials, container)}
-          <AddDialButton handleShowAddDialModal={this.handleShowAddDialModal} />
+          <AddDialButton handleShowDialModal={this.handleShowDialModal} />
         </GridList>
       </Page>
     );
@@ -74,15 +74,8 @@ export class NewTabPage extends React.Component {
 }
 
 NewTabPage.propTypes = {
-  container: PropTypes.shape({
-    color: PropTypes.String,
-    name: PropTypes.String
-  }),
-  theme: PropTypes.shape({
-    primary: PropTypes.string,
-    light: PropTypes.string,
-    dark: PropTypes.string
-  }),
+  container: PropTypes.objectOf(PropTypes.string),
+  theme: PropTypes.objectOf(PropTypes.string),
   dials: PropTypes.arrayOf(PropTypes.object),
   setContainer: PropTypes.func.isRequired,
   setTheme: PropTypes.func.isRequired,

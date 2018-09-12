@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AddDialForm component matches snapshot 1`] = `
+exports[`DialForm component matches snapshot 1`] = `
 <form
-  className="add-dial-modal__form"
+  className="dial-modal__form"
   onSubmit={[Function]}
 >
   <div
-    className="add-dial-modal__field"
+    className="dial-modal__field"
   >
     <label
       className="field__label"
@@ -25,7 +25,7 @@ exports[`AddDialForm component matches snapshot 1`] = `
     />
   </div>
   <div
-    className="add-dial-modal__field"
+    className="dial-modal__field"
   >
     <label
       className="field__label"
@@ -44,16 +44,16 @@ exports[`AddDialForm component matches snapshot 1`] = `
     />
   </div>
   <div
-    className="add-dial-modal__buttons"
+    className="dial-modal__buttons"
   >
     <button
-      className="add-dial-modal__button button--secondary"
+      className="dial-modal__button button--secondary"
       onClick={[Function]}
     >
       Cancel
     </button>
     <button
-      className="add-dial-modal__button button--primary"
+      className="dial-modal__button button--primary"
       disabled={true}
       style={
         Object {

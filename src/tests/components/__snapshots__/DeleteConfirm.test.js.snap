@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteConfirm component matches snapshot 1`] = `
+<div
+  className="dial-modal__form"
+>
+  <p
+    className="form__text"
+  >
+    Delete
+     
+    <span
+      className="text__span"
+      style={
+        Object {
+          "color": "#333",
+        }
+      }
+    >
+      Goodreads
+    </span>
+     
+    from
+     
+    <span
+      className="text__span"
+      style={
+        Object {
+          "color": "#fff",
+        }
+      }
+    >
+      Personal
+    </span>
+     
+    Container?
+  </p>
+  <div
+    className="dial-modal__buttons"
+  >
+    <button
+      className="dial-modal__button button--secondary"
+      onClick={[Function]}
+    >
+      Cancel
+    </button>
+    <button
+      className="dial-modal__button button--delete"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </div>
+</div>
+`;

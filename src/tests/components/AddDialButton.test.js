@@ -5,13 +5,13 @@ import AddDialButton from '../../components/AddDialButton';
 
 describe('AddDialButton component', () => {
   const props = {
-    handleShowAddDialModal: jest.fn()
+    handleShowDialModal: jest.fn()
   };
   const wrapper = shallow(<AddDialButton {...props} />);
 
-  it('calls handleShowAddDialModal on click', () => {
-    const { handleShowAddDialModal } = props;
+  it('calls handleShowDialModal on click', () => {
+    const { handleShowDialModal } = props;
     wrapper.find('button').simulate('click');
-    expect(handleShowAddDialModal).toHaveBeenCalled();
+    expect(handleShowDialModal).toHaveBeenCalled();
   });
 });
