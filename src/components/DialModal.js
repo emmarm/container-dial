@@ -33,7 +33,11 @@ const DialModal = ({ handleHideDialModal, isOpen, theme, container, dial }) => (
       </h2>
     )}
 
-    <DialForm handleHideDialModal={handleHideDialModal} theme={theme} />
+    <DialForm
+      handleHideDialModal={handleHideDialModal}
+      theme={theme}
+      dial={dial}
+    />
   </Modal>
 );
 
@@ -41,7 +45,8 @@ DialModal.propTypes = {
   handleHideDialModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   container: PropTypes.objectOf(PropTypes.string),
-  theme: PropTypes.objectOf(PropTypes.string)
+  theme: PropTypes.objectOf(PropTypes.string),
+  dial: PropTypes.objectOf(PropTypes.string)
 };
 
 const mapStateToProps = state => ({

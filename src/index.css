@@ -112,6 +112,11 @@ body {
   width: 50vw;
 }
 
+.ReactModal__Content--before-close {
+  display: none;
+  transition: all 150ms ease-out;
+}
+
 .dial-modal__title {
   color: #888;
   font-weight: 100;

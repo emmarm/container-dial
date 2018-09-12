@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Dial = ({ dial }) => (
-  <a href={dial.siteUrl} className="dial">
+const Dial = ({ dial: { siteUrl, siteName, favicon } }) => (
+  <a href={siteUrl} className="dial">
     <div className="dial__title-area">
-      <p className="dial__title">{dial.siteName}</p>
+      <p className="dial__title">{siteName}</p>
     </div>
     <div
       className="dial__icon"
       style={{
-        backgroundImage: `url('${dial.favicon}')`
+        backgroundImage: `url('${favicon}')`
       }}
     />
   </a>

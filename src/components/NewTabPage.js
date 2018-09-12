@@ -75,15 +75,8 @@ export class NewTabPage extends React.Component {
 }
 
 NewTabPage.propTypes = {
-  container: PropTypes.shape({
-    color: PropTypes.String,
-    name: PropTypes.String
-  }),
-  theme: PropTypes.shape({
-    primary: PropTypes.string,
-    light: PropTypes.string,
-    dark: PropTypes.string
-  }),
+  container: PropTypes.objectOf(PropTypes.string),
+  theme: PropTypes.objectOf(PropTypes.string),
   dials: PropTypes.arrayOf(PropTypes.object),
   setContainer: PropTypes.func.isRequired,
   setTheme: PropTypes.func.isRequired,

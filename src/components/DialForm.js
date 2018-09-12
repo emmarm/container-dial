@@ -7,12 +7,12 @@ import getFavicon from '../utils/getFavicon';
 
 export class DialForm extends Component {
   state = {
-    siteName: '',
-    siteUrl: '',
+    siteName: this.props.dial ? this.props.dial.siteName : '',
+    siteUrl: this.props.dial ? this.props.dial.siteUrl : '',
     nameError: '',
     urlError: '',
-    nameTouched: false,
-    urlTouched: false
+    nameTouched: this.props.dial ? true : false,
+    urlTouched: this.props.dial ? true : false
   };
 
   onSiteNameChange = e => {
@@ -48,24 +48,18 @@ export class DialForm extends Component {
     };
 
     if (!value) {
-      return this.setState(() => ({
-        urlError: 'Required'
-      }));
+      return this.setState(() => ({ urlError: 'Required' }));
     } else if (!isValidUrl(url)) {
-      return this.setState(() => ({
-        urlError: 'Invalid URL'
-      }));
+      return this.setState(() => ({ urlError: 'Invalid URL' }));
     } else {
-      this.setState(() => ({
-        urlError: ''
-      }));
+      this.setState(() => ({ urlError: '' }));
     }
   };
 
   handleSubmit = async e => {
     e.preventDefault();
     const { siteName, siteUrl } = this.state;
-    const { container, addDial, handleHideDialModal } = this.props;
+    const { container, editDial, addDial, handleHideDialModal } = this.props;
 
     let favicon;
     try {
@@ -75,14 +69,9 @@ export class DialForm extends Component {
     } catch (err) {
       favicon = 'error';
     }
-    const dial = {
-      siteName,
-      siteUrl,
-      container: container.name,
-      favicon
-    };
+    const dial = { siteName, siteUrl, container: container.name, favicon };
 
-    addDial(dial);
+    this.props.dial ? editDial(this.props.dial, dial) : addDial(dial);
     handleHideDialModal();
   };
 
@@ -95,6 +84,7 @@ export class DialForm extends Component {
       nameTouched,
       urlTouched
     } = this.state;
+    const { theme, handleHideDialModal } = this.props;
     return (
       <form className="dial-modal__form" onSubmit={this.handleSubmit}>
         <div className="dial-modal__field">
@@ -130,7 +120,7 @@ export class DialForm extends Component {
 
         <div className="dial-modal__buttons">
           <button
-            onClick={this.props.handleHideDialModal}
+            onClick={handleHideDialModal}
             className="dial-modal__button button--secondary"
           >
             Cancel
@@ -138,11 +128,11 @@ export class DialForm extends Component {
 
           <button
             className="dial-modal__button button--primary"
-            style={{ backgroundColor: this.props.theme.primary }}
+            style={{ backgroundColor: theme.primary }}
             disabled={nameError || urlError || !nameTouched || !urlTouched}
             type="submit"
           >
-            Add Dial
+            {this.props.dial ? 'Save Edits' : 'Add Dial'}
           </button>
         </div>
       </form>
@@ -152,7 +142,13 @@ export class DialForm extends Component {
 
 DialForm.propTypes = {
   handleHideDialModal: PropTypes.func.isRequired,
-  theme: PropTypes.objectOf(PropTypes.string)
+  theme: PropTypes.objectOf(PropTypes.string),
+  dial: PropTypes.shape({
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string,
+    container: PropTypes.string,
+    favicon: PropTypes.string
+  })
 };
 
 const mapStateToProps = state => ({

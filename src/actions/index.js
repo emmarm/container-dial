@@ -34,6 +34,12 @@ export const addDial = dial => ({
   payload: dial
 });
 
+export const editDial = (oldDial, newDial) => ({
+  type: 'EDIT_DIAL',
+  oldDial,
+  newDial
+});
+
 export const setBackground = container => ({
   type: 'SET_BACKGROUND',
   payload: container
