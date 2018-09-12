@@ -22,8 +22,8 @@ const renderApp = () => {
   Modal.setAppElement(document.getElementById('page'));
 
   const container = {
-    color: 'yellow',
-    name: 'Travel'
+    color: 'red',
+    name: 'Personal'
   };
 
   const theme = getTheme(container.color);

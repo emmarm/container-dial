@@ -84,7 +84,7 @@ export class DialForm extends Component {
       nameTouched,
       urlTouched
     } = this.state;
-    const { theme, handleHideDialModal } = this.props;
+    const { theme, toggleShowDeleteConfirm, handleHideDialModal } = this.props;
     return (
       <form className="dial-modal__form" onSubmit={this.handleSubmit}>
         <div className="dial-modal__field">
@@ -119,6 +119,14 @@ export class DialForm extends Component {
         {urlError}
 
         <div className="dial-modal__buttons">
+          {this.props.dial && (
+            <button
+              className="dial-modal__button button--delete"
+              onClick={toggleShowDeleteConfirm}
+            >
+              Delete
+            </button>
+          )}
           <button
             onClick={handleHideDialModal}
             className="dial-modal__button button--secondary"
@@ -142,6 +150,7 @@ export class DialForm extends Component {
 
 DialForm.propTypes = {
   handleHideDialModal: PropTypes.func.isRequired,
+  toggleShowDeleteConfirm: PropTypes.func.isRequired,
   theme: PropTypes.objectOf(PropTypes.string),
   dial: PropTypes.shape({
     siteName: PropTypes.string,
@@ -152,7 +161,8 @@ DialForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  container: state.container
+  container: state.container,
+  theme: state.theme
 });
 
 export default connect(

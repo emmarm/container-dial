@@ -62,7 +62,6 @@ export class NewTabPage extends React.Component {
           handleHideDialModal={this.handleHideDialModal}
           container={container}
           isOpen={this.state.showDialModal}
-          theme={this.props.theme}
           dial={this.state.dial}
         />
         <GridList>

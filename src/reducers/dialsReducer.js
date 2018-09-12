@@ -14,6 +14,14 @@ const dialsReducer = (state = [], action) => {
         }
         return dial;
       });
+    case 'DELETE_DIAL':
+      return state.filter(dial => {
+        const { container, siteUrl } = action.payload;
+        if (dial.container === container && dial.siteUrl === siteUrl) {
+          return false;
+        }
+        return true;
+      });
     default:
       return state;
   }
