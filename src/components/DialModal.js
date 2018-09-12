@@ -18,6 +18,13 @@ export class DialModal extends Component {
     }));
   };
 
+  handleClose = () => {
+    this.setState(() => ({
+      showDeleteConfirm: false
+    }));
+    this.props.handleHideDialModal();
+  };
+
   handleDelete = () => {
     const { deleteDial, handleHideDialModal } = this.props;
     deleteDial(this.props.dial);
@@ -30,7 +37,7 @@ export class DialModal extends Component {
     return (
       <Modal
         isOpen={isOpen}
-        onRequestClose={handleHideDialModal}
+        onRequestClose={this.handleClose}
         closeTimeoutMS={150}
         className="dial-modal"
         style={{

@@ -31,7 +31,7 @@ describe('DeleteConfirm component', () => {
 
   it('renders correct text', () => {
     const p = wrapper.find('p');
-    expect(p.text()).toBe('Delete Goodreads from Personal?');
+    expect(p.text()).toBe('Delete Goodreads from Personal Container?');
   });
 
   it('calls toggleShowDeleteConfirm on cancel', () => {

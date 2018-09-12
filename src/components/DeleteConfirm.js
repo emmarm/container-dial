@@ -11,14 +11,34 @@ export const DeleteConfirm = ({
   container,
   theme
 }) => (
-  <div>
-    <p>
-      Delete {dial.siteName} from {container.name}?
+  <div className="dial-modal__form">
+    <p className="form__text">
+      Delete{' '}
+      <span className="text__span" style={{ color: theme.primary }}>
+        {dial.siteName}
+      </span>{' '}
+      from{' '}
+      <span className="text__span" style={{ color: theme.light }}>
+        {container.name}
+      </span>{' '}
+      Container?
     </p>
 
-    <button onClick={toggleShowDeleteConfirm}>Cancel</button>
+    <div className="dial-modal__buttons">
+      <button
+        className="dial-modal__button button--secondary"
+        onClick={toggleShowDeleteConfirm}
+      >
+        Cancel
+      </button>
 
-    <button onClick={handleDelete}>Delete</button>
+      <button
+        className="dial-modal__button button--delete"
+        onClick={handleDelete}
+      >
+        Delete
+      </button>
+    </div>
   </div>
 );
 
