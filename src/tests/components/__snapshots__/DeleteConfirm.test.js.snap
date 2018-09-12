@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteConfirm component matches snapshot 1`] = `
+<div>
+  <p>
+    Delete 
+    Goodreads
+     from 
+    Personal
+    ?
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Cancel
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Delete
+  </button>
+</div>
+`;

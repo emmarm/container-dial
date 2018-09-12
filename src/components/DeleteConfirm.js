@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import * as actions from '../actions';
 
-const DeleteConfirm = ({
+export const DeleteConfirm = ({
   dial,
   toggleShowDeleteConfirm,
   handleDelete,

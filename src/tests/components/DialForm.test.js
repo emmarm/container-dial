@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { AddDialForm } from '../../components/AddDialForm';
+import { DialForm } from '../../components/DialForm';
 
-describe('AddDialForm component', () => {
+describe('DialForm component', () => {
   const props = {
-    handleHideAddDialModal: jest.fn(),
+    handleHideDialModal: jest.fn(),
     theme: {
       primary: '#333',
       dark: '#000',
@@ -15,9 +15,10 @@ describe('AddDialForm component', () => {
       name: 'Personal',
       color: 'orange'
     },
-    addDial: () => {}
+    addDial: () => {},
+    toggleShowDeleteConfirm: jest.fn()
   };
-  const wrapper = shallow(<AddDialForm {...props} />);
+  const wrapper = shallow(<DialForm {...props} />);
 
   it('matches snapshot', () => {
     expect(wrapper).toMatchSnapshot();
@@ -82,6 +83,42 @@ describe('AddDialForm component', () => {
         target: { value: 'https://goodreads.com' }
       });
       expect(wrapper.state('urlError')).toBe('');
+    });
+  });
+
+  describe('button actions', () => {
+    it('calls handleHideDialModal on cancel', () => {
+      const cancelButton = wrapper.find('button').first();
+      cancelButton.simulate('click');
+      expect(props.handleHideDialModal).toHaveBeenCalled();
+    });
+  });
+
+  describe('with dial prop', () => {
+    const dial = {
+      siteName: 'Goodreads',
+      siteUrl: 'https://goodreads.com',
+      container: 'Personal',
+      favicon: 'image.jpg'
+    };
+    const wrapperWithDial = shallow(<DialForm {...props} dial={dial} />);
+
+    it('sets up inputs with dial data', () => {
+      const nameInput = wrapperWithDial.find('input').first();
+      const urlInput = wrapperWithDial.find('input').last();
+      expect(nameInput.props().value).toBe('Goodreads');
+      expect(urlInput.props().value).toBe('https://goodreads.com');
+    });
+
+    it('shows delete button', () => {
+      const deleteButton = wrapperWithDial.find('.button--delete');
+      expect(deleteButton.length).toBeGreaterThan(0);
+    });
+
+    it('calls toggleShowDeleteConfirm when delete button clicked', () => {
+      const deleteButton = wrapperWithDial.find('.button--delete');
+      deleteButton.simulate('click');
+      expect(props.toggleShowDeleteConfirm).toHaveBeenCalled();
     });
   });
 });

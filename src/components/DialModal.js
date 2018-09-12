@@ -7,7 +7,7 @@ import * as actions from '../actions';
 import DeleteConfirm from './DeleteConfirm';
 import DialForm from './DialForm';
 
-class DialModal extends Component {
+export class DialModal extends Component {
   state = {
     showDeleteConfirm: false
   };
