@@ -7,20 +7,33 @@ exports[`DeleteConfirm component matches snapshot 1`] = `
   <p
     className="form__text"
   >
-    Delete 
-    <span
-      className="text__span"
-    >
-      Goodreads
-    </span>
-     from
+    Delete
      
     <span
       className="text__span"
+      style={
+        Object {
+          "color": "#333",
+        }
+      }
+    >
+      Goodreads
+    </span>
+     
+    from
+     
+    <span
+      className="text__span"
+      style={
+        Object {
+          "color": "#fff",
+        }
+      }
     >
       Personal
     </span>
-     Container?
+     
+    Container?
   </p>
   <div
     className="dial-modal__buttons"
