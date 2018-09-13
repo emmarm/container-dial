@@ -42,11 +42,11 @@ body {
   margin: 40px;
 }
 
-.dial__container {
+/* .dial__container {
   position: relative;
-}
+} */
 
-.dial {
+/* .dial {
   background: rgba(255, 255, 255, 0.9);
   border: none;
   box-shadow: rgba(50, 50, 93, 0.1) 0px 7px 14px,
@@ -59,38 +59,38 @@ body {
   position: relative;
   text-decoration: none;
   width: 100%;
-}
+} */
 
-.dial__title-area {
+/* .dial__title-area {
   align-items: center;
   display: flex;
   justify-content: center;
-}
+} */
 
-.dial__title {
+/* .dial__title {
   color: rgb(10, 102, 87);
   font-size: 16px;
   font-weight: 100;
   text-align: center;
-}
+} */
 
-.dial__icon {
+/* .dial__icon {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 90%;
   height: 80px;
   width: 80px;
-}
+} */
 
-.dial:hover {
+/* .dial:hover {
   background: white;
-}
+} */
 
-.dial:hover ~ .edit-dial__button {
+/* .dial:hover ~ .edit-dial__button {
   opacity: 1;
-}
+} */
 
-.edit-dial__button {
+/* .edit-dial__button {
   background: black;
   border: none;
   border-radius: 50%;
@@ -103,12 +103,12 @@ body {
   top: -10px;
   transition: all 200ms ease-in;
   width: 50px;
-}
+} */
 
-.edit-dial__button:hover {
+/* .edit-dial__button:hover {
   background-color: #333;
   opacity: 1;
-}
+} */
 
 /* .add-dial__button {
   background: rgba(255, 255, 255, 0.3);

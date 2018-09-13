@@ -21,8 +21,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
     isOpen={false}
   />
   <GridList>
-    <div
-      className="dial__container"
+    <Styled(div)
       key="Youtube"
     >
       <Dial
@@ -54,9 +53,8 @@ exports[`NewTabPage component matches snapshot 1`] = `
         }
         handleShowDialModal={[Function]}
       />
-    </div>
-    <div
-      className="dial__container"
+    </Styled(div)>
+    <Styled(div)
       key="Daily Cooking Quest"
     >
       <Dial
@@ -88,9 +86,8 @@ exports[`NewTabPage component matches snapshot 1`] = `
         }
         handleShowDialModal={[Function]}
       />
-    </div>
-    <div
-      className="dial__container"
+    </Styled(div)>
+    <Styled(div)
       key="Mozilla Developer Documentation"
     >
       <Dial
@@ -122,7 +119,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
         }
         handleShowDialModal={[Function]}
       />
-    </div>
+    </Styled(div)>
     <AddDialButton
       handleShowDialModal={[Function]}
     />
