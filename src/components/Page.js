@@ -36,16 +36,21 @@ const Overlay = styled('div')({
   width: '100%'
 });
 
-const PageTitle = styled('h1')({
-  margin: '40px',
-  textAlign: 'center'
-});
+const PageTitle = styled('h1')(
+  {
+    margin: '40px',
+    textAlign: 'center'
+  },
+  props => ({
+    color: props.theme.light
+  })
+);
 
-export const Page = ({ background, theme, container, children }) => (
+export const Page = ({ background, container, children }) => (
   <PageContainer>
     <Background background={background}>
       <Overlay>
-        <PageTitle style={{ color: theme.light }}>{container.name}</PageTitle>
+        <PageTitle>{container.name}</PageTitle>
         {children}
       </Overlay>
     </Background>
@@ -71,8 +76,7 @@ const mapStateToProps = state => ({
   background: state.backgrounds.filter(
     background => background.container === state.container.name
   )[0],
-  container: state.container,
-  theme: state.theme
+  container: state.container
 });
 
 export default connect(mapStateToProps)(Page);

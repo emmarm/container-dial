@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'react-emotion';
+import { ThemeProvider } from 'emotion-theming';
 
 import * as actions from '../actions';
 import Page from './Page';
@@ -67,18 +68,20 @@ export class NewTabPage extends React.Component {
   render() {
     const { container, theme, dials } = this.props;
     return (
-      <Page theme={theme}>
-        <DialModal
-          handleHideDialModal={this.handleHideDialModal}
-          container={container}
-          isOpen={this.state.showDialModal}
-          dial={this.state.dial}
-        />
-        <GridList>
-          {this.renderDials(dials, container)}
-          <AddDialButton handleShowDialModal={this.handleShowDialModal} />
-        </GridList>
-      </Page>
+      <ThemeProvider theme={theme}>
+        <Page>
+          <DialModal
+            handleHideDialModal={this.handleHideDialModal}
+            container={container}
+            isOpen={this.state.showDialModal}
+            dial={this.state.dial}
+          />
+          <GridList>
+            {this.renderDials(dials, container)}
+            <AddDialButton handleShowDialModal={this.handleShowDialModal} />
+          </GridList>
+        </Page>
+      </ThemeProvider>
     );
   }
 }
