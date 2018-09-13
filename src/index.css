@@ -4,13 +4,13 @@ body {
   margin: 0;
 }
 
-.page__container {
+/* .page__container {
   height: 100vh;
   position: relative;
   width: 100vw;
-}
+} */
 
-.page {
+/* .page {
   background-position: center;
   background-size: cover;
   height: 100%;
@@ -18,29 +18,29 @@ body {
   position: absolute;
   top: 0;
   width: 100%;
-}
+} */
 
-.page__overlay {
+/* .page__overlay {
   background: rgba(0, 0, 0, 0.2);
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
   width: 100%;
-}
+} */
 
-.page__title {
+/* .page__title {
   margin: 40px;
   text-align: center;
-}
+} */
 
-.grid-list {
+/* .grid-list {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, 220px);
   justify-content: center;
   margin: 40px;
-}
+} */
 
 /* .dial__container {
   position: relative;

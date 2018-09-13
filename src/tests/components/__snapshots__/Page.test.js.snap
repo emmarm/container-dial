@@ -1,22 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Page component matches snapshot 1`] = `
-<div
-  className="page__container"
->
-  <div
-    className="page"
-    style={
+<Styled(div)>
+  <Styled(div)
+    background={
       Object {
-        "backgroundImage": "url('image.jpg')",
+        "container": "Default",
+        "image": Object {
+          "urls": Object {
+            "full": "image.jpg",
+          },
+        },
       }
     }
   >
-    <div
-      className="page__overlay"
-    >
-      <h1
-        className="page__title"
+    <Styled(div)>
+      <Styled(h1)
         style={
           Object {
             "color": "#fff",
@@ -24,8 +23,8 @@ exports[`Page component matches snapshot 1`] = `
         }
       >
         Default
-      </h1>
-    </div>
-  </div>
-</div>
+      </Styled(h1)>
+    </Styled(div)>
+  </Styled(div)>
+</Styled(div)>
 `;
