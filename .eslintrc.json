@@ -20,9 +20,10 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "prettier", "emotion"],
   "rules": {
     "comma-dangle": 0,
+    "emotion/syntax-preference": [2, "string"],
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "linebreak-style": ["error", "unix"],
     "no-console": 1,
