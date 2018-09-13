@@ -110,7 +110,7 @@ body {
   opacity: 1;
 }
 
-.add-dial__button {
+/* .add-dial__button {
   background: rgba(255, 255, 255, 0.3);
   border: none;
 }
@@ -119,12 +119,12 @@ body {
   color: white;
   font-size: 20px;
   font-weight: 100;
-}
+} */
 
-.add-dial__button:hover {
+/* .add-dial__button:hover {
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-}
+} */
 
 .dial-modal {
   align-items: center;
