@@ -1,55 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DeleteConfirm component matches snapshot 1`] = `
-<div
-  className="dial-modal__form"
->
-  <p
-    className="form__text"
-  >
-    Delete
-     
-    <span
-      className="text__span"
-      style={
-        Object {
-          "color": "#333",
-        }
-      }
+<Styled(div)>
+  <Styled(p)>
+    Delete 
+    <Styled(span)
+      primary={true}
     >
       Goodreads
-    </span>
+    </Styled(span)>
+     from
      
-    from
-     
-    <span
-      className="text__span"
-      style={
-        Object {
-          "color": "#fff",
-        }
-      }
-    >
+    <Styled(span)>
       Personal
-    </span>
-     
-    Container?
-  </p>
-  <div
-    className="dial-modal__buttons"
-  >
-    <button
-      className="dial-modal__button button--secondary"
+    </Styled(span)>
+     Container?
+  </Styled(p)>
+  <Styled(div)>
+    <Styled(button)
       onClick={[Function]}
+      secondary={true}
     >
       Cancel
-    </button>
-    <button
-      className="dial-modal__button button--delete"
+    </Styled(button)>
+    <Styled(button)
+      danger={true}
       onClick={[Function]}
     >
       Delete
-    </button>
-  </div>
-</div>
+    </Styled(button)>
+  </Styled(div)>
+</Styled(div)>
 `;

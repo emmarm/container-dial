@@ -1,21 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DialForm component matches snapshot 1`] = `
-<form
-  className="dial-modal__form"
+<Styled(form)
   onSubmit={[Function]}
 >
-  <div
-    className="dial-modal__field"
-  >
-    <label
-      className="field__label"
+  <Styled(div)>
+    <Styled(label)
       htmlFor="site-name"
     >
       Site Name
-    </label>
-    <input
-      className="field__input"
+    </Styled(label)>
+    <Styled(input)
       id="site-name"
       onBlur={[Function]}
       onChange={[Function]}
@@ -23,18 +18,14 @@ exports[`DialForm component matches snapshot 1`] = `
       type="text"
       value=""
     />
-  </div>
-  <div
-    className="dial-modal__field"
-  >
-    <label
-      className="field__label"
+  </Styled(div)>
+  <Styled(div)>
+    <Styled(label)
       htmlFor="site-url"
     >
       Site URL
-    </label>
-    <input
-      className="field__input"
+    </Styled(label)>
+    <Styled(input)
       id="site-url"
       onBlur={[Function]}
       onChange={[Function]}
@@ -42,28 +33,21 @@ exports[`DialForm component matches snapshot 1`] = `
       type="text"
       value=""
     />
-  </div>
-  <div
-    className="dial-modal__buttons"
-  >
-    <button
-      className="dial-modal__button button--secondary"
+  </Styled(div)>
+  <Styled(div)>
+    <Styled(button)
       onClick={[Function]}
+      secondary={true}
     >
       Cancel
-    </button>
-    <button
-      className="dial-modal__button button--primary"
+    </Styled(button)>
+    <Styled(button)
       disabled={true}
-      style={
-        Object {
-          "backgroundColor": "#333",
-        }
-      }
+      primary={true}
       type="submit"
     >
       Add Dial
-    </button>
-  </div>
-</form>
+    </Styled(button)>
+  </Styled(div)>
+</Styled(form)>
 `;

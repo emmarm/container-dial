@@ -4,43 +4,30 @@ exports[`DialModal component matches snapshot 1`] = `
 <Modal
   ariaHideApp={true}
   bodyOpenClassName="ReactModal__Body--open"
-  className="dial-modal"
+  className={
+    Object {
+      "base": "css-5ws0ld",
+      "beforeClose": "css-17m32ze",
+    }
+  }
   closeTimeoutMS={150}
   isOpen={true}
   onRequestClose={[Function]}
+  overlayClassName={[Function]}
   parentSelector={[Function]}
   portalClassName="ReactModalPortal"
   shouldCloseOnEsc={true}
   shouldCloseOnOverlayClick={true}
   shouldFocusAfterRender={true}
   shouldReturnFocusAfterClose={true}
-  style={
-    Object {
-      "overlay": Object {
-        "background": "linear-gradient(to bottom, #00033, #00033),
-            linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.8))",
-      },
-    }
-  }
 >
-  <h2
-    className="dial-modal__title"
-  >
-    New
-     
-    <span
-      className="title__span"
-      style={
-        Object {
-          "color": "#333",
-        }
-      }
-    >
+  <Styled(h2)>
+    New 
+    <Styled(span)>
       Personal
-    </span>
-     
-    Dial
-  </h2>
+    </Styled(span)>
+     Dial
+  </Styled(h2)>
   <Connect(DialForm)
     handleHideDialModal={[Function]}
     toggleShowDeleteConfirm={[Function]}

@@ -6,7 +6,7 @@ import styled from 'react-emotion';
 import * as actions from '../actions';
 import getFavicon from '../utils/getFavicon';
 
-const Form = styled('form')({
+export const Form = styled('form')({
   display: 'flex',
   flexDirection: 'column',
   width: '100%'
@@ -27,13 +27,13 @@ const TextInput = styled('input')({
   padding: '8px'
 });
 
-const ButtonGroup = styled('div')({
+export const ButtonGroup = styled('div')({
   display: 'flex',
   justifyContent: 'space-around',
   margin: '25px'
 });
 
-const Button = styled('button')(
+export const Button = styled('button')(
   {
     border: 'none',
     borderRadius: '4px',

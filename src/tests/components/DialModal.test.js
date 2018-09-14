@@ -25,8 +25,18 @@ describe('DialModal component', () => {
   });
 
   it('displays correct title', () => {
-    const title = wrapper.find('.dial-modal__title').text();
-    expect(title).toBe('New Personal Dial');
+    const title = wrapper
+      .find('Styled(h2)')
+      .dive()
+      .find('h2')
+      .text();
+    const span = wrapper
+      .find('Styled(span)')
+      .dive()
+      .find('span')
+      .text();
+    expect(span).toBe('Personal');
+    expect(title).toBe('New <Styled(span) /> Dial');
   });
 
   it('renders DialForm', () => {
@@ -35,7 +45,11 @@ describe('DialModal component', () => {
 
   it('updates title on showDeleteConfirm', () => {
     wrapper.setState({ showDeleteConfirm: true });
-    const title = wrapper.find('.dial-modal__title').text();
+    const title = wrapper
+      .find('Styled(h2)')
+      .dive()
+      .find('h2')
+      .text();
     expect(title).toBe('Delete Dial');
   });
 
@@ -54,7 +68,11 @@ describe('DialModal component', () => {
     const wrapperWithDial = shallow(<DialModal {...props} dial={dial} />);
 
     it('updates title', () => {
-      const title = wrapperWithDial.find('.dial-modal__title').text();
+      const title = wrapperWithDial
+        .find('Styled(h2)')
+        .dive()
+        .find('h2')
+        .text();
       expect(title).toBe('Edit Dial');
     });
   });

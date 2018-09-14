@@ -15,13 +15,7 @@ exports[`Page component matches snapshot 1`] = `
     }
   >
     <Styled(div)>
-      <Styled(h1)
-        style={
-          Object {
-            "color": "#fff",
-          }
-        }
-      >
+      <Styled(h1)>
         Default
       </Styled(h1)>
     </Styled(div)>

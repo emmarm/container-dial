@@ -24,6 +24,7 @@ describe('Page component', () => {
     }
   };
   const wrapper = shallow(<Page {...props} />);
+
   it('matches snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });

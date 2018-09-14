@@ -119,6 +119,11 @@ DialModal.propTypes = {
   deleteDial: PropTypes.func.isRequired
 };
 
+Modal.propTypes = {
+  className: PropTypes.object,
+  overlayClassName: PropTypes.func
+};
+
 const mapStateToProps = state => ({
   container: state.container
 });
