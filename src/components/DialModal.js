@@ -12,30 +12,25 @@ import DialForm from './DialForm';
 const modalClass = {
   base: css({
     alignItems: 'center',
-    background: 'white',
+    background: 'white none repeat scroll',
+    border: '1px solid rgb(204,204,204)',
+    borderRadius: '4px',
     boxShadow:
       'rgba(50, 50, 93, 0.1) 0px 15px 35px, rgba(0, 0, 0, 0.07) 0px 5px 15px',
     display: 'flex',
     flexDirection: 'column',
     height: 'auto',
     margin: '15vh auto',
-    minWidth: '420px',
-    outline: 'none',
+    outline: 'currentcolor none medium',
+    overflow: 'auto',
     padding: '30px',
-    width: '50vw'
+    width: '500px'
   }),
   beforeClose: css({
     display: 'none',
     transition: 'all 150ms ease-out'
   })
 };
-
-const modalOverlayClass = ({ theme }) =>
-  css({
-    background: `linear-gradient(to bottom, 
-       ${theme.dark}33, ${theme.dark}33),
-       linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.8))`
-  });
 
 const DialTitle = styled('h2')({
   color: '#888',
@@ -78,7 +73,6 @@ export class DialModal extends Component {
     return (
       <Modal
         className={modalClass}
-        overlayClassName={modalOverlayClass}
         isOpen={isOpen}
         onRequestClose={this.handleClose}
         closeTimeoutMS={150}

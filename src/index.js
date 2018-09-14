@@ -12,8 +12,10 @@ import NewTabPage from './components/NewTabPage';
 import getTheme from './utils/getTheme';
 
 injectGlobal`
-  body {
+  * {
     box-sizing: border-box;
+  }
+  body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
   }

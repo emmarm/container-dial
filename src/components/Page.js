@@ -5,6 +5,7 @@ import styled from 'react-emotion';
 
 const PageContainer = styled('div')({
   height: '100vh',
+  overflow: 'hidden',
   position: 'relative',
   width: '100vw'
 });
@@ -38,7 +39,7 @@ const Overlay = styled('div')({
 
 const PageTitle = styled('h1')(
   {
-    margin: '40px',
+    margin: '30px',
     textAlign: 'center'
   },
   props => ({

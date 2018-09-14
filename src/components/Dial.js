@@ -10,7 +10,7 @@ const DialContent = styled('a')({
   cursor: 'pointer',
   display: 'grid',
   gridTemplateColumns: '1fr 80px',
-  height: '80px',
+  height: '100%',
   padding: '0',
   position: 'relative',
   textDecoration: 'none',

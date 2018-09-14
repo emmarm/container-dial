@@ -8,7 +8,8 @@ const Button = styled('button')({
   ':hover': {
     background: 'rgba(255, 255, 255, 0.5)',
     cursor: 'pointer'
-  }
+  },
+  height: '100%'
 });
 
 const ButtonText = styled('h3')({

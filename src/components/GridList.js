@@ -4,10 +4,15 @@ import styled from 'react-emotion';
 
 const Grid = styled('div')({
   display: 'grid',
-  gridGap: '20px',
-  gridTemplateColumns: 'repeat(auto-fit, 220px)',
+  gridAutoRows: '80px',
+  gridGap: '25px',
+  gridTemplateColumns: 'repeat(auto-fill, 220px)',
+  height: '80vh',
   justifyContent: 'center',
-  margin: '40px'
+  overflowX: 'hidden',
+  overflowY: 'auto',
+  padding: '10px 40px',
+  width: '100vw'
 });
 
 const GridList = ({ children }) => <Grid>{children}</Grid>;
