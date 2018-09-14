@@ -6,7 +6,7 @@ import DIALS from '../seedData/DIALS';
 
 describe('NewTabPage component', () => {
   const props = {
-    container: { name: 'Default' },
+    container: { cookieStoreId: '123' },
     theme: { primary: '#333', dark: '#000', light: '#fff' },
     dials: DIALS,
     setContainer: jest.fn(),

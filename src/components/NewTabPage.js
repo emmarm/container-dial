@@ -47,15 +47,17 @@ export class NewTabPage extends React.Component {
   };
 
   renderDials = (dials, container) => {
-    return dials.filter(dial => dial.container === container.name).map(dial => (
-      <DialContainer key={dial.siteName}>
-        <Dial ariaLabel={dial.siteName} dial={dial} />
-        <EditDialButton
-          dial={dial}
-          handleShowDialModal={this.handleShowDialModal}
-        />
-      </DialContainer>
-    ));
+    return dials
+      .filter(dial => dial.container === container.cookieStoreId)
+      .map(dial => (
+        <DialContainer key={dial.siteName}>
+          <Dial ariaLabel={dial.siteName} dial={dial} />
+          <EditDialButton
+            dial={dial}
+            handleShowDialModal={this.handleShowDialModal}
+          />
+        </DialContainer>
+      ));
   };
 
   render() {

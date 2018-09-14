@@ -6,10 +6,7 @@ const dialsReducer = (state = DEFAULT_STATE, action) => {
       return [...state, action.payload];
     case 'EDIT_DIAL':
       return state.map(dial => {
-        if (
-          dial.container === action.oldDial.container &&
-          dial.siteUrl === action.oldDial.siteUrl
-        ) {
+        if (dial.id === action.oldDial.id) {
           return {
             ...action.newDial
           };
@@ -18,8 +15,7 @@ const dialsReducer = (state = DEFAULT_STATE, action) => {
       });
     case 'DELETE_DIAL':
       return state.filter(dial => {
-        const { container, siteUrl } = action.payload;
-        if (dial.container === container && dial.siteUrl === siteUrl) {
+        if (dial.id === action.payload.id) {
           return false;
         }
         return true;

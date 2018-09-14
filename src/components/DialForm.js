@@ -133,7 +133,7 @@ export class DialForm extends Component {
     const newDial = {
       siteName,
       siteUrl,
-      container: container.name,
+      container: container.cookieStoreId,
       favicon,
       id
     };

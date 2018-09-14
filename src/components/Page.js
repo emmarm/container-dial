@@ -70,7 +70,7 @@ Page.propTypes = {
 
 const mapStateToProps = state => ({
   background: state.backgrounds.filter(
-    background => background.container === state.container.name
+    background => background.container === state.container.cookieStoreId
   )[0],
   container: state.container
 });

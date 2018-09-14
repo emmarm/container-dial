@@ -5,13 +5,7 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 import * as actions from '../actions';
-const {
-  setTheme,
-  setContainer,
-  startSetBackground,
-  setBackground,
-  addDial
-} = actions;
+const { setContainer, startSetBackground, setBackground, addDial } = actions;
 
 describe('actions', () => {
   it('sets up setContainer action', () => {
@@ -28,9 +22,9 @@ describe('actions', () => {
 
   it('calls setBackground from startSetBackground', done => {
     const store = mockStore({});
-    const container = { name: 'Personal', color: 'pink' };
+    const container = { name: 'Personal', color: 'pink', cookieStoreId: '123' };
     const containerWithImage = {
-      container: 'Personal',
+      container: '123',
       image: '',
       imageDate: new Date().toDateString()
     };
