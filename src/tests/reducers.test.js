@@ -1,6 +1,5 @@
 import backgroundsReducer from '../reducers/backgroundsReducer';
 import containerReducer from '../reducers/containerReducer';
-import themeReducer from '../reducers/themeReducer';
 import dialsReducer from '../reducers/dialsReducer';
 
 describe('reducers', () => {
@@ -70,26 +69,6 @@ describe('reducers', () => {
       };
       const action = { type: 'SET_CONTAINER', payload };
       const state = containerReducer(defaultState, action);
-      expect(state).toEqual(payload);
-    });
-  });
-
-  describe('themeReducer', () => {
-    const defaultState = {
-      primary: '#333',
-      dark: '#0c0c0c',
-      light: '#5c5c5c'
-    };
-
-    it('sets up themeReducer default state', () => {
-      const state = themeReducer(undefined, { type: '@@init' });
-      expect(state).toEqual(defaultState);
-    });
-
-    it('updates themeReducer with new theme', () => {
-      const payload = { primary: '#ffcb00', dark: '#c79b00', light: '#fffe50' };
-      const action = { type: 'SET_THEME', payload };
-      const state = themeReducer(defaultState, action);
       expect(state).toEqual(payload);
     });
   });

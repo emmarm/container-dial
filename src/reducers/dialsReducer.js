@@ -1,4 +1,6 @@
-const dialsReducer = (state = [], action) => {
+const DEFAULT_STATE = [];
+
+const dialsReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case 'ADD_DIAL':
       return [...state, action.payload];

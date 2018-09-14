@@ -14,19 +14,6 @@ const {
 } = actions;
 
 describe('actions', () => {
-  it('sets up setTheme action', () => {
-    const theme = {
-      primary: '#888',
-      light: '#fff',
-      dark: '#000'
-    };
-    const action = setTheme(theme);
-    expect(action).toEqual({
-      type: 'SET_THEME',
-      payload: theme
-    });
-  });
-
   it('sets up setContainer action', () => {
     const container = {
       name: 'Personal',

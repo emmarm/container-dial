@@ -30,18 +30,38 @@ describe('DeleteConfirm component', () => {
   });
 
   it('renders correct text', () => {
-    const p = wrapper.find('p');
-    expect(p.text()).toBe('Delete Goodreads from Personal Container?');
+    const title = wrapper
+      .find('Styled(p)')
+      .dive()
+      .find('p')
+      .text();
+    const span1 = wrapper
+      .find('Styled(span)')
+      .first()
+      .dive()
+      .find('span')
+      .text();
+    const span2 = wrapper
+      .find('Styled(span)')
+      .last()
+      .dive()
+      .find('span')
+      .text();
+    expect(span1).toBe('Goodreads');
+    expect(span2).toBe('Personal');
+    expect(title).toBe(
+      'Delete <Styled(span) /> from <Styled(span) /> Container?'
+    );
   });
 
   it('calls toggleShowDeleteConfirm on cancel', () => {
-    const cancelButton = wrapper.find('button').first();
+    const cancelButton = wrapper.find('Styled(button)').first();
     cancelButton.simulate('click');
     expect(props.toggleShowDeleteConfirm).toHaveBeenCalled();
   });
 
   it('calls handleDelete on submit', () => {
-    const deleteButton = wrapper.find('button').last();
+    const deleteButton = wrapper.find('Styled(button)').last();
     deleteButton.simulate('click');
     expect(props.handleDelete).toHaveBeenCalled();
   });

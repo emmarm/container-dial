@@ -1,10 +1,5 @@
 import getRandomPhoto from '../utils/getRandomPhoto';
 
-export const setTheme = theme => ({
-  type: 'SET_THEME',
-  payload: theme
-});
-
 export const setContainer = container => ({
   type: 'SET_CONTAINER',
   payload: container

@@ -1,58 +1,55 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 
 import * as actions from '../actions';
+import { Form, ButtonGroup, Button } from './DialForm';
+
+const FormLayout = Form.withComponent('div');
+
+const Text = styled('p')({
+  fontSize: '20px',
+  textAlign: 'center'
+});
+
+const Span = styled('span')(props => ({
+  color: props.primary ? props.theme.primary : props.theme.light
+}));
 
 export const DeleteConfirm = ({
   dial,
   toggleShowDeleteConfirm,
   handleDelete,
-  container,
-  theme
+  container
 }) => (
-  <div className="dial-modal__form">
-    <p className="form__text">
-      Delete{' '}
-      <span className="text__span" style={{ color: theme.primary }}>
-        {dial.siteName}
-      </span>{' '}
-      from{' '}
-      <span className="text__span" style={{ color: theme.light }}>
-        {container.name}
-      </span>{' '}
-      Container?
-    </p>
+  <FormLayout>
+    <Text>
+      Delete <Span primary>{dial.siteName}</Span> from{' '}
+      <Span>{container.name}</Span> Container?
+    </Text>
 
-    <div className="dial-modal__buttons">
-      <button
-        className="dial-modal__button button--secondary"
-        onClick={toggleShowDeleteConfirm}
-      >
+    <ButtonGroup>
+      <Button secondary onClick={toggleShowDeleteConfirm}>
         Cancel
-      </button>
+      </Button>
 
-      <button
-        className="dial-modal__button button--delete"
-        onClick={handleDelete}
-      >
+      <Button danger onClick={handleDelete}>
         Delete
-      </button>
-    </div>
-  </div>
+      </Button>
+    </ButtonGroup>
+  </FormLayout>
 );
 
 DeleteConfirm.propTypes = {
   dial: PropTypes.objectOf(PropTypes.string),
   toggleShowDeleteConfirm: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  container: PropTypes.objectOf(PropTypes.string),
-  theme: PropTypes.objectOf(PropTypes.string)
+  container: PropTypes.objectOf(PropTypes.string)
 };
 
 const mapStateToProps = state => ({
-  container: state.container,
-  theme: state.theme
+  container: state.container
 });
 
 export default connect(

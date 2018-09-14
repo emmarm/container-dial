@@ -1,14 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'react-emotion';
+
+export const EditButton = styled('button')({
+  background: 'black',
+  border: 'none',
+  borderRadius: '50%',
+  color: 'white',
+  height: '50px',
+  opacity: '0',
+  position: 'absolute',
+  right: '-10px',
+  textAlign: 'center',
+  top: '-10px',
+  transition: 'all 200ms ease-in',
+  width: '50px',
+  ':hover': {
+    backgroundColor: '#333',
+    opacity: 1
+  }
+});
 
 const EditDialButton = ({ dial, handleShowDialModal }) => {
   const setDial = () => {
     handleShowDialModal(dial);
   };
   return (
-    <button className="edit-dial__button" onClick={() => setDial()}>
-      <h3 className="edit-dial__text">Edit</h3>
-    </button>
+    <EditButton className="edit-button" onClick={() => setDial()}>
+      <h3>Edit</h3>
+    </EditButton>
   );
 };
 

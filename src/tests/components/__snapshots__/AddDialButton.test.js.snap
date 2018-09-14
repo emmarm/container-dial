@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddDialButton component matches snapshot 1`] = `
+<Styled(button)
+  onClick={[Function]}
+>
+  <Styled(h3)>
+    Add New
+  </Styled(h3)>
+</Styled(button)>
+`;

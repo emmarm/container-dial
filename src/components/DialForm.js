@@ -1,9 +1,61 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 
 import * as actions from '../actions';
 import getFavicon from '../utils/getFavicon';
+
+export const Form = styled('form')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%'
+});
+
+const FormField = styled('div')({
+  alignItems: 'center',
+  display: 'grid',
+  gridTemplateColumns: '120px 300px',
+  margin: '10px'
+});
+
+const Label = styled('label')({
+  color: '#888'
+});
+
+const TextInput = styled('input')({
+  padding: '8px'
+});
+
+export const ButtonGroup = styled('div')({
+  display: 'flex',
+  justifyContent: 'space-around',
+  margin: '25px'
+});
+
+export const Button = styled('button')(
+  {
+    border: 'none',
+    borderRadius: '4px',
+    boxShadow:
+      'rgba(50, 50, 93, 0.1) 0px 7px 14px, rgba(0, 0, 0, 0.08) 0px 3px 6px',
+    color: 'white',
+    cursor: 'pointer',
+    fontSize: '20px',
+    fontWeight: '300',
+    padding: '10px 25px',
+    ':disabled': {
+      cursor: 'auto'
+    }
+  },
+  props => ({
+    backgroundColor: props.primary
+      ? props.theme.primary
+      : props.danger
+        ? 'rgb(255, 55, 98)'
+        : '#bbb'
+  })
+);
 
 export class DialForm extends Component {
   state = {
@@ -84,66 +136,53 @@ export class DialForm extends Component {
       nameTouched,
       urlTouched
     } = this.state;
-    const { theme, toggleShowDeleteConfirm, handleHideDialModal } = this.props;
+    const { toggleShowDeleteConfirm, handleHideDialModal } = this.props;
     return (
-      <form className="dial-modal__form" onSubmit={this.handleSubmit}>
-        <div className="dial-modal__field">
-          <label htmlFor="site-name" className="field__label">
-            Site Name
-          </label>
-          <input
+      <Form onSubmit={this.handleSubmit}>
+        <FormField>
+          <Label htmlFor="site-name">Site Name</Label>
+          <TextInput
             id="site-name"
-            className="field__input"
             type="text"
             placeholder="e.g. Facebook"
             onChange={this.onSiteNameChange}
             onBlur={this.onSiteNameBlur}
             value={siteName}
           />
-        </div>
+        </FormField>
 
-        <div className="dial-modal__field">
-          <label htmlFor="site-url" className="field__label">
-            Site URL
-          </label>
-          <input
+        <FormField>
+          <Label htmlFor="site-url">Site URL</Label>
+          <TextInput
             id="site-url"
-            className="field__input"
             type="text"
             placeholder="e.g. https://facebook.com"
             onChange={this.onSiteUrlChange}
             onBlur={this.onSiteUrlBlur}
             value={siteUrl}
           />
-        </div>
+        </FormField>
         {urlError}
 
-        <div className="dial-modal__buttons">
+        <ButtonGroup>
           {this.props.dial && (
-            <button
-              className="dial-modal__button button--delete"
-              onClick={toggleShowDeleteConfirm}
-            >
+            <Button danger onClick={toggleShowDeleteConfirm}>
               Delete
-            </button>
+            </Button>
           )}
-          <button
-            onClick={handleHideDialModal}
-            className="dial-modal__button button--secondary"
-          >
+          <Button secondary onClick={handleHideDialModal}>
             Cancel
-          </button>
+          </Button>
 
-          <button
-            className="dial-modal__button button--primary"
-            style={{ backgroundColor: theme.primary }}
+          <Button
+            primary
             disabled={nameError || urlError || !nameTouched || !urlTouched}
             type="submit"
           >
             {this.props.dial ? 'Save Edits' : 'Add Dial'}
-          </button>
-        </div>
-      </form>
+          </Button>
+        </ButtonGroup>
+      </Form>
     );
   }
 }

@@ -88,7 +88,7 @@ describe('DialForm component', () => {
 
   describe('button actions', () => {
     it('calls handleHideDialModal on cancel', () => {
-      const cancelButton = wrapper.find('button').first();
+      const cancelButton = wrapper.find('Styled(button)').first();
       cancelButton.simulate('click');
       expect(props.handleHideDialModal).toHaveBeenCalled();
     });
@@ -104,19 +104,19 @@ describe('DialForm component', () => {
     const wrapperWithDial = shallow(<DialForm {...props} dial={dial} />);
 
     it('sets up inputs with dial data', () => {
-      const nameInput = wrapperWithDial.find('input').first();
-      const urlInput = wrapperWithDial.find('input').last();
+      const nameInput = wrapperWithDial.find('Styled(input)').first();
+      const urlInput = wrapperWithDial.find('Styled(input)').last();
       expect(nameInput.props().value).toBe('Goodreads');
       expect(urlInput.props().value).toBe('https://goodreads.com');
     });
 
     it('shows delete button', () => {
-      const deleteButton = wrapperWithDial.find('.button--delete');
+      const deleteButton = wrapperWithDial.find('[danger=true]');
       expect(deleteButton.length).toBeGreaterThan(0);
     });
 
     it('calls toggleShowDeleteConfirm when delete button clicked', () => {
-      const deleteButton = wrapperWithDial.find('.button--delete');
+      const deleteButton = wrapperWithDial.find('[danger=true]');
       deleteButton.simulate('click');
       expect(props.toggleShowDeleteConfirm).toHaveBeenCalled();
     });
