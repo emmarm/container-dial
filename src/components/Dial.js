@@ -56,7 +56,13 @@ const Dial = ({ dial: { siteUrl, siteName, favicon } }) => (
 );
 
 Dial.propTypes = {
-  dial: PropTypes.objectOf(PropTypes.string)
+  dial: PropTypes.shape({
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string,
+    container: PropTypes.string,
+    favicon: PropTypes.string,
+    id: PropTypes.number
+  })
 };
 
 export default Dial;

@@ -33,7 +33,13 @@ const EditDialButton = ({ dial, handleShowDialModal }) => {
 };
 
 EditDialButton.propTypes = {
-  dial: PropTypes.objectOf(PropTypes.string).isRequired,
+  dial: PropTypes.shape({
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string,
+    container: PropTypes.string,
+    favicon: PropTypes.string,
+    id: PropTypes.number
+  }).isRequired,
   handleShowDialModal: PropTypes.func.isRequired
 };
 

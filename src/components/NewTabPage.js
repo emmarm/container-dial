@@ -84,7 +84,6 @@ NewTabPage.propTypes = {
   theme: PropTypes.objectOf(PropTypes.string),
   dials: PropTypes.arrayOf(PropTypes.object),
   setContainer: PropTypes.func.isRequired,
-  setTheme: PropTypes.func.isRequired,
   startSetBackground: PropTypes.func.isRequired
 };
 

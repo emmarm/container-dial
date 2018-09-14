@@ -108,8 +108,14 @@ export class DialModal extends Component {
 DialModal.propTypes = {
   handleHideDialModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  container: PropTypes.objectOf(PropTypes.string),
-  dial: PropTypes.objectOf(PropTypes.string),
+  container: PropTypes.objectOf(PropTypes.string).isRequired,
+  dial: PropTypes.shape({
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string,
+    container: PropTypes.string,
+    favicon: PropTypes.string,
+    id: PropTypes.number
+  }),
   deleteDial: PropTypes.func.isRequired
 };
 
