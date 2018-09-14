@@ -27,16 +27,9 @@ export class NewTabPage extends React.Component {
   state = DEFAULT_STATE;
 
   componentDidMount() {
-    const {
-      container,
-      theme,
-      setContainer,
-      setTheme,
-      startSetBackground
-    } = this.props;
+    const { container, setContainer, startSetBackground } = this.props;
 
     setContainer(container);
-    setTheme(theme);
     startSetBackground(container);
   }
 
