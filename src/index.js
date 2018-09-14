@@ -4,12 +4,20 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import Modal from 'react-modal';
+import { injectGlobal } from 'emotion';
 
-import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import appReducer from './reducers';
 import NewTabPage from './components/NewTabPage';
 import getTheme from './utils/getTheme';
+
+injectGlobal`
+  body {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+  }
+`;
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
