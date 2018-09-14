@@ -6,14 +6,13 @@ exports[`DialModal component matches snapshot 1`] = `
   bodyOpenClassName="ReactModal__Body--open"
   className={
     Object {
-      "base": "css-5ws0ld",
+      "base": "css-q2cb0g",
       "beforeClose": "css-17m32ze",
     }
   }
   closeTimeoutMS={150}
   isOpen={true}
   onRequestClose={[Function]}
-  overlayClassName={[Function]}
   parentSelector={[Function]}
   portalClassName="ReactModalPortal"
   shouldCloseOnEsc={true}

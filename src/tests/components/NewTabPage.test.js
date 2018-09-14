@@ -20,9 +20,8 @@ describe('NewTabPage component', () => {
   });
 
   it('calls setContainer, setTheme, and startSetBackground functions', () => {
-    const { setContainer, setTheme, startSetBackground } = props;
+    const { setContainer, startSetBackground } = props;
     expect(setContainer).toHaveBeenCalled();
-    expect(setTheme).toHaveBeenCalled();
     expect(startSetBackground).toHaveBeenCalled();
   });
 
