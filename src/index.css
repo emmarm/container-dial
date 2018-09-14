@@ -126,7 +126,7 @@ body {
   cursor: pointer;
 } */
 
-.dial-modal {
+/* .dial-modal {
   align-items: center;
   background: white;
   box-shadow: rgba(50, 50, 93, 0.1) 0px 15px 35px,
@@ -139,52 +139,52 @@ body {
   outline: none;
   padding: 30px;
   width: 50vw;
-}
+} */
 
-.ReactModal__Content--before-close {
+/* .ReactModal__Content--before-close {
   display: none;
   transition: all 150ms ease-out;
-}
+} */
 
-.dial-modal__title {
+/* .dial-modal__title {
   color: #888;
   font-weight: 100;
   margin-bottom: 30px;
-}
+} */
 
-.dial-modal__form {
+/* .dial-modal__form {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
+} */
 
 .form__text {
   font-size: 20px;
   text-align: center;
 }
 
-.dial-modal__field {
+/* .dial-modal__field {
   align-items: center;
   display: grid;
   grid-template-columns: 120px 300px;
   margin: 10px;
-}
+} */
 
-.field__label {
+/* .field__label {
   color: #888;
-}
+} */
 
-.field__input {
+/* .field__input {
   padding: 8px;
-}
+} */
 
-.dial-modal__buttons {
+/* .dial-modal__buttons {
   display: flex;
   justify-content: space-around;
   margin: 25px;
-}
+} */
 
-.dial-modal__button {
+/* .dial-modal__button {
   border: none;
   border-radius: 4px;
   box-shadow: rgba(50, 50, 93, 0.1) 0px 7px 14px,
@@ -207,4 +207,4 @@ body {
 
 .button--delete {
   background: rgb(255, 55, 98);
-}
+} */

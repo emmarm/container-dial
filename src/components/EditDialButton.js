@@ -18,9 +18,6 @@ export const EditButton = styled('button')({
   ':hover': {
     backgroundColor: '#333',
     opacity: 1
-  },
-  '.dial:hover ~': {
-    opacity: 1
   }
 });
 

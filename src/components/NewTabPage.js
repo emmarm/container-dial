@@ -56,7 +56,7 @@ export class NewTabPage extends React.Component {
   renderDials = (dials, container) => {
     return dials.filter(dial => dial.container === container.name).map(dial => (
       <DialContainer key={dial.siteName}>
-        <Dial ariaLabel={dial.siteName} theme={this.props.theme} dial={dial} />
+        <Dial ariaLabel={dial.siteName} dial={dial} />
         <EditDialButton
           dial={dial}
           handleShowDialModal={this.handleShowDialModal}
