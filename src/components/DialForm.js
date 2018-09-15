@@ -65,7 +65,8 @@ export class DialForm extends Component {
     nameError: '',
     urlError: '',
     nameTouched: this.props.dial ? true : false,
-    urlTouched: this.props.dial ? true : false
+    urlTouched: this.props.dial ? true : false,
+    submitting: false
   };
 
   onSiteNameChange = e => {
@@ -102,6 +103,8 @@ export class DialForm extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+
+    this.setState(() => ({ submitting: true }));
     const { siteName, siteUrl } = this.state;
     const {
       dial,
@@ -143,7 +146,8 @@ export class DialForm extends Component {
       nameError,
       urlError,
       nameTouched,
-      urlTouched
+      urlTouched,
+      submitting
     } = this.state;
     const { toggleShowDeleteConfirm, handleHideDialModal } = this.props;
     return (
@@ -186,10 +190,18 @@ export class DialForm extends Component {
 
           <Button
             primary
-            disabled={nameError || urlError || !nameTouched || !urlTouched}
+            disabled={
+              nameError || urlError || !nameTouched || !urlTouched || submitting
+            }
             type="submit"
           >
-            {this.props.dial ? 'Save Edits' : 'Add Dial'}
+            {this.props.dial
+              ? submitting
+                ? 'Saving...'
+                : 'Save Edits'
+              : submitting
+                ? 'Adding...'
+                : 'Add Dial'}
           </Button>
         </ButtonGroup>
       </Form>
