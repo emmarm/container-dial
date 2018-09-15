@@ -5,6 +5,7 @@ import styled from 'react-emotion';
 
 import * as actions from '../actions';
 import getFavicon from '../utils/getFavicon';
+import { normalizeUrl, isValidUrl } from '../utils/checkUrl';
 
 export const Form = styled('form')({
   display: 'flex',
@@ -69,7 +70,7 @@ export class DialForm extends Component {
 
   onSiteNameChange = e => {
     const siteName = e.target.value;
-    this.setState(() => ({ siteName, nameTouched: true }));
+    this.setState(() => ({ siteName, nameTouched: true, nameError: '' }));
   };
 
   onSiteNameBlur = e => {
@@ -83,21 +84,12 @@ export class DialForm extends Component {
 
   onSiteUrlChange = e => {
     const siteUrl = e.target.value;
-    this.setState(() => ({ siteUrl, urlTouched: true }));
+    this.setState(() => ({ siteUrl, urlTouched: true, urlError: '' }));
   };
 
   onSiteUrlBlur = e => {
     const { value } = e.target;
-    const url = value.replace(/^(?:https?:\/\/)?(.*)$/, 'https://$1');
-
-    const isValidUrl = string => {
-      try {
-        new URL(string);
-        return true;
-      } catch (err) {
-        return false;
-      }
-    };
+    const url = normalizeUrl(value);
 
     if (!value) {
       return this.setState(() => ({ urlError: 'Required' }));
@@ -120,6 +112,8 @@ export class DialForm extends Component {
       newId
     } = this.props;
 
+    const url = normalizeUrl(siteUrl);
+
     let favicon;
     try {
       const icon = await getFavicon(siteUrl);
@@ -132,7 +126,7 @@ export class DialForm extends Component {
 
     const newDial = {
       siteName,
-      siteUrl,
+      siteUrl: url,
       container: container.cookieStoreId,
       favicon,
       id
@@ -165,6 +159,7 @@ export class DialForm extends Component {
             value={siteName}
           />
         </FormField>
+        {nameError}
 
         <FormField>
           <Label htmlFor="site-url">Site URL</Label>

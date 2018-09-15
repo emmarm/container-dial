@@ -1,13 +1,10 @@
+import { normalizeUrl } from './checkUrl';
+
 const getFavicon = async url => {
-  const normalizedUrl = url.replace(
-    /^(?:(?:https?:\/\/)?(?:www\.)?)?(.*)$/,
-    '$1'
-  );
+  const host = normalizeUrl(url, true);
 
   try {
-    const res = await fetch(
-      `https://favicongrabber.com/api/grab/${normalizedUrl}`
-    );
+    const res = await fetch(`https://favicongrabber.com/api/grab/${host}`);
 
     const iconObj = await res.json();
     const iconLarge = iconObj.icons
