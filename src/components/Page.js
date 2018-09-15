@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const PageContainer = styled('div')({
-  height: '100vh',
-  overflow: 'hidden',
-  position: 'relative',
-  width: '100vw'
-});
+const PageContainer = styled('div')(
+  {
+    height: '100vh',
+    overflow: 'hidden',
+    position: 'relative',
+    width: '100vw'
+  },
+  ({ theme }) => ({
+    background: theme.dark
+  })
+);
 
 const Background = styled('div')(
   {
@@ -20,11 +25,9 @@ const Background = styled('div')(
     top: '0',
     width: '100%'
   },
-  props => ({
+  ({ background }) => ({
     backgroundImage:
-      props.background && props.background.image
-        ? `url('${props.background.image.urls.full}')`
-        : `linear-gradient(to bottom, white, black)`
+      background && background.image && `url('${background.image.urls.full}')`
   })
 );
 
