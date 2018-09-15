@@ -1,11 +1,13 @@
-const normalizeUrl = (url, noProtocol = false) => {
-  const hasProtocol = /^https?:\/\//.test(url);
-  const host = url.replace(/^(?:(?:https?:\/\/)?(?:www\.)?)?(.*)$/, '$1');
-
-  if (noProtocol) {
-    return host;
+const normalizeUrl = (url, onlyHost = false) => {
+  if (onlyHost) {
+    return url.replace(
+      /^(?:(?:https?:\/\/)?(?:www\.)?)?([a-z0-9\-.]+).*$/i,
+      '$1'
+    );
   }
-  return hasProtocol ? url : `https://${host}`;
+
+  const hasProtocol = /^https?:\/\//.test(url);
+  return hasProtocol ? url : `https://${url}`;
 };
 
 const isValidUrl = string => {
