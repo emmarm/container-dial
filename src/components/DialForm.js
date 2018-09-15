@@ -5,6 +5,7 @@ import styled from 'react-emotion';
 
 import * as actions from '../actions';
 import getFavicon from '../utils/getFavicon';
+import { normalizeUrl, isValidUrl } from '../utils/checkUrl';
 
 export const Form = styled('form')({
   display: 'flex',
@@ -64,12 +65,13 @@ export class DialForm extends Component {
     nameError: '',
     urlError: '',
     nameTouched: this.props.dial ? true : false,
-    urlTouched: this.props.dial ? true : false
+    urlTouched: this.props.dial ? true : false,
+    submitting: false
   };
 
   onSiteNameChange = e => {
     const siteName = e.target.value;
-    this.setState(() => ({ siteName, nameTouched: true }));
+    this.setState(() => ({ siteName, nameTouched: true, nameError: '' }));
   };
 
   onSiteNameBlur = e => {
@@ -83,21 +85,12 @@ export class DialForm extends Component {
 
   onSiteUrlChange = e => {
     const siteUrl = e.target.value;
-    this.setState(() => ({ siteUrl, urlTouched: true }));
+    this.setState(() => ({ siteUrl, urlTouched: true, urlError: '' }));
   };
 
   onSiteUrlBlur = e => {
     const { value } = e.target;
-    const url = value.replace(/^(?:https?:\/\/)?(.*)$/, 'https://$1');
-
-    const isValidUrl = string => {
-      try {
-        new URL(string);
-        return true;
-      } catch (err) {
-        return false;
-      }
-    };
+    const url = normalizeUrl(value);
 
     if (!value) {
       return this.setState(() => ({ urlError: 'Required' }));
@@ -110,20 +103,39 @@ export class DialForm extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+
+    this.setState(() => ({ submitting: true }));
     const { siteName, siteUrl } = this.state;
-    const { container, editDial, addDial, handleHideDialModal } = this.props;
+    const {
+      dial,
+      container,
+      editDial,
+      addDial,
+      handleHideDialModal,
+      newId
+    } = this.props;
+
+    const url = normalizeUrl(siteUrl);
 
     let favicon;
     try {
       const icon = await getFavicon(siteUrl);
-
       favicon = icon;
     } catch (err) {
       favicon = 'error';
     }
-    const dial = { siteName, siteUrl, container: container.name, favicon };
 
-    this.props.dial ? editDial(this.props.dial, dial) : addDial(dial);
+    const id = dial ? dial.id : newId;
+
+    const newDial = {
+      siteName,
+      siteUrl: url,
+      container: container.cookieStoreId,
+      favicon,
+      id
+    };
+
+    dial ? editDial(dial, newDial) : addDial(newDial);
     handleHideDialModal();
   };
 
@@ -134,7 +146,8 @@ export class DialForm extends Component {
       nameError,
       urlError,
       nameTouched,
-      urlTouched
+      urlTouched,
+      submitting
     } = this.state;
     const { toggleShowDeleteConfirm, handleHideDialModal } = this.props;
     return (
@@ -150,6 +163,7 @@ export class DialForm extends Component {
             value={siteName}
           />
         </FormField>
+        {nameError}
 
         <FormField>
           <Label htmlFor="site-url">Site URL</Label>
@@ -176,10 +190,18 @@ export class DialForm extends Component {
 
           <Button
             primary
-            disabled={nameError || urlError || !nameTouched || !urlTouched}
+            disabled={
+              nameError || urlError || !nameTouched || !urlTouched || submitting
+            }
             type="submit"
           >
-            {this.props.dial ? 'Save Edits' : 'Add Dial'}
+            {this.props.dial
+              ? submitting
+                ? 'Saving...'
+                : 'Save Edits'
+              : submitting
+                ? 'Adding...'
+                : 'Add Dial'}
           </Button>
         </ButtonGroup>
       </Form>
@@ -195,13 +217,17 @@ DialForm.propTypes = {
     siteName: PropTypes.string,
     siteUrl: PropTypes.string,
     container: PropTypes.string,
-    favicon: PropTypes.string
+    favicon: PropTypes.string,
+    id: PropTypes.number
   })
 };
 
 const mapStateToProps = state => ({
   container: state.container,
-  theme: state.theme
+  newId:
+    state.dials.length > 0
+      ? Math.max(...state.dials.map(dial => dial.id)) + 1
+      : 1
 });
 
 export default connect(

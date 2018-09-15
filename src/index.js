@@ -33,7 +33,8 @@ const renderApp = () => {
 
   const container = {
     color: 'red',
-    name: 'Personal'
+    name: 'Personal',
+    cookieStoreId: '123'
   };
 
   const theme = getTheme(container.color);

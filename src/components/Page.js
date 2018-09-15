@@ -59,23 +59,18 @@ export const Page = ({ background, container, children }) => (
 );
 
 Page.propTypes = {
-  theme: PropTypes.shape({
-    primary: PropTypes.string,
-    light: PropTypes.string,
-    dark: PropTypes.string
-  }),
   children: PropTypes.arrayOf(PropTypes.object),
   background: PropTypes.shape({
     container: PropTypes.string,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     imageDate: PropTypes.string
   }),
-  container: PropTypes.objectOf(PropTypes.string)
+  container: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 const mapStateToProps = state => ({
   background: state.backgrounds.filter(
-    background => background.container === state.container.name
+    background => background.container === state.container.cookieStoreId
   )[0],
   container: state.container
 });

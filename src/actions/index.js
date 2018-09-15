@@ -15,7 +15,7 @@ export const startSetBackground = container => {
     }
 
     const containerWithImage = {
-      container: container.name,
+      container: container.cookieStoreId,
       image,
       imageDate: new Date().toDateString()
     };

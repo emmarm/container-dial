@@ -14,7 +14,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
     <Connect(DialModal)
       container={
         Object {
-          "name": "Default",
+          "cookieStoreId": "123",
         }
       }
       dial={null}
@@ -23,14 +23,43 @@ exports[`NewTabPage component matches snapshot 1`] = `
     />
     <GridList>
       <Styled(div)
+        key="Udemy"
+      >
+        <Dial
+          ariaLabel="Udemy"
+          dial={
+            Object {
+              "container": "123",
+              "favicon": "https://www.udemy.com/staticx/udemy/images/v6/favicon-196x196.png",
+              "id": 1,
+              "siteName": "Udemy",
+              "siteUrl": "www.udemy.com",
+            }
+          }
+        />
+        <EditDialButton
+          dial={
+            Object {
+              "container": "123",
+              "favicon": "https://www.udemy.com/staticx/udemy/images/v6/favicon-196x196.png",
+              "id": 1,
+              "siteName": "Udemy",
+              "siteUrl": "www.udemy.com",
+            }
+          }
+          handleShowDialModal={[Function]}
+        />
+      </Styled(div)>
+      <Styled(div)
         key="Youtube"
       >
         <Dial
           ariaLabel="Youtube"
           dial={
             Object {
-              "container": "Default",
+              "container": "123",
               "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+              "id": 3,
               "siteName": "Youtube",
               "siteUrl": "www.youtube.com",
             }
@@ -39,8 +68,9 @@ exports[`NewTabPage component matches snapshot 1`] = `
         <EditDialButton
           dial={
             Object {
-              "container": "Default",
+              "container": "123",
               "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+              "id": 3,
               "siteName": "Youtube",
               "siteUrl": "www.youtube.com",
             }
@@ -49,52 +79,28 @@ exports[`NewTabPage component matches snapshot 1`] = `
         />
       </Styled(div)>
       <Styled(div)
-        key="Daily Cooking Quest"
+        key="Facebook"
       >
         <Dial
-          ariaLabel="Daily Cooking Quest"
+          ariaLabel="Facebook"
           dial={
             Object {
-              "container": "Default",
-              "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
-              "siteName": "Daily Cooking Quest",
-              "siteUrl": "www.dailycookingquest.com",
+              "container": "123",
+              "favicon": "https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico",
+              "id": 6,
+              "siteName": "Facebook",
+              "siteUrl": "www.facebook.com",
             }
           }
         />
         <EditDialButton
           dial={
             Object {
-              "container": "Default",
-              "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
-              "siteName": "Daily Cooking Quest",
-              "siteUrl": "www.dailycookingquest.com",
-            }
-          }
-          handleShowDialModal={[Function]}
-        />
-      </Styled(div)>
-      <Styled(div)
-        key="Mozilla Developer Documentation"
-      >
-        <Dial
-          ariaLabel="Mozilla Developer Documentation"
-          dial={
-            Object {
-              "container": "Default",
-              "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
-              "siteName": "Mozilla Developer Documentation",
-              "siteUrl": "developer.mozilla.org",
-            }
-          }
-        />
-        <EditDialButton
-          dial={
-            Object {
-              "container": "Default",
-              "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
-              "siteName": "Mozilla Developer Documentation",
-              "siteUrl": "developer.mozilla.org",
+              "container": "123",
+              "favicon": "https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico",
+              "id": 6,
+              "siteName": "Facebook",
+              "siteUrl": "www.facebook.com",
             }
           }
           handleShowDialModal={[Function]}

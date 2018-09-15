@@ -42,10 +42,16 @@ export const DeleteConfirm = ({
 );
 
 DeleteConfirm.propTypes = {
-  dial: PropTypes.objectOf(PropTypes.string),
+  dial: PropTypes.shape({
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string,
+    container: PropTypes.string,
+    favicon: PropTypes.string,
+    id: PropTypes.number
+  }).isRequired,
   toggleShowDeleteConfirm: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  container: PropTypes.objectOf(PropTypes.string)
+  container: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 const mapStateToProps = state => ({
