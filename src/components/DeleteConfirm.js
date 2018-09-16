@@ -9,13 +9,19 @@ import { Form, ButtonGroup, Button } from './DialForm';
 const FormLayout = Form.withComponent('div');
 
 const Text = styled('p')({
-  fontSize: '20px',
+  fontSize: 20,
   textAlign: 'center'
 });
 
 const Span = styled('span')(props => ({
   color: props.primary ? props.theme.primary : props.theme.light
 }));
+
+const I = styled('i')({
+  color: 'white',
+  fontSize: 28,
+  margin: 0
+});
 
 export const DeleteConfirm = ({
   dial,
@@ -36,6 +42,7 @@ export const DeleteConfirm = ({
 
       <Button danger onClick={handleDelete}>
         Delete
+        <I className="material-icons">delete_forever</I>
       </Button>
     </ButtonGroup>
   </FormLayout>

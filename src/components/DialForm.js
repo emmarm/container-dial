@@ -36,14 +36,17 @@ export const ButtonGroup = styled('div')({
 
 export const Button = styled('button')(
   {
+    alignItems: 'center',
     border: 'none',
     borderRadius: '4px',
     boxShadow:
       'rgba(50, 50, 93, 0.1) 0px 7px 14px, rgba(0, 0, 0, 0.08) 0px 3px 6px',
     color: 'white',
     cursor: 'pointer',
+    display: 'flex',
     fontSize: '20px',
     fontWeight: '300',
+    justifyContent: 'space-between',
     padding: '10px 25px',
     ':disabled': {
       cursor: 'auto'
@@ -57,6 +60,11 @@ export const Button = styled('button')(
         : '#bbb'
   })
 );
+
+const I = styled('i')({
+  color: 'white',
+  fontSize: 28
+});
 
 export class DialForm extends Component {
   state = {
@@ -181,7 +189,7 @@ export class DialForm extends Component {
         <ButtonGroup>
           {this.props.dial && (
             <Button danger onClick={toggleShowDeleteConfirm}>
-              Delete
+              <I className="material-icons">delete</I>
             </Button>
           )}
           <Button secondary onClick={handleHideDialModal}>
@@ -202,6 +210,7 @@ export class DialForm extends Component {
               : submitting
                 ? 'Adding...'
                 : 'Add Dial'}
+            {!submitting && <I className="material-icons">done</I>}
           </Button>
         </ButtonGroup>
       </Form>

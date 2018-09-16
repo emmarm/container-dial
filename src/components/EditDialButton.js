@@ -21,13 +21,18 @@ export const EditButton = styled('button')({
   }
 });
 
+const I = styled('i')({
+  color: 'white',
+  fontSize: 28
+});
+
 const EditDialButton = ({ dial, handleShowDialModal }) => {
   const setDial = () => {
     handleShowDialModal(dial);
   };
   return (
     <EditButton className="edit-button" onClick={() => setDial()}>
-      <h3>Edit</h3>
+      <I className="material-icons">edit</I>
     </EditButton>
   );
 };
