@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
 import * as actions from '../actions';
-import { Form, ButtonGroup } from './DialForm';
+import Form from './Form';
+import ButtonGroup from './ButtonGroup';
 import Button from './Button';
-
-const FormLayout = Form.withComponent('div');
 
 const Text = styled('p')({
   fontSize: 20,
@@ -19,12 +18,12 @@ const Span = styled('span')(props => ({
 }));
 
 export const DeleteConfirm = ({
+  container,
   dial,
-  toggleShowDeleteConfirm,
   handleDelete,
-  container
+  toggleShowDeleteConfirm
 }) => (
-  <FormLayout>
+  <Form>
     <Text>
       Delete <Span primary>{dial.siteName}</Span> from{' '}
       <Span>{container.name}</Span> Container?
@@ -35,25 +34,25 @@ export const DeleteConfirm = ({
 
       <Button
         danger
+        icon="delete_forever"
         onClick={handleDelete}
         text="Delete"
-        icon="delete_forever"
       />
     </ButtonGroup>
-  </FormLayout>
+  </Form>
 );
 
 DeleteConfirm.propTypes = {
+  container: PropTypes.objectOf(PropTypes.string).isRequired,
   dial: PropTypes.shape({
-    siteName: PropTypes.string,
-    siteUrl: PropTypes.string,
     container: PropTypes.string,
     favicon: PropTypes.string,
-    id: PropTypes.number
+    id: PropTypes.number,
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string
   }).isRequired,
-  toggleShowDeleteConfirm: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  container: PropTypes.objectOf(PropTypes.string).isRequired
+  toggleShowDeleteConfirm: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

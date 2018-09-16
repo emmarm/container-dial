@@ -24,8 +24,10 @@ const Btn = styled('button')(
       cursor: 'auto'
     }
   },
-  ({ danger, primary, theme }) => ({
+  ({ danger, narrow, padded, primary, theme }) => ({
     backgroundColor: primary ? theme.primary : danger ? '#FF3762' : '#bbb',
+    padding: narrow && '0 15px',
+    paddingLeft: padded && 30,
     ':hover': {
       backgroundColor: primary ? theme.light : danger ? '#FF5F81' : '#c8c8c8',
       ':disabled': {
@@ -40,6 +42,7 @@ const Button = ({
   danger,
   disabled,
   icon,
+  narrow,
   onClick,
   primary,
   submit,
@@ -50,11 +53,13 @@ const Button = ({
     danger={danger}
     disabled={disabled}
     onClick={onClick}
+    narrow={narrow}
+    padded={!!icon && !!text}
     primary={primary}
     type={submit ? 'submit' : 'button'}
   >
     {text}
-    {icon && <Icon icon={icon} />}
+    {icon && <Icon icon={icon} padded={!!text} />}
   </Btn>
 );
 

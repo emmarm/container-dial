@@ -1,49 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'react-emotion';
 
 import * as actions from '../actions';
+import Form from './Form';
+import FormField from './FormField';
+import ButtonGroup from './ButtonGroup';
 import Button from './Button';
 import getFavicon from '../utils/getFavicon';
 import { normalizeUrl, isValidUrl } from '../utils/checkUrl';
 
-export const Form = styled('form')({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%'
-});
-
-const FormField = styled('div')({
-  alignItems: 'center',
-  display: 'grid',
-  gridTemplateColumns: '120px 300px',
-  margin: '10px'
-});
-
-const Label = styled('label')({
-  color: '#888'
-});
-
-const TextInput = styled('input')({
-  padding: '8px'
-});
-
-export const ButtonGroup = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-around',
-  margin: '25px'
-});
-
 export class DialForm extends Component {
   state = {
+    nameError: '',
+    nameTouched: this.props.dial ? true : false,
     siteName: this.props.dial ? this.props.dial.siteName : '',
     siteUrl: this.props.dial ? this.props.dial.siteUrl : '',
-    nameError: '',
+    submitting: false,
     urlError: '',
-    nameTouched: this.props.dial ? true : false,
-    urlTouched: this.props.dial ? true : false,
-    submitting: false
+    urlTouched: this.props.dial ? true : false
   };
 
   onSiteNameChange = e => {
@@ -84,10 +59,10 @@ export class DialForm extends Component {
     this.setState(() => ({ submitting: true }));
     const { siteName, siteUrl } = this.state;
     const {
-      dial,
-      container,
-      editDial,
       addDial,
+      container,
+      dial,
+      editDial,
       handleHideDialModal,
       newId
     } = this.props;
@@ -118,46 +93,45 @@ export class DialForm extends Component {
 
   render() {
     const {
+      nameError,
+      nameTouched,
       siteName,
       siteUrl,
-      nameError,
+      submitting,
       urlError,
-      nameTouched,
-      urlTouched,
-      submitting
+      urlTouched
     } = this.state;
     const { toggleShowDeleteConfirm, handleHideDialModal } = this.props;
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormField>
-          <Label htmlFor="site-name">Site Name</Label>
-          <TextInput
-            id="site-name"
-            type="text"
-            placeholder="e.g. Facebook"
-            onChange={this.onSiteNameChange}
-            onBlur={this.onSiteNameBlur}
-            value={siteName}
-          />
-        </FormField>
-        {nameError}
+        <FormField
+          error={nameError}
+          id="site-name"
+          label="Site Name"
+          onBlur={this.onSiteNameBlur}
+          onChange={this.onSiteNameChange}
+          placeholder="e.g. Facebook"
+          value={siteName}
+        />
 
-        <FormField>
-          <Label htmlFor="site-url">Site URL</Label>
-          <TextInput
-            id="site-url"
-            type="text"
-            placeholder="e.g. https://facebook.com"
-            onChange={this.onSiteUrlChange}
-            onBlur={this.onSiteUrlBlur}
-            value={siteUrl}
-          />
-        </FormField>
-        {urlError}
+        <FormField
+          error={urlError}
+          id="site-url"
+          label="Site Url"
+          onBlur={this.onSiteUrlBlur}
+          onChange={this.onSiteUrlChange}
+          placeholder="e.g. https://facebook.com"
+          value={siteUrl}
+        />
 
         <ButtonGroup>
           {this.props.dial && (
-            <Button danger icon="delete" onClick={toggleShowDeleteConfirm} />
+            <Button
+              danger
+              icon="delete"
+              narrow
+              onClick={toggleShowDeleteConfirm}
+            />
           )}
           <Button onClick={handleHideDialModal} text="Cancel" />
 
