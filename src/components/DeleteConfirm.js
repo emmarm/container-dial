@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
 import * as actions from '../actions';
-import { Form, ButtonGroup, Button } from './DialForm';
+import { Form, ButtonGroup } from './DialForm';
+import Button from './Button';
 
 const FormLayout = Form.withComponent('div');
 
@@ -16,12 +17,6 @@ const Text = styled('p')({
 const Span = styled('span')(props => ({
   color: props.primary ? props.theme.primary : props.theme.light
 }));
-
-const I = styled('i')({
-  color: 'white',
-  fontSize: 28,
-  margin: 0
-});
 
 export const DeleteConfirm = ({
   dial,
@@ -36,14 +31,14 @@ export const DeleteConfirm = ({
     </Text>
 
     <ButtonGroup>
-      <Button secondary onClick={toggleShowDeleteConfirm}>
-        Cancel
-      </Button>
+      <Button onClick={toggleShowDeleteConfirm} text="Cancel" />
 
-      <Button danger onClick={handleDelete}>
-        Delete
-        <I className="material-icons">delete_forever</I>
-      </Button>
+      <Button
+        danger
+        onClick={handleDelete}
+        text="Delete"
+        icon="delete_forever"
+      />
     </ButtonGroup>
   </FormLayout>
 );

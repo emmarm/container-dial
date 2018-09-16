@@ -2,38 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const Button = styled('button')({
-  alignItems: 'center',
+import Button from './Button';
+
+const AddButton = styled(Button)({
   background: 'rgba(255, 255, 255, 0.3)',
-  border: 'none',
-  ':hover': {
-    background: 'rgba(255, 255, 255, 0.5)',
-    cursor: 'pointer'
-  },
-  display: 'flex',
+  borderRadius: 0,
   height: '100%',
-  justifyContent: 'center'
-});
-
-const ButtonText = styled('h3')({
-  color: 'white',
-  fontSize: 20,
-  fontWeight: 100
-});
-
-const I = styled('i')({
-  color: 'white',
-  fontSize: 28
+  ':hover': {
+    background: 'rgba(255, 255, 255, 0.5)'
+  }
 });
 
 const AddDialButton = ({ handleShowDialModal }) => (
-  <Button onClick={handleShowDialModal}>
-    <ButtonText>
-      Add New
-      {'  '}
-    </ButtonText>
-    <I className="material-icons">add</I>
-  </Button>
+  <AddButton onClick={handleShowDialModal} text="Add New" icon="add" />
 );
 
 AddDialButton.propTypes = {

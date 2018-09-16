@@ -33,7 +33,7 @@ const Title = styled('p')({
   textAlign: 'center'
 });
 
-const Icon = styled('div')(
+const Favicon = styled('div')(
   {
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -51,17 +51,17 @@ const Dial = ({ dial: { siteUrl, siteName, favicon } }) => (
     <TitleArea>
       <Title>{siteName}</Title>
     </TitleArea>
-    <Icon favicon={favicon} />
+    <Favicon favicon={favicon} />
   </DialContent>
 );
 
 Dial.propTypes = {
   dial: PropTypes.shape({
-    siteName: PropTypes.string,
-    siteUrl: PropTypes.string,
     container: PropTypes.string,
     favicon: PropTypes.string,
-    id: PropTypes.number
+    id: PropTypes.number,
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string
   })
 };
 

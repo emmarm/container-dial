@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
 import * as actions from '../actions';
+import Button from './Button';
 import getFavicon from '../utils/getFavicon';
 import { normalizeUrl, isValidUrl } from '../utils/checkUrl';
 
@@ -32,38 +33,6 @@ export const ButtonGroup = styled('div')({
   display: 'flex',
   justifyContent: 'space-around',
   margin: '25px'
-});
-
-export const Button = styled('button')(
-  {
-    alignItems: 'center',
-    border: 'none',
-    borderRadius: '4px',
-    boxShadow:
-      'rgba(50, 50, 93, 0.1) 0px 7px 14px, rgba(0, 0, 0, 0.08) 0px 3px 6px',
-    color: 'white',
-    cursor: 'pointer',
-    display: 'flex',
-    fontSize: '20px',
-    fontWeight: '300',
-    justifyContent: 'space-between',
-    padding: '10px 25px',
-    ':disabled': {
-      cursor: 'auto'
-    }
-  },
-  props => ({
-    backgroundColor: props.primary
-      ? props.theme.primary
-      : props.danger
-        ? 'rgb(255, 55, 98)'
-        : '#bbb'
-  })
-);
-
-const I = styled('i')({
-  color: 'white',
-  fontSize: 28
 });
 
 export class DialForm extends Component {
@@ -188,30 +157,27 @@ export class DialForm extends Component {
 
         <ButtonGroup>
           {this.props.dial && (
-            <Button danger onClick={toggleShowDeleteConfirm}>
-              <I className="material-icons">delete</I>
-            </Button>
+            <Button danger icon="delete" onClick={toggleShowDeleteConfirm} />
           )}
-          <Button secondary onClick={handleHideDialModal}>
-            Cancel
-          </Button>
+          <Button onClick={handleHideDialModal} text="Cancel" />
 
           <Button
-            primary
+            icon={!submitting && 'done'}
             disabled={
               nameError || urlError || !nameTouched || !urlTouched || submitting
             }
-            type="submit"
-          >
-            {this.props.dial
-              ? submitting
-                ? 'Saving...'
-                : 'Save Edits'
-              : submitting
-                ? 'Adding...'
-                : 'Add Dial'}
-            {!submitting && <I className="material-icons">done</I>}
-          </Button>
+            primary
+            submit
+            text={
+              this.props.dial
+                ? submitting
+                  ? 'Saving...'
+                  : 'Save Edits'
+                : submitting
+                  ? 'Adding...'
+                  : 'Add Dial'
+            }
+          />
         </ButtonGroup>
       </Form>
     );
@@ -219,16 +185,16 @@ export class DialForm extends Component {
 }
 
 DialForm.propTypes = {
-  handleHideDialModal: PropTypes.func.isRequired,
-  toggleShowDeleteConfirm: PropTypes.func.isRequired,
-  theme: PropTypes.objectOf(PropTypes.string),
   dial: PropTypes.shape({
-    siteName: PropTypes.string,
-    siteUrl: PropTypes.string,
     container: PropTypes.string,
     favicon: PropTypes.string,
-    id: PropTypes.number
-  })
+    id: PropTypes.number,
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string
+  }),
+  handleHideDialModal: PropTypes.func.isRequired,
+  theme: PropTypes.objectOf(PropTypes.string),
+  toggleShowDeleteConfirm: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
