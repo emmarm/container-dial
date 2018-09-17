@@ -75,7 +75,7 @@ FormField.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   type: PropTypes.string,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number, PropTypes.bool])
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])
 };
 
 export default FormField;

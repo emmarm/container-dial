@@ -13,7 +13,7 @@ const Form = ({ children, onSubmit }) => (
 );
 
 Form.propTypes = {
-  children: PropTypes.oneOf([PropTypes.array, PropTypes.object]),
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   onSubmit: PropTypes.func
 };
 

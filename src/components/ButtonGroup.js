@@ -11,7 +11,7 @@ const Group = styled('div')({
 const ButtonGroup = ({ children }) => <Group>{children}</Group>;
 
 ButtonGroup.propTypes = {
-  children: PropTypes.oneOf([PropTypes.array, PropTypes.object])
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };
 
 export default ButtonGroup;

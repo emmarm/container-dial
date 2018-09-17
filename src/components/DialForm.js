@@ -138,7 +138,11 @@ export class DialForm extends Component {
           <Button
             icon={!submitting && 'done'}
             disabled={
-              nameError || urlError || !nameTouched || !urlTouched || submitting
+              !!nameError ||
+              !!urlError ||
+              !nameTouched ||
+              !urlTouched ||
+              submitting
             }
             primary
             submit
