@@ -11,7 +11,7 @@ const DialContent = styled('a')({
   display: 'grid',
   gridTemplateColumns: '1fr 80px',
   height: '100%',
-  padding: '0',
+  padding: 0,
   position: 'relative',
   textDecoration: 'none',
   width: '100%',
@@ -22,38 +22,44 @@ const DialContent = styled('a')({
 
 const TitleArea = styled('div')({
   alignItems: 'center',
+  color: 'rgba(0,0,0,0.7)',
   display: 'flex',
-  justifyContent: 'center'
-});
-
-const Title = styled('p')({
-  color: 'rgb(10, 102, 87)',
-  fontSize: '16px',
-  fontWeight: '100',
-  textAlign: 'center'
+  fontSize: 16,
+  fontWeight: 100,
+  height: 80,
+  justifyContent: 'center',
+  overflow: 'hidden',
+  padding: 10,
+  textAlign: 'center',
+  wordBreak: 'break-word'
 });
 
 const Favicon = styled('div')(
   {
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '90%',
-    height: '80px',
-    width: '80px'
+    height: 80,
+    width: 80
   },
-  props => ({
-    backgroundImage: `url('${props.favicon}')`
+  ({ favicon }) => ({
+    background: `center / contain no-repeat url('${favicon}')`
   })
 );
 
-const Dial = ({ dial: { siteUrl, siteName, favicon } }) => (
-  <DialContent href={siteUrl}>
-    <TitleArea>
-      <Title>{siteName}</Title>
-    </TitleArea>
-    <Favicon favicon={favicon} />
-  </DialContent>
-);
+const getTrimmedName = name => {
+  const lastWordEnd = name.lastIndexOf(' ', 33);
+  return lastWordEnd > -1 && lastWordEnd < 33
+    ? name.slice(0, lastWordEnd) + '...'
+    : name.slice(0, 11) + '...';
+};
+
+const Dial = ({ dial: { siteUrl, siteName, favicon } }) => {
+  const name = siteName.length > 36 ? getTrimmedName(siteName) : siteName;
+  return (
+    <DialContent href={siteUrl}>
+      <TitleArea>{name}</TitleArea>
+      <Favicon favicon={favicon} />
+    </DialContent>
+  );
+};
 
 Dial.propTypes = {
   dial: PropTypes.shape({
