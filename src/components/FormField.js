@@ -23,18 +23,22 @@ const Input = styled('input')(
   {
     padding: 8
   },
-  ({ error }) => ({
-    outline: error && '1px solid #FF5F81'
+  ({ error, theme }) => ({
+    outline: error && `1px solid ${theme.danger}`
   })
 );
 
-const Err = styled('p')({
-  color: '#FF5F81',
-  fontSize: 14,
-  left: 135,
-  position: 'absolute',
-  top: 40
-});
+const Err = styled('p')(
+  {
+    fontSize: 14,
+    left: 135,
+    position: 'absolute',
+    top: 40
+  },
+  ({ theme }) => ({
+    color: theme.danger
+  })
+);
 
 const FormField = ({
   error,

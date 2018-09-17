@@ -11,7 +11,7 @@ const PageContainer = styled('div')(
     width: '100vw'
   },
   ({ theme }) => ({
-    background: theme.dark
+    background: theme.light
   })
 );
 
@@ -45,8 +45,8 @@ const PageTitle = styled('h1')(
     margin: '30px',
     textAlign: 'center'
   },
-  props => ({
-    color: props.theme.light
+  ({ theme }) => ({
+    color: theme.dark
   })
 );
 

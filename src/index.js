@@ -32,12 +32,20 @@ const renderApp = () => {
   Modal.setAppElement(document.getElementById('page'));
 
   const container = {
-    color: 'red',
+    color: 'black',
     name: 'Personal',
     cookieStoreId: '123'
   };
 
-  const theme = getTheme(container.color);
+  const containerTheme = getTheme(container.color);
+  const theme = {
+    ...containerTheme,
+    danger: '#FF3762',
+    dangerLight: '#FF5F81',
+    secondary: '#bbb',
+    secondaryLight: '#c8c8c8',
+    disabled: '#777'
+  };
 
   ReactDOM.render(
     <Provider store={store}>

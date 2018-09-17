@@ -20,18 +20,28 @@ const Btn = styled('button')(
     justifyContent: 'center',
     padding: '0 25px',
     ':disabled': {
-      backgroundColor: '#777',
       cursor: 'auto'
     }
   },
   ({ danger, narrow, padded, primary, theme }) => ({
-    backgroundColor: primary ? theme.primary : danger ? '#FF3762' : '#bbb',
+    backgroundColor: primary
+      ? theme.primary
+      : danger
+        ? theme.danger
+        : theme.secondary,
     padding: narrow && '0 15px',
     paddingLeft: padded && 30,
+    ':disabled': {
+      backgroundColor: theme.disabled
+    },
     ':hover': {
-      backgroundColor: primary ? theme.light : danger ? '#FF5F81' : '#c8c8c8',
+      backgroundColor: primary
+        ? theme.light
+        : danger
+          ? theme.dangerLight
+          : theme.secondaryLight,
       ':disabled': {
-        backgroundColor: '#777'
+        backgroundColor: theme.disabled
       }
     }
   })
