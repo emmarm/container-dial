@@ -12,7 +12,7 @@ export const EditButton = styled(Button)({
   top: '-10px',
   transition: 'all 200ms ease-in',
   width: '50px',
-  ':hover': {
+  ':hover,:focus': {
     opacity: 1
   }
 });

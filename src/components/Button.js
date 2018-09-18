@@ -34,7 +34,7 @@ const Btn = styled('button')(
     ':disabled': {
       backgroundColor: theme.disabled
     },
-    ':hover': {
+    ':hover,:focus': {
       backgroundColor: primary
         ? theme.light
         : danger
@@ -43,6 +43,9 @@ const Btn = styled('button')(
       ':disabled': {
         backgroundColor: theme.disabled
       }
+    },
+    '::-moz-focus-inner': {
+      border: 0
     }
   })
 );
@@ -56,6 +59,7 @@ const Button = ({
   onClick,
   primary,
   submit,
+  tabIndex,
   text
 }) => (
   <Btn
@@ -67,6 +71,7 @@ const Button = ({
     padded={!!icon && !!text}
     primary={primary}
     type={submit ? 'submit' : 'button'}
+    tabIndex={tabIndex ? tabIndex : 0}
   >
     {text}
     {icon && <Icon icon={icon} padded={!!text} />}
@@ -82,6 +87,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   primary: PropTypes.bool,
   submit: PropTypes.bool,
+  tabIndex: PropTypes.number,
   text: PropTypes.string
 };
 

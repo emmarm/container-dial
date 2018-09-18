@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const DialContent = styled('a')({
+const DialButton = styled('button')({
   background: 'rgba(255, 255, 255, 0.9)',
   border: 'none',
   boxShadow:
@@ -15,8 +15,11 @@ const DialContent = styled('a')({
   position: 'relative',
   textDecoration: 'none',
   width: '100%',
-  ':hover': {
+  ':hover,:focus': {
     background: 'white'
+  },
+  '::-moz-focus-inner': {
+    border: 0
   }
 });
 
@@ -70,20 +73,24 @@ class Dial extends Component {
 
   getLetter = siteName => siteName.charAt(0).toUpperCase();
 
+  openLink = () => {
+    window.location = this.props.dial.siteUrl;
+  };
+
   render() {
     const {
-      dial: { favicon, siteName, siteUrl }
+      dial: { favicon, siteName }
     } = this.props;
     const { useFavicon } = this.state;
     return (
-      <DialContent href={siteUrl}>
+      <DialButton onClick={this.openLink} tabIndex={1}>
         <TitleArea>
           {siteName.length > 36 ? this.getTrimmedName(siteName) : siteName}
         </TitleArea>
         <Favicon favicon={favicon} useFavicon={useFavicon}>
           {!useFavicon && this.getLetter(siteName)}
         </Favicon>
-      </DialContent>
+      </DialButton>
     );
   }
 }
