@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon component matches snapshot 1`] = `
+<Styled(i)
+  className="material-icons"
+>
+  add
+</Styled(i)>
+`;
