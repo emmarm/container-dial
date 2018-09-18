@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DeleteConfirm component matches snapshot 1`] = `
-<Styled(div)>
+<Form>
   <Styled(p)>
     Delete 
     <Styled(span)
@@ -16,19 +16,17 @@ exports[`DeleteConfirm component matches snapshot 1`] = `
     </Styled(span)>
      Container?
   </Styled(p)>
-  <Styled(div)>
-    <Styled(button)
+  <ButtonGroup>
+    <Button
       onClick={[Function]}
-      secondary={true}
-    >
-      Cancel
-    </Styled(button)>
-    <Styled(button)
+      text="Cancel"
+    />
+    <Button
       danger={true}
+      icon="delete_forever"
       onClick={[Function]}
-    >
-      Delete
-    </Styled(button)>
-  </Styled(div)>
-</Styled(div)>
+      text="Delete"
+    />
+  </ButtonGroup>
+</Form>
 `;

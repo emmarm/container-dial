@@ -5,12 +5,13 @@ exports[`Dial Component matches snapshot 1`] = `
   href="https://goodreads.com"
 >
   <Styled(div)>
-    <Styled(p)>
-      Goodreads
-    </Styled(p)>
+    Goodreads
   </Styled(div)>
   <Styled(div)
     favicon="icon.jpg"
-  />
+    useFavicon={false}
+  >
+    G
+  </Styled(div)>
 </Styled(a)>
 `;

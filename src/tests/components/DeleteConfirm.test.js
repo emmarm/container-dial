@@ -55,13 +55,13 @@ describe('DeleteConfirm component', () => {
   });
 
   it('calls toggleShowDeleteConfirm on cancel', () => {
-    const cancelButton = wrapper.find('Styled(button)').first();
+    const cancelButton = wrapper.find('Button').first();
     cancelButton.simulate('click');
     expect(props.toggleShowDeleteConfirm).toHaveBeenCalled();
   });
 
   it('calls handleDelete on submit', () => {
-    const deleteButton = wrapper.find('Styled(button)').last();
+    const deleteButton = wrapper.find('Button').last();
     deleteButton.simulate('click');
     expect(props.handleDelete).toHaveBeenCalled();
   });
