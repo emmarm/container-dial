@@ -4,6 +4,7 @@ exports[`Button component Button component with icon matches snapshot 1`] = `
 <Styled(button)
   onClick={[Function]}
   padded={true}
+  tabIndex={0}
   type="button"
 >
   Click Me
@@ -18,6 +19,7 @@ exports[`Button component matches snapshot 1`] = `
 <Styled(button)
   onClick={[Function]}
   padded={false}
+  tabIndex={0}
   type="button"
 >
   Click Me

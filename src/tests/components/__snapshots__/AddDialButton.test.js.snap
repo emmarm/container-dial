@@ -4,6 +4,7 @@ exports[`AddDialButton component matches snapshot 1`] = `
 <Styled(Button)
   icon="add"
   onClick={[Function]}
+  tabIndex={1}
   text="Add New"
 />
 `;
