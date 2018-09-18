@@ -24,8 +24,8 @@ const TitleArea = styled('div')({
   alignItems: 'center',
   color: 'rgba(0,0,0,0.7)',
   display: 'flex',
-  fontSize: 16,
-  fontWeight: 100,
+  fontSize: 18,
+  fontWeight: 400,
   height: 80,
   justifyContent: 'center',
   overflow: 'hidden',
@@ -42,7 +42,7 @@ const Favicon = styled('div')(
   ({ favicon, theme, useFavicon }) => ({
     background: useFavicon && `center / contain no-repeat url('${favicon}')`,
     color: theme.dark,
-    fontSize: 60,
+    fontSize: 70,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'

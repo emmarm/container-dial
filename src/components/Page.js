@@ -20,9 +20,9 @@ const Background = styled('div')(
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     height: '100%',
-    left: '0',
+    left: 0,
     position: 'absolute',
-    top: '0',
+    top: 0,
     width: '100%'
   },
   ({ background }) => ({
@@ -32,23 +32,20 @@ const Background = styled('div')(
 );
 
 const Overlay = styled('div')({
-  background: 'rgba(0, 0, 0, 0.2)',
+  background: 'rgba(255,255,255,0.1)',
   height: '100%',
-  left: '0',
+  left: 0,
   position: 'absolute',
-  top: '0',
+  top: 0,
   width: '100%'
 });
 
-const PageTitle = styled('h1')(
-  {
-    margin: '30px',
-    textAlign: 'center'
-  },
-  ({ theme }) => ({
-    color: theme.dark
-  })
-);
+const PageTitle = styled('h1')({
+  color: 'rgba(255,255,255,0.7)',
+  fontWeight: 100,
+  margin: 30,
+  textAlign: 'center'
+});
 
 export const Page = ({ background, container, children }) => (
   <PageContainer>

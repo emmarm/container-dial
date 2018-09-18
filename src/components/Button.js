@@ -78,6 +78,7 @@ Button.propTypes = {
   danger: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  narrow: PropTypes.bool,
   onClick: PropTypes.func,
   primary: PropTypes.bool,
   submit: PropTypes.bool,

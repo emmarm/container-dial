@@ -17,6 +17,7 @@ const getTheme = color => {
     case 'purple':
       return { primary: '#af51f5', dark: '#7938AB', light: '#C685F8' };
     default:
+      // 'pale beige'
       return { primary: '#C4B793', dark: '#898066', light: '#D5CCB3' };
   }
 };

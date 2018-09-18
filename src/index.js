@@ -14,9 +14,9 @@ import getTheme from './utils/getTheme';
 injectGlobal`
   * {
     box-sizing: border-box;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   }
   body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
   }
 `;
@@ -32,7 +32,7 @@ const renderApp = () => {
   Modal.setAppElement(document.getElementById('page'));
 
   const container = {
-    color: 'black',
+    color: 'pale beige',
     name: 'Personal',
     cookieStoreId: '123'
   };
