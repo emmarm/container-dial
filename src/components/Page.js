@@ -3,49 +3,49 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const PageContainer = styled('div')({
-  height: '100vh',
-  overflow: 'hidden',
-  position: 'relative',
-  width: '100vw'
-});
+const PageContainer = styled('div')(
+  {
+    height: '100vh',
+    overflow: 'hidden',
+    position: 'relative',
+    width: '100vw'
+  },
+  ({ theme }) => ({
+    background: theme.light
+  })
+);
 
 const Background = styled('div')(
   {
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     height: '100%',
-    left: '0',
+    left: 0,
     position: 'absolute',
-    top: '0',
+    top: 0,
     width: '100%'
   },
-  props => ({
+  ({ background }) => ({
     backgroundImage:
-      props.background && props.background.image
-        ? `url('${props.background.image.urls.full}')`
-        : `linear-gradient(to bottom, white, black)`
+      background && background.image && `url('${background.image.urls.full}')`
   })
 );
 
 const Overlay = styled('div')({
-  background: 'rgba(0, 0, 0, 0.2)',
+  background: 'rgba(255,255,255,0.1)',
   height: '100%',
-  left: '0',
+  left: 0,
   position: 'absolute',
-  top: '0',
+  top: 0,
   width: '100%'
 });
 
-const PageTitle = styled('h1')(
-  {
-    margin: '30px',
-    textAlign: 'center'
-  },
-  props => ({
-    color: props.theme.light
-  })
-);
+const PageTitle = styled('h1')({
+  color: 'rgba(255,255,255,0.7)',
+  fontWeight: 100,
+  margin: 30,
+  textAlign: 'center'
+});
 
 export const Page = ({ background, container, children }) => (
   <PageContainer>

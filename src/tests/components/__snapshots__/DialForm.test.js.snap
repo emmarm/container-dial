@@ -1,53 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DialForm component matches snapshot 1`] = `
-<Styled(form)
+<Form
   onSubmit={[Function]}
 >
-  <Styled(div)>
-    <Styled(label)
-      htmlFor="site-name"
-    >
-      Site Name
-    </Styled(label)>
-    <Styled(input)
-      id="site-name"
-      onBlur={[Function]}
-      onChange={[Function]}
-      placeholder="e.g. Facebook"
-      type="text"
-      value=""
-    />
-  </Styled(div)>
-  <Styled(div)>
-    <Styled(label)
-      htmlFor="site-url"
-    >
-      Site URL
-    </Styled(label)>
-    <Styled(input)
-      id="site-url"
-      onBlur={[Function]}
-      onChange={[Function]}
-      placeholder="e.g. https://facebook.com"
-      type="text"
-      value=""
-    />
-  </Styled(div)>
-  <Styled(div)>
-    <Styled(button)
+  <FormField
+    error=""
+    id="site-name"
+    label="Site Name"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="e.g. Facebook"
+    value=""
+  />
+  <FormField
+    error=""
+    id="site-url"
+    label="Site Url"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="e.g. https://facebook.com"
+    value=""
+  />
+  <ButtonGroup>
+    <Button
       onClick={[Function]}
-      secondary={true}
-    >
-      Cancel
-    </Styled(button)>
-    <Styled(button)
+      text="Cancel"
+    />
+    <Button
       disabled={true}
+      icon="done"
       primary={true}
-      type="submit"
-    >
-      Add Dial
-    </Styled(button)>
-  </Styled(div)>
-</Styled(form)>
+      submit={true}
+      text="Add Dial"
+    />
+  </ButtonGroup>
+</Form>
 `;

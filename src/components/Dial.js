@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const DialContent = styled('a')({
+const DialButton = styled('button')({
   background: 'rgba(255, 255, 255, 0.9)',
   border: 'none',
   boxShadow:
@@ -11,57 +11,97 @@ const DialContent = styled('a')({
   display: 'grid',
   gridTemplateColumns: '1fr 80px',
   height: '100%',
-  padding: '0',
+  padding: 0,
   position: 'relative',
   textDecoration: 'none',
   width: '100%',
-  ':hover': {
+  ':hover,:focus': {
     background: 'white'
+  },
+  '::-moz-focus-inner': {
+    border: 0
   }
 });
 
 const TitleArea = styled('div')({
   alignItems: 'center',
+  color: 'rgba(0,0,0,0.7)',
   display: 'flex',
-  justifyContent: 'center'
+  fontSize: 18,
+  fontWeight: 400,
+  height: 80,
+  justifyContent: 'center',
+  overflow: 'hidden',
+  padding: 10,
+  textAlign: 'center',
+  wordBreak: 'break-word'
 });
 
-const Title = styled('p')({
-  color: 'rgb(10, 102, 87)',
-  fontSize: '16px',
-  fontWeight: '100',
-  textAlign: 'center'
-});
-
-const Icon = styled('div')(
+const Favicon = styled('div')(
   {
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '90%',
-    height: '80px',
-    width: '80px'
+    height: 80,
+    width: 80
   },
-  props => ({
-    backgroundImage: `url('${props.favicon}')`
+  ({ favicon, theme, useFavicon }) => ({
+    background: useFavicon && `center / contain no-repeat url('${favicon}')`,
+    color: theme.dark,
+    fontSize: 70,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   })
 );
 
-const Dial = ({ dial: { siteUrl, siteName, favicon } }) => (
-  <DialContent href={siteUrl}>
-    <TitleArea>
-      <Title>{siteName}</Title>
-    </TitleArea>
-    <Icon favicon={favicon} />
-  </DialContent>
-);
+class Dial extends Component {
+  state = { useFavicon: true };
+
+  async componentDidMount() {
+    const { favicon } = this.props.dial;
+
+    const image = new Image();
+    image.src = favicon;
+    await image.complete;
+    image.naturalHeight === 0 && this.setState(() => ({ useFavicon: false }));
+  }
+
+  getTrimmedName = siteName => {
+    const lastWordEnd = siteName.lastIndexOf(' ', 33);
+    return lastWordEnd > -1 && lastWordEnd < 33
+      ? siteName.slice(0, lastWordEnd) + '...'
+      : siteName.slice(0, 11) + '...';
+  };
+
+  getLetter = siteName => siteName.charAt(0).toUpperCase();
+
+  openLink = () => {
+    window.location = this.props.dial.siteUrl;
+  };
+
+  render() {
+    const {
+      dial: { favicon, siteName }
+    } = this.props;
+    const { useFavicon } = this.state;
+    return (
+      <DialButton onClick={this.openLink} tabIndex={1}>
+        <TitleArea>
+          {siteName.length > 36 ? this.getTrimmedName(siteName) : siteName}
+        </TitleArea>
+        <Favicon favicon={favicon} useFavicon={useFavicon}>
+          {!useFavicon && this.getLetter(siteName)}
+        </Favicon>
+      </DialButton>
+    );
+  }
+}
 
 Dial.propTypes = {
   dial: PropTypes.shape({
-    siteName: PropTypes.string,
-    siteUrl: PropTypes.string,
     container: PropTypes.string,
     favicon: PropTypes.string,
-    id: PropTypes.number
+    id: PropTypes.number,
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string
   })
 };
 

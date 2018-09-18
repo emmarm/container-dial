@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormField component matches snapshot 1`] = `
+<Styled(div)>
+  <Styled(div)>
+    <Styled(label)
+      htmlFor="new-form"
+    >
+      New Form
+    </Styled(label)>
+    <Styled(input)
+      error={false}
+      id="new-form"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Some text"
+      type="text"
+      value={1}
+    />
+  </Styled(div)>
+  <Styled(p) />
+</Styled(div)>
+`;

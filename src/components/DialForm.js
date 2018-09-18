@@ -1,72 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'react-emotion';
 
 import * as actions from '../actions';
+import Form from './Form';
+import FormField from './FormField';
+import ButtonGroup from './ButtonGroup';
+import Button from './Button';
 import getFavicon from '../utils/getFavicon';
 import { normalizeUrl, isValidUrl } from '../utils/checkUrl';
 
-export const Form = styled('form')({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%'
-});
-
-const FormField = styled('div')({
-  alignItems: 'center',
-  display: 'grid',
-  gridTemplateColumns: '120px 300px',
-  margin: '10px'
-});
-
-const Label = styled('label')({
-  color: '#888'
-});
-
-const TextInput = styled('input')({
-  padding: '8px'
-});
-
-export const ButtonGroup = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-around',
-  margin: '25px'
-});
-
-export const Button = styled('button')(
-  {
-    border: 'none',
-    borderRadius: '4px',
-    boxShadow:
-      'rgba(50, 50, 93, 0.1) 0px 7px 14px, rgba(0, 0, 0, 0.08) 0px 3px 6px',
-    color: 'white',
-    cursor: 'pointer',
-    fontSize: '20px',
-    fontWeight: '300',
-    padding: '10px 25px',
-    ':disabled': {
-      cursor: 'auto'
-    }
-  },
-  props => ({
-    backgroundColor: props.primary
-      ? props.theme.primary
-      : props.danger
-        ? 'rgb(255, 55, 98)'
-        : '#bbb'
-  })
-);
-
 export class DialForm extends Component {
   state = {
+    nameError: '',
+    nameTouched: this.props.dial ? true : false,
     siteName: this.props.dial ? this.props.dial.siteName : '',
     siteUrl: this.props.dial ? this.props.dial.siteUrl : '',
-    nameError: '',
+    submitting: false,
     urlError: '',
-    nameTouched: this.props.dial ? true : false,
-    urlTouched: this.props.dial ? true : false,
-    submitting: false
+    urlTouched: this.props.dial ? true : false
   };
 
   onSiteNameChange = e => {
@@ -107,10 +59,10 @@ export class DialForm extends Component {
     this.setState(() => ({ submitting: true }));
     const { siteName, siteUrl } = this.state;
     const {
-      dial,
-      container,
-      editDial,
       addDial,
+      container,
+      dial,
+      editDial,
       handleHideDialModal,
       newId
     } = this.props;
@@ -141,68 +93,69 @@ export class DialForm extends Component {
 
   render() {
     const {
+      nameError,
+      nameTouched,
       siteName,
       siteUrl,
-      nameError,
+      submitting,
       urlError,
-      nameTouched,
-      urlTouched,
-      submitting
+      urlTouched
     } = this.state;
     const { toggleShowDeleteConfirm, handleHideDialModal } = this.props;
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormField>
-          <Label htmlFor="site-name">Site Name</Label>
-          <TextInput
-            id="site-name"
-            type="text"
-            placeholder="e.g. Facebook"
-            onChange={this.onSiteNameChange}
-            onBlur={this.onSiteNameBlur}
-            value={siteName}
-          />
-        </FormField>
-        {nameError}
+        <FormField
+          error={nameError}
+          id="site-name"
+          label="Site Name"
+          onBlur={this.onSiteNameBlur}
+          onChange={this.onSiteNameChange}
+          placeholder="e.g. Facebook"
+          value={siteName}
+        />
 
-        <FormField>
-          <Label htmlFor="site-url">Site URL</Label>
-          <TextInput
-            id="site-url"
-            type="text"
-            placeholder="e.g. https://facebook.com"
-            onChange={this.onSiteUrlChange}
-            onBlur={this.onSiteUrlBlur}
-            value={siteUrl}
-          />
-        </FormField>
-        {urlError}
+        <FormField
+          error={urlError}
+          id="site-url"
+          label="Site Url"
+          onBlur={this.onSiteUrlBlur}
+          onChange={this.onSiteUrlChange}
+          placeholder="e.g. https://facebook.com"
+          value={siteUrl}
+        />
 
         <ButtonGroup>
           {this.props.dial && (
-            <Button danger onClick={toggleShowDeleteConfirm}>
-              Delete
-            </Button>
+            <Button
+              danger
+              icon="delete"
+              narrow
+              onClick={toggleShowDeleteConfirm}
+            />
           )}
-          <Button secondary onClick={handleHideDialModal}>
-            Cancel
-          </Button>
+          <Button onClick={handleHideDialModal} text="Cancel" />
 
           <Button
-            primary
+            icon={!submitting && 'done'}
             disabled={
-              nameError || urlError || !nameTouched || !urlTouched || submitting
+              !!nameError ||
+              !!urlError ||
+              !nameTouched ||
+              !urlTouched ||
+              submitting
             }
-            type="submit"
-          >
-            {this.props.dial
-              ? submitting
-                ? 'Saving...'
-                : 'Save Edits'
-              : submitting
-                ? 'Adding...'
-                : 'Add Dial'}
-          </Button>
+            primary
+            submit
+            text={
+              this.props.dial
+                ? submitting
+                  ? 'Saving...'
+                  : 'Save Edits'
+                : submitting
+                  ? 'Adding...'
+                  : 'Add Dial'
+            }
+          />
         </ButtonGroup>
       </Form>
     );
@@ -210,16 +163,16 @@ export class DialForm extends Component {
 }
 
 DialForm.propTypes = {
-  handleHideDialModal: PropTypes.func.isRequired,
-  toggleShowDeleteConfirm: PropTypes.func.isRequired,
-  theme: PropTypes.objectOf(PropTypes.string),
   dial: PropTypes.shape({
-    siteName: PropTypes.string,
-    siteUrl: PropTypes.string,
     container: PropTypes.string,
     favicon: PropTypes.string,
-    id: PropTypes.number
-  })
+    id: PropTypes.number,
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string
+  }),
+  handleHideDialModal: PropTypes.func.isRequired,
+  theme: PropTypes.objectOf(PropTypes.string),
+  toggleShowDeleteConfirm: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

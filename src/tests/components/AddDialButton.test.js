@@ -15,7 +15,7 @@ describe('AddDialButton component', () => {
 
   it('calls handleShowDialModal on click', () => {
     const { handleShowDialModal } = props;
-    const button = wrapper.find('Styled(button)');
+    const button = wrapper.find('Styled(Button)');
     expect(button.length).toBe(1);
     button.simulate('click');
     expect(handleShowDialModal).toHaveBeenCalled();

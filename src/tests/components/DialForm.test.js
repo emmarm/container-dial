@@ -88,7 +88,7 @@ describe('DialForm component', () => {
 
   describe('button actions', () => {
     it('calls handleHideDialModal on cancel', () => {
-      const cancelButton = wrapper.find('Styled(button)').first();
+      const cancelButton = wrapper.find('Button').first();
       cancelButton.simulate('click');
       expect(props.handleHideDialModal).toHaveBeenCalled();
     });
@@ -104,8 +104,18 @@ describe('DialForm component', () => {
     const wrapperWithDial = shallow(<DialForm {...props} dial={dial} />);
 
     it('sets up inputs with dial data', () => {
-      const nameInput = wrapperWithDial.find('Styled(input)').first();
-      const urlInput = wrapperWithDial.find('Styled(input)').last();
+      const nameField = wrapperWithDial.find('FormField').first();
+      const nameInput = nameField
+        .dive()
+        .find('Styled(input)')
+        .dive()
+        .find('input');
+      const urlField = wrapperWithDial.find('FormField').last();
+      const urlInput = urlField
+        .dive()
+        .find('Styled(input)')
+        .dive()
+        .find('input');
       expect(nameInput.props().value).toBe('Goodreads');
       expect(urlInput.props().value).toBe('https://goodreads.com');
     });

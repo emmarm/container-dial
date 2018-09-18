@@ -1,16 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dial Component matches snapshot 1`] = `
-<Styled(a)
-  href="https://goodreads.com"
+<Styled(button)
+  onClick={[Function]}
+  tabIndex={1}
 >
   <Styled(div)>
-    <Styled(p)>
-      Goodreads
-    </Styled(p)>
+    Goodreads
   </Styled(div)>
   <Styled(div)
     favicon="icon.jpg"
-  />
-</Styled(a)>
+    useFavicon={false}
+  >
+    G
+  </Styled(div)>
+</Styled(button)>
 `;

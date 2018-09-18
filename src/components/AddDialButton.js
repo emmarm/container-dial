@@ -2,26 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const Button = styled('button')({
-  background: 'rgba(255, 255, 255, 0.3)',
-  border: 'none',
-  ':hover': {
-    background: 'rgba(255, 255, 255, 0.5)',
-    cursor: 'pointer'
-  },
-  height: '100%'
-});
+import Button from './Button';
 
-const ButtonText = styled('h3')({
-  color: 'white',
-  fontSize: '20px',
-  fontWeight: '100'
-});
+const AddButton = styled(Button)(
+  {
+    // background: 'rgba(255, 255, 255, 0.3)',
+    borderRadius: 0,
+    height: '100%',
+    ':hover,:focus': {
+      // background: 'rgba(255,255,255, 0.5)'
+    }
+  },
+  ({ theme }) => ({
+    background: `${theme.light}33`,
+    ':hover,:focus': {
+      background: `${theme.light}99`
+    }
+  })
+);
 
 const AddDialButton = ({ handleShowDialModal }) => (
-  <Button onClick={handleShowDialModal}>
-    <ButtonText>Add New</ButtonText>
-  </Button>
+  <AddButton
+    onClick={handleShowDialModal}
+    text="Add New"
+    icon="add"
+    tabIndex={1}
+  />
 );
 
 AddDialButton.propTypes = {

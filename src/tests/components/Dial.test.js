@@ -18,8 +18,8 @@ describe('Dial Component', () => {
   });
 
   it('applies name prop correctly', () => {
-    const styledTitle = wrapper.find('Styled(p)');
-    const title = styledTitle.dive().find('p');
+    const styledTitle = wrapper.find('Styled(div)').first();
+    const title = styledTitle.dive().find('div');
     expect(title.text()).toBe(props.dial.siteName);
   });
 
