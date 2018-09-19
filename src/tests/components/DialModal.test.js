@@ -63,9 +63,12 @@ describe('DialModal component', () => {
       siteName: 'Goodreads',
       siteUrl: 'https://goodreads.com',
       container: 'Personal',
-      favicon: 'image.jpg'
+      favicon: 'image.jpg',
+      id: 1
     };
-    const wrapperWithDial = shallow(<DialModal {...props} dial={dial} />);
+    const wrapperWithDial = shallow(
+      <DialModal {...props} currentDial={dial} />
+    );
 
     it('updates title', () => {
       const title = wrapperWithDial

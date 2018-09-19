@@ -21,7 +21,7 @@ export const EditButton = styled(Button)({
 
 const EditDialButton = ({ dial, handleShowDialModal, setCurrentDial }) => {
   const setDial = () => {
-    setCurrentDial(dial.id);
+    setCurrentDial(dial);
     handleShowDialModal(dial);
   };
   return (

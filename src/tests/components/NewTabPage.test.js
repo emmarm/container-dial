@@ -10,6 +10,7 @@ describe('NewTabPage component', () => {
     theme: { primary: '#333', dark: '#000', light: '#fff' },
     dials: DIALS,
     setContainer: jest.fn(),
+    setCurrentDial: jest.fn(),
     setTheme: jest.fn(),
     startSetBackground: jest.fn()
   };
@@ -32,7 +33,7 @@ describe('NewTabPage component', () => {
 
   it('renders a Dial and EditDialButton component for each dial item', () => {
     const dialComponents = wrapper.find('Dial');
-    const editDialButtons = wrapper.find('EditDialButton');
+    const editDialButtons = wrapper.find('Connect(EditDialButton)');
     expect(dialComponents.length).toBe(3);
     expect(editDialButtons.length).toBe(3);
   });

@@ -14,11 +14,12 @@ describe('DeleteConfirm component', () => {
       name: 'Personal',
       color: 'orange'
     },
-    dial: {
+    currentDial: {
       siteName: 'Goodreads',
       siteUrl: 'https://goodreads.com',
       container: 'Personal',
-      favicon: 'image.jpg'
+      favicon: 'image.jpg',
+      id: 1
     },
     toggleShowDeleteConfirm: jest.fn(),
     handleDelete: jest.fn()

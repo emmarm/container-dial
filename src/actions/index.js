@@ -29,9 +29,9 @@ export const setContainer = container => ({
   payload: container
 });
 
-export const setCurrentDial = id => ({
+export const setCurrentDial = dial => ({
   type: 'SET_CURRENT_DIAL',
-  payload: id
+  payload: dial
 });
 
 export const addDial = dial => ({
