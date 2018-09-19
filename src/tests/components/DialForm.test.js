@@ -99,9 +99,10 @@ describe('DialForm component', () => {
       siteName: 'Goodreads',
       siteUrl: 'https://goodreads.com',
       container: 'Personal',
-      favicon: 'image.jpg'
+      favicon: 'image.jpg',
+      id: 1
     };
-    const wrapperWithDial = shallow(<DialForm {...props} dial={dial} />);
+    const wrapperWithDial = shallow(<DialForm {...props} currentDial={dial} />);
 
     it('sets up inputs with dial data', () => {
       const nameField = wrapperWithDial.find('FormField').first();

@@ -43,6 +43,7 @@ export class NewTabPage extends React.Component {
 
   handleHideDialModal = e => {
     e && e.preventDefault();
+    this.props.setCurrentDial(null);
     this.setState(() => DEFAULT_STATE);
   };
 
@@ -69,7 +70,6 @@ export class NewTabPage extends React.Component {
             handleHideDialModal={this.handleHideDialModal}
             container={container}
             isOpen={this.state.showDialModal}
-            dial={this.state.dial}
           />
           <GridList>
             {this.renderDials(dials, container)}
@@ -86,6 +86,7 @@ NewTabPage.propTypes = {
   theme: PropTypes.objectOf(PropTypes.string),
   dials: PropTypes.arrayOf(PropTypes.object),
   setContainer: PropTypes.func.isRequired,
+  setCurrentDial: PropTypes.func.isRequired,
   startSetBackground: PropTypes.func.isRequired
 };
 

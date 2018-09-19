@@ -19,13 +19,13 @@ const Span = styled('span')(props => ({
 
 export const DeleteConfirm = ({
   container,
-  dial,
+  currentDial,
   handleDelete,
   toggleShowDeleteConfirm
 }) => (
   <Form>
     <Text>
-      Delete <Span primary>{dial.siteName}</Span> from{' '}
+      Delete <Span primary>{currentDial.siteName}</Span> from{' '}
       <Span>{container.name}</Span> Container?
     </Text>
 
@@ -44,7 +44,7 @@ export const DeleteConfirm = ({
 
 DeleteConfirm.propTypes = {
   container: PropTypes.objectOf(PropTypes.string).isRequired,
-  dial: PropTypes.shape({
+  currentDial: PropTypes.shape({
     container: PropTypes.string,
     favicon: PropTypes.string,
     id: PropTypes.number,
@@ -56,7 +56,8 @@ DeleteConfirm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  container: state.container
+  container: state.container,
+  currentDial: state.currentDial
 });
 
 export default connect(

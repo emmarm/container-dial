@@ -13,17 +13,21 @@ import { normalizeUrl, isValidUrl } from '../utils/checkUrl';
 export class DialForm extends Component {
   state = {
     nameError: '',
-    nameTouched: this.props.dial ? true : false,
-    siteName: this.props.dial ? this.props.dial.siteName : '',
-    siteUrl: this.props.dial ? this.props.dial.siteUrl : '',
+    nameTouched: this.props.currentDial ? true : false,
+    siteName: this.props.currentDial ? this.props.currentDial.siteName : '',
+    siteUrl: this.props.currentDial ? this.props.currentDial.siteUrl : '',
     submitting: false,
     urlError: '',
-    urlTouched: this.props.dial ? true : false
+    urlTouched: this.props.currentDial ? true : false
   };
 
   onSiteNameChange = e => {
     const siteName = e.target.value;
-    this.setState(() => ({ siteName, nameTouched: true, nameError: '' }));
+    this.setState(() => ({
+      siteName,
+      nameTouched: true,
+      nameError: ''
+    }));
   };
 
   onSiteNameBlur = e => {
@@ -37,7 +41,11 @@ export class DialForm extends Component {
 
   onSiteUrlChange = e => {
     const siteUrl = e.target.value;
-    this.setState(() => ({ siteUrl, urlTouched: true, urlError: '' }));
+    this.setState(() => ({
+      siteUrl,
+      urlTouched: true,
+      urlError: ''
+    }));
   };
 
   onSiteUrlBlur = e => {
@@ -61,7 +69,7 @@ export class DialForm extends Component {
     const {
       addDial,
       container,
-      dial,
+      currentDial,
       editDial,
       handleHideDialModal,
       newId
@@ -77,7 +85,7 @@ export class DialForm extends Component {
       favicon = 'error';
     }
 
-    const id = dial ? dial.id : newId;
+    const id = currentDial ? currentDial.id : newId;
 
     const newDial = {
       siteName,
@@ -87,7 +95,7 @@ export class DialForm extends Component {
       id
     };
 
-    dial ? editDial(dial, newDial) : addDial(newDial);
+    currentDial ? editDial(currentDial, newDial) : addDial(newDial);
     handleHideDialModal();
   };
 
@@ -125,7 +133,7 @@ export class DialForm extends Component {
         />
 
         <ButtonGroup>
-          {this.props.dial && (
+          {this.props.currentDial && (
             <Button
               danger
               icon="delete"
@@ -147,7 +155,7 @@ export class DialForm extends Component {
             primary
             submit
             text={
-              this.props.dial
+              this.props.currentDial
                 ? submitting
                   ? 'Saving...'
                   : 'Save Edits'
@@ -163,7 +171,7 @@ export class DialForm extends Component {
 }
 
 DialForm.propTypes = {
-  dial: PropTypes.shape({
+  currentDial: PropTypes.shape({
     container: PropTypes.string,
     favicon: PropTypes.string,
     id: PropTypes.number,
@@ -177,6 +185,7 @@ DialForm.propTypes = {
 
 const mapStateToProps = state => ({
   container: state.container,
+  currentDial: state.currentDial,
   newId:
     state.dials.length > 0
       ? Math.max(...state.dials.map(dial => dial.id)) + 1

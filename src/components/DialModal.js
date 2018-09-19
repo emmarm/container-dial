@@ -61,15 +61,15 @@ export class DialModal extends Component {
   };
 
   handleDelete = () => {
-    const { deleteDial, handleHideDialModal } = this.props;
-    deleteDial(this.props.dial);
+    const { currentDial, deleteDial, handleHideDialModal } = this.props;
+    deleteDial(currentDial);
     this.toggleShowDeleteConfirm();
     handleHideDialModal();
   };
 
   render() {
     const { showDeleteConfirm } = this.state;
-    const { isOpen, handleHideDialModal, dial, container } = this.props;
+    const { isOpen, handleHideDialModal, currentDial, container } = this.props;
     return (
       <Modal
         className={modalClass}
@@ -79,7 +79,7 @@ export class DialModal extends Component {
       >
         {showDeleteConfirm ? (
           <DialTitle>Delete Dial</DialTitle>
-        ) : dial ? (
+        ) : currentDial ? (
           <DialTitle>Edit Dial</DialTitle>
         ) : (
           <DialTitle>
@@ -89,13 +89,11 @@ export class DialModal extends Component {
 
         {showDeleteConfirm ? (
           <DeleteConfirm
-            dial={dial}
             handleDelete={this.handleDelete}
             toggleShowDeleteConfirm={this.toggleShowDeleteConfirm}
           />
         ) : (
           <DialForm
-            dial={dial}
             handleHideDialModal={handleHideDialModal}
             toggleShowDeleteConfirm={this.toggleShowDeleteConfirm}
           />
@@ -109,12 +107,12 @@ DialModal.propTypes = {
   handleHideDialModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   container: PropTypes.objectOf(PropTypes.string).isRequired,
-  dial: PropTypes.shape({
-    siteName: PropTypes.string,
-    siteUrl: PropTypes.string,
+  currentDial: PropTypes.shape({
     container: PropTypes.string,
     favicon: PropTypes.string,
-    id: PropTypes.number
+    id: PropTypes.number,
+    siteName: PropTypes.string,
+    siteUrl: PropTypes.string
   }),
   deleteDial: PropTypes.func.isRequired
 };
@@ -125,7 +123,8 @@ Modal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  container: state.container
+  container: state.container,
+  currentDial: state.currentDial
 });
 
 export default connect(

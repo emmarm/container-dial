@@ -17,7 +17,6 @@ exports[`NewTabPage component matches snapshot 1`] = `
           "cookieStoreId": "123",
         }
       }
-      dial={null}
       handleHideDialModal={[Function]}
       isOpen={false}
     />
@@ -37,7 +36,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
             }
           }
         />
-        <EditDialButton
+        <Connect(EditDialButton)
           dial={
             Object {
               "container": "123",
@@ -65,7 +64,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
             }
           }
         />
-        <EditDialButton
+        <Connect(EditDialButton)
           dial={
             Object {
               "container": "123",
@@ -93,7 +92,7 @@ exports[`NewTabPage component matches snapshot 1`] = `
             }
           }
         />
-        <EditDialButton
+        <Connect(EditDialButton)
           dial={
             Object {
               "container": "123",

@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
+import * as actions from '../actions';
 import Button from './Button';
 
 export const EditButton = styled(Button)({
@@ -17,17 +19,13 @@ export const EditButton = styled(Button)({
   }
 });
 
-const EditDialButton = ({ dial, handleShowDialModal }) => {
+const EditDialButton = ({ dial, handleShowDialModal, setCurrentDial }) => {
   const setDial = () => {
+    setCurrentDial(dial);
     handleShowDialModal(dial);
   };
   return (
-    <EditButton
-      className="edit-button"
-      icon="edit"
-      onClick={() => setDial()}
-      primary
-    />
+    <EditButton className="edit-button" icon="edit" onClick={setDial} primary />
   );
 };
 
@@ -39,7 +37,11 @@ EditDialButton.propTypes = {
     siteName: PropTypes.string,
     siteUrl: PropTypes.string
   }).isRequired,
-  handleShowDialModal: PropTypes.func.isRequired
+  handleShowDialModal: PropTypes.func.isRequired,
+  setCurrentDial: PropTypes.func.isRequired
 };
 
-export default EditDialButton;
+export default connect(
+  undefined,
+  actions
+)(EditDialButton);

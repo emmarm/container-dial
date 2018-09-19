@@ -1,10 +1,5 @@
 import getRandomPhoto from '../utils/getRandomPhoto';
 
-export const setContainer = container => ({
-  type: 'SET_CONTAINER',
-  payload: container
-});
-
 export const startSetBackground = container => {
   return async dispatch => {
     let image;
@@ -24,15 +19,24 @@ export const startSetBackground = container => {
   };
 };
 
-export const addDial = dial => ({
-  type: 'ADD_DIAL',
+export const setBackground = container => ({
+  type: 'SET_BACKGROUND',
+  payload: container
+});
+
+export const setContainer = container => ({
+  type: 'SET_CONTAINER',
+  payload: container
+});
+
+export const setCurrentDial = dial => ({
+  type: 'SET_CURRENT_DIAL',
   payload: dial
 });
 
-export const editDial = (oldDial, newDial) => ({
-  type: 'EDIT_DIAL',
-  oldDial,
-  newDial
+export const addDial = dial => ({
+  type: 'ADD_DIAL',
+  payload: dial
 });
 
 export const deleteDial = dial => ({
@@ -40,7 +44,8 @@ export const deleteDial = dial => ({
   payload: dial
 });
 
-export const setBackground = container => ({
-  type: 'SET_BACKGROUND',
-  payload: container
+export const editDial = (oldDial, newDial) => ({
+  type: 'EDIT_DIAL',
+  oldDial,
+  newDial
 });
