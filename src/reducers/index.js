@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
-import dialsReducer from './dialsReducer';
-import containerReducer from './containerReducer';
 import backgroundsReducer from './backgroundsReducer';
+import containerReducer from './containerReducer';
+import currentDialReducer from './currentDialReducer';
+import dialsReducer from './dialsReducer';
 
 const appReducer = combineReducers({
-  dials: dialsReducer,
+  backgrounds: backgroundsReducer,
   container: containerReducer,
-  backgrounds: backgroundsReducer
+  currentDial: currentDialReducer,
+  dials: dialsReducer
 });
 
 export default appReducer;
