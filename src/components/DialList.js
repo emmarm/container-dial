@@ -7,7 +7,7 @@ import Dial from './Dial';
 import EditDialButton from './EditDialButton';
 import AddDialButton from './AddDialButton';
 
-const Grid = styled('div')({
+const List = styled('div')({
   display: 'grid',
   gridAutoRows: '80px',
   gridGap: '25px',
@@ -29,7 +29,7 @@ const DialContainer = styled('div')({
   }
 });
 
-class GridList extends Component {
+class DialList extends Component {
   state = {
     dials: []
   };
@@ -55,23 +55,23 @@ class GridList extends Component {
 
   render() {
     return (
-      <Grid>
+      <List>
         {this.renderDials()}
         <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
-      </Grid>
+      </List>
     );
   }
 }
 
-GridList.propTypes = {
-  dials: PropTypes.arrayOf(PropTypes.object)
+DialList.propTypes = {
+  dials: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleShowDialModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   dials: state.dials.filter(
     dial => dial.container === state.container.cookieStoreId
-  ),
-  container: state.container
+  )
 });
 
-export default connect(mapStateToProps)(GridList);
+export default connect(mapStateToProps)(DialList);

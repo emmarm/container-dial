@@ -5,7 +5,7 @@ import { ThemeProvider } from 'emotion-theming';
 
 import * as actions from '../actions';
 import Page from './Page';
-import GridList from './GridList';
+import DialList from './DialList';
 import DialModal from './DialModal';
 
 const DEFAULT_STATE = { showDialModal: false };
@@ -44,7 +44,7 @@ export class NewTabPage extends React.Component {
             container={container}
             isOpen={this.state.showDialModal}
           />
-          <GridList handleShowDialModal={this.handleShowDialModal} />
+          <DialList handleShowDialModal={this.handleShowDialModal} />
         </Page>
       </ThemeProvider>
     );
