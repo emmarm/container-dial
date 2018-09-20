@@ -83,7 +83,14 @@ class DialList extends Component {
             );
             this.setState({ dials: newDialOrder });
           }}
-          options={{ handle: '.handle' }}
+          options={{
+            handle: '.handle',
+            onMove: evt => {
+              if (evt.related.type === 'button') {
+                return false;
+              }
+            }
+          }}
         >
           {dialsList}
           <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
