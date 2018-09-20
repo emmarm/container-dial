@@ -12,7 +12,6 @@ const DialButton = styled('button')({
   gridTemplateColumns: '1fr 80px',
   height: '100%',
   padding: 0,
-  position: 'relative',
   textDecoration: 'none',
   width: '100%',
   ':hover,:focus': {

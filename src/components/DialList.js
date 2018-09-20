@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { css } from 'emotion';
 import styled from 'react-emotion';
 import Sortable from 'react-sortablejs';
 
@@ -9,26 +10,44 @@ import EditDialButton from './EditDialButton';
 import AddDialButton from './AddDialButton';
 
 const List = styled('div')({
-  display: 'grid',
-  gridAutoRows: '80px',
-  gridGap: '25px',
-  gridTemplateColumns: 'repeat(auto-fill, 220px)',
+  alignItems: 'flex-start',
+  display: 'flex',
+  flexWrap: 'wrap',
   height: '80vh',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   overflowX: 'hidden',
   overflowY: 'auto',
   padding: '10px 40px',
   width: '100vw'
 });
 
+const sortable = css({
+  display: 'flex',
+  flexWrap: 'wrap'
+});
+
 const DialContainer = styled('div')({
+  display: 'flex',
+  margin: 15,
   position: 'relative',
+  width: 240,
   ':hover': {
     '& .edit-button': {
       opacity: 1
     }
   }
 });
+
+const Handle = styled('div')(
+  {
+    cursor: 'move',
+    height: 80,
+    width: 20
+  },
+  ({ theme }) => ({
+    backgroundColor: theme.dark
+  })
+);
 
 class DialList extends Component {
   state = {
@@ -44,30 +63,31 @@ class DialList extends Component {
 
   render() {
     const dialsList = this.state.dials.map(dial => (
-      <li key={dial.id} data-id={dial.id}>
-        <DialContainer>
-          <Dial ariaLabel={dial.siteName} dial={dial} />
-          <EditDialButton
-            dial={dial}
-            handleShowDialModal={this.props.handleShowDialModal}
-          />
-        </DialContainer>
-      </li>
+      <DialContainer key={dial.id} data-id={dial.id}>
+        <Handle className="handle" />
+        <Dial ariaLabel={dial.siteName} dial={dial} />
+        <EditDialButton
+          dial={dial}
+          handleShowDialModal={this.props.handleShowDialModal}
+        />
+      </DialContainer>
     ));
     return (
       <List>
         <Sortable
-          tag="ul"
+          className={sortable}
           onChange={order => {
-            const newDialOrder = order.map(id =>
+            const dialsOnly = order.filter(item => !!Number(item));
+            const newDialOrder = dialsOnly.map(id =>
               this.state.dials.find(dial => dial.id === Number(id))
             );
             this.setState({ dials: newDialOrder });
           }}
+          options={{ handle: '.handle' }}
         >
           {dialsList}
+          <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
         </Sortable>
-        <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
       </List>
     );
   }
