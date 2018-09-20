@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'react-emotion';
+import Sortable from 'react-sortablejs';
 
 import Dial from './Dial';
 import EditDialButton from './EditDialButton';
@@ -41,22 +42,31 @@ class DialList extends Component {
     }
   }
 
-  renderDials = () => {
-    return this.state.dials.map(dial => (
-      <DialContainer key={dial.siteName}>
-        <Dial ariaLabel={dial.siteName} dial={dial} />
-        <EditDialButton
-          dial={dial}
-          handleShowDialModal={this.props.handleShowDialModal}
-        />
-      </DialContainer>
-    ));
-  };
-
   render() {
+    const dialsList = this.state.dials.map(dial => (
+      <li key={dial.id} data-id={dial.id}>
+        <DialContainer>
+          <Dial ariaLabel={dial.siteName} dial={dial} />
+          <EditDialButton
+            dial={dial}
+            handleShowDialModal={this.props.handleShowDialModal}
+          />
+        </DialContainer>
+      </li>
+    ));
     return (
       <List>
-        {this.renderDials()}
+        <Sortable
+          tag="ul"
+          onChange={order => {
+            const newDialOrder = order.map(id =>
+              this.state.dials.find(dial => dial.id === Number(id))
+            );
+            this.setState({ dials: newDialOrder });
+          }}
+        >
+          {dialsList}
+        </Sortable>
         <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
       </List>
     );
