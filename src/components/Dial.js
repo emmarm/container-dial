@@ -32,6 +32,7 @@ const TitleArea = styled('div')({
   justifyContent: 'center',
   overflow: 'hidden',
   padding: 10,
+  paddingLeft: 25,
   textAlign: 'center',
   wordBreak: 'break-word'
 });

@@ -26,6 +26,10 @@ const sortable = css({
   flexWrap: 'wrap'
 });
 
+const ghost = css({
+  opacity: 0.5
+});
+
 const DialContainer = styled('div')({
   display: 'flex',
   margin: 15,
@@ -33,6 +37,9 @@ const DialContainer = styled('div')({
   width: 240,
   ':hover': {
     '& .edit-button': {
+      opacity: 1
+    },
+    '& .handle': {
       opacity: 1
     }
   }
@@ -42,10 +49,15 @@ const Handle = styled('div')(
   {
     cursor: 'move',
     height: 80,
+    opacity: 0,
+    position: 'absolute',
+    transition: 'all 200ms ease-in',
     width: 20
   },
   ({ theme }) => ({
-    backgroundColor: theme.dark
+    ':hover': {
+      background: theme.light
+    }
   })
 );
 
@@ -84,6 +96,7 @@ class DialList extends Component {
             this.setState({ dials: newDialOrder });
           }}
           options={{
+            ghostClass: ghost,
             handle: '.handle',
             onMove: evt => {
               if (evt.related.type === 'button') {
