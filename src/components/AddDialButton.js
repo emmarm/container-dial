@@ -7,9 +7,7 @@ import Button from './Button';
 const AddButton = styled(Button)(
   {
     borderRadius: 0,
-    height: 80,
-    margin: 15,
-    width: 240
+    height: '100%'
   },
   ({ theme }) => ({
     background: `${theme.light}33`,

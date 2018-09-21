@@ -13,9 +13,8 @@ import AddDialButton from './AddDialButton';
 const List = styled('div')({
   alignItems: 'flex-start',
   display: 'flex',
-  flexWrap: 'wrap',
   height: '80vh',
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
   overflowX: 'hidden',
   overflowY: 'auto',
   padding: '10px 40px',
@@ -23,8 +22,12 @@ const List = styled('div')({
 });
 
 const sortable = css({
-  display: 'flex',
-  flexWrap: 'wrap'
+  display: 'grid',
+  gridAutoRows: 80,
+  gridGap: 25,
+  gridTemplateColumns: 'repeat(auto-fill, 240px)',
+  justifyContent: 'center',
+  width: '100%'
 });
 
 const ghost = css({
@@ -33,9 +36,7 @@ const ghost = css({
 
 const DialContainer = styled('div')({
   display: 'flex',
-  margin: 15,
   position: 'relative',
-  width: 240,
   ':hover': {
     '& .edit-button': {
       opacity: 1
@@ -74,19 +75,19 @@ class DialList extends Component {
     }
   }
 
+  renderDials = () =>
+    this.state.dials.sort((a, b) => a.sortIndex > b.sortIndex).map(dial => (
+      <DialContainer key={dial.id} data-id={dial.id}>
+        <Handle className="handle" />
+        <Dial ariaLabel={dial.siteName} dial={dial} />
+        <EditDialButton
+          dial={dial}
+          handleShowDialModal={this.props.handleShowDialModal}
+        />
+      </DialContainer>
+    ));
+
   render() {
-    const dialsList = this.state.dials
-      .sort((a, b) => a.sortIndex > b.sortIndex)
-      .map(dial => (
-        <DialContainer key={dial.id} data-id={dial.id}>
-          <Handle className="handle" />
-          <Dial ariaLabel={dial.siteName} dial={dial} />
-          <EditDialButton
-            dial={dial}
-            handleShowDialModal={this.props.handleShowDialModal}
-          />
-        </DialContainer>
-      ));
     return (
       <List>
         <Sortable
@@ -109,7 +110,7 @@ class DialList extends Component {
             }
           }}
         >
-          {dialsList}
+          {this.renderDials()}
           <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
         </Sortable>
       </List>

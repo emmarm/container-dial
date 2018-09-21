@@ -10,7 +10,6 @@ const DialButton = styled('button')({
   cursor: 'pointer',
   display: 'grid',
   gridTemplateColumns: '1fr 80px',
-  height: '100%',
   padding: 0,
   textDecoration: 'none',
   width: '100%',
@@ -53,21 +52,28 @@ const Favicon = styled('div')(
 );
 
 class Dial extends Component {
-  state = { useFavicon: true };
+  state = { useFavicon: false };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.setIcon();
+  }
+
+  setIcon = async () => {
     const { favicon } = this.props.dial;
 
     const image = new Image();
     image.src = favicon;
-    await image.complete;
-    image.naturalHeight === 0 && this.setState(() => ({ useFavicon: false }));
-  }
+    image.addEventListener('load', () => {
+      image.naturalHeight !== 0 && this.setState(() => ({ useFavicon: true }));
+    });
+  };
 
   getTrimmedName = siteName => {
-    const lastWordEnd = siteName.lastIndexOf(' ', 33);
-    return lastWordEnd > -1 && lastWordEnd < 33
-      ? siteName.slice(0, lastWordEnd) + '...'
+    const lastWordEnd = siteName.lastIndexOf(' ', 28);
+    return lastWordEnd > -1
+      ? lastWordEnd < 10
+        ? siteName.slice(0, 16) + '...'
+        : siteName.slice(0, lastWordEnd) + '...'
       : siteName.slice(0, 11) + '...';
   };
 
@@ -85,7 +91,7 @@ class Dial extends Component {
     return (
       <DialButton onClick={this.openLink} tabIndex={1}>
         <TitleArea>
-          {siteName.length > 36 ? this.getTrimmedName(siteName) : siteName}
+          {siteName.length > 31 ? this.getTrimmedName(siteName) : siteName}
         </TitleArea>
         <Favicon favicon={favicon} useFavicon={useFavicon}>
           {!useFavicon && this.getLetter(siteName)}
