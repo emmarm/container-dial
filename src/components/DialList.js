@@ -5,6 +5,7 @@ import { css } from 'emotion';
 import styled from 'react-emotion';
 import Sortable from 'react-sortablejs';
 
+import * as actions from '../actions';
 import Dial from './Dial';
 import EditDialButton from './EditDialButton';
 import AddDialButton from './AddDialButton';
@@ -74,26 +75,29 @@ class DialList extends Component {
   }
 
   render() {
-    const dialsList = this.state.dials.map(dial => (
-      <DialContainer key={dial.id} data-id={dial.id}>
-        <Handle className="handle" />
-        <Dial ariaLabel={dial.siteName} dial={dial} />
-        <EditDialButton
-          dial={dial}
-          handleShowDialModal={this.props.handleShowDialModal}
-        />
-      </DialContainer>
-    ));
+    const dialsList = this.state.dials
+      .sort((a, b) => a.sortIndex > b.sortIndex)
+      .map(dial => (
+        <DialContainer key={dial.id} data-id={dial.id}>
+          <Handle className="handle" />
+          <Dial ariaLabel={dial.siteName} dial={dial} />
+          <EditDialButton
+            dial={dial}
+            handleShowDialModal={this.props.handleShowDialModal}
+          />
+        </DialContainer>
+      ));
     return (
       <List>
         <Sortable
           className={sortable}
           onChange={order => {
             const dialsOnly = order.filter(item => !!Number(item));
-            const newDialOrder = dialsOnly.map(id =>
-              this.state.dials.find(dial => dial.id === Number(id))
-            );
-            this.setState({ dials: newDialOrder });
+            const newDialOrder = dialsOnly.map((id, index) => {
+              return { id, sortIndex: index };
+            });
+
+            this.props.updateDialOrder(newDialOrder);
           }}
           options={{
             ghostClass: ghost,
@@ -115,7 +119,8 @@ class DialList extends Component {
 
 DialList.propTypes = {
   dials: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleShowDialModal: PropTypes.func.isRequired
+  handleShowDialModal: PropTypes.func.isRequired,
+  updateDialOrder: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -124,4 +129,7 @@ const mapStateToProps = state => ({
   )
 });
 
-export default connect(mapStateToProps)(DialList);
+export default connect(
+  mapStateToProps,
+  actions
+)(DialList);
