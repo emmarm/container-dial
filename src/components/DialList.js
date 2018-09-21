@@ -31,7 +31,7 @@ const sortable = css({
 });
 
 const ghost = css({
-  opacity: 0.5
+  opacity: 0
 });
 
 const DialContainer = styled('div')({
