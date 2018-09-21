@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
+import Attribution from './Attribution';
+
 const PageContainer = styled('div')(
   {
     height: '100vh',
@@ -47,16 +49,19 @@ const PageTitle = styled('h1')({
   textAlign: 'center'
 });
 
-export const Page = ({ background, container, children }) => (
-  <PageContainer>
-    <Background background={background}>
-      <Overlay>
-        <PageTitle>{container.name}</PageTitle>
-        {children}
-      </Overlay>
-    </Background>
-  </PageContainer>
-);
+export const Page = ({ background, container, children }) => {
+  return (
+    <PageContainer>
+      <Background background={background}>
+        <Overlay>
+          <PageTitle>{container.name}</PageTitle>
+          {children}
+          <Attribution image={background && background.image} />
+        </Overlay>
+      </Background>
+    </PageContainer>
+  );
+};
 
 Page.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object),
