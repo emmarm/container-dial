@@ -47,12 +47,21 @@ const PageTitle = styled('h1')({
   textAlign: 'center'
 });
 
+const Attribution = styled('p')({
+  color: 'white',
+  fontStyle: 'italic',
+  fontWeight: 100,
+  marginRight: 40,
+  textAlign: 'right'
+});
+
 export const Page = ({ background, container, children }) => (
   <PageContainer>
     <Background background={background}>
       <Overlay>
         <PageTitle>{container.name}</PageTitle>
         {children}
+        <Attribution>Photo by Someone on Unsplash</Attribution>
       </Overlay>
     </Background>
   </PageContainer>
