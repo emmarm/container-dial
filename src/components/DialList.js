@@ -10,24 +10,17 @@ import Dial from './Dial';
 import EditDialButton from './EditDialButton';
 import AddDialButton from './AddDialButton';
 
-const List = styled('div')({
-  alignItems: 'flex-start',
-  display: 'flex',
+const sortable = css({
+  display: 'grid',
+  gridAutoRows: 80,
+  gridGap: 25,
+  gridTemplateColumns: 'repeat(auto-fill, 240px)',
   height: '80vh',
   justifyContent: 'center',
   overflowX: 'hidden',
   overflowY: 'auto',
   padding: '10px 40px',
   width: '100vw'
-});
-
-const sortable = css({
-  display: 'grid',
-  gridAutoRows: 80,
-  gridGap: 25,
-  gridTemplateColumns: 'repeat(auto-fill, 240px)',
-  justifyContent: 'center',
-  width: '100%'
 });
 
 const ghost = css({
@@ -89,31 +82,29 @@ class DialList extends Component {
 
   render() {
     return (
-      <List>
-        <Sortable
-          className={sortable}
-          onChange={order => {
-            const dialsOnly = order.filter(item => !!Number(item));
-            const newDialOrder = dialsOnly.map((id, index) => {
-              return { id, sortIndex: index };
-            });
+      <Sortable
+        className={sortable}
+        onChange={order => {
+          const dialsOnly = order.filter(item => !!Number(item));
+          const newDialOrder = dialsOnly.map((id, index) => {
+            return { id, sortIndex: index };
+          });
 
-            this.props.updateDialOrder(newDialOrder);
-          }}
-          options={{
-            ghostClass: ghost,
-            handle: '.handle',
-            onMove: evt => {
-              if (evt.related.type === 'button') {
-                return false;
-              }
+          this.props.updateDialOrder(newDialOrder);
+        }}
+        options={{
+          ghostClass: ghost,
+          handle: '.handle',
+          onMove: evt => {
+            if (evt.related.type === 'button') {
+              return false;
             }
-          }}
-        >
-          {this.renderDials()}
-          <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
-        </Sortable>
-      </List>
+          }
+        }}
+      >
+        {this.renderDials()}
+        <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
+      </Sortable>
     );
   }
 }
