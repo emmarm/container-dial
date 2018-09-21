@@ -49,6 +49,7 @@ const PageTitle = styled('h1')({
 
 const Attribution = styled('p')({
   color: 'white',
+  fontSize: 14,
   fontStyle: 'italic',
   fontWeight: 100,
   marginRight: 40,
@@ -65,7 +66,6 @@ const Link = styled('a')(
 );
 
 export const Page = ({ background, container, children }) => {
-  console.log(background);
   const user = !!background && !!background.image && background.image.user;
   return (
     <PageContainer>
@@ -81,7 +81,10 @@ export const Page = ({ background, container, children }) => {
             >
               {user && user.first_name} {user && user.last_name}
             </Link>{' '}
-            on Unsplash
+            on{' '}
+            <Link href="https://unsplash.com/?utm_source=container_dial&utm_medium=referral">
+              Unsplash
+            </Link>
           </Attribution>
         </Overlay>
       </Background>
