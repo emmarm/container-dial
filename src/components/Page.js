@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
+import Attribution from './Attribution';
+
 const PageContainer = styled('div')(
   {
     height: '100vh',
@@ -47,45 +49,14 @@ const PageTitle = styled('h1')({
   textAlign: 'center'
 });
 
-const Attribution = styled('p')({
-  color: 'white',
-  fontSize: 14,
-  fontStyle: 'italic',
-  fontWeight: 100,
-  marginRight: 40,
-  textAlign: 'right'
-});
-
-const Link = styled('a')(
-  {
-    textDecoration: 'none'
-  },
-  ({ theme }) => ({
-    color: theme.dark
-  })
-);
-
 export const Page = ({ background, container, children }) => {
-  const user = !!background && !!background.image && background.image.user;
   return (
     <PageContainer>
       <Background background={background}>
         <Overlay>
           <PageTitle>{container.name}</PageTitle>
           {children}
-          <Attribution>
-            Photo by{' '}
-            <Link
-              href={`${user &&
-                user.links.html}?utm_source=container_dial&utm_medium=referral`}
-            >
-              {user && user.first_name} {user && user.last_name}
-            </Link>{' '}
-            on{' '}
-            <Link href="https://unsplash.com/?utm_source=container_dial&utm_medium=referral">
-              Unsplash
-            </Link>
-          </Attribution>
+          <Attribution image={background && background.image} />
         </Overlay>
       </Background>
     </PageContainer>
