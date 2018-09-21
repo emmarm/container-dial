@@ -56,7 +56,7 @@ const Handle = styled('div')(
   })
 );
 
-class DialList extends Component {
+export class DialList extends Component {
   state = {
     dials: []
   };

@@ -5,7 +5,7 @@ import dialsReducer from '../reducers/dialsReducer';
 describe('reducers', () => {
   describe('backgroundReducer', () => {
     const payload = {
-      container: 'Personal',
+      container: '123',
       image: { url: 'hi' },
       imageDate: new Date().toDateString()
     };
@@ -23,7 +23,7 @@ describe('reducers', () => {
 
     it('does not change image for container with current image date', () => {
       const currState = {
-        container: 'Personal',
+        container: '123',
         image: {},
         imageDate: new Date().toDateString()
       };
@@ -37,7 +37,7 @@ describe('reducers', () => {
         Date.now() - 24 * 60 * 60 * 1000
       ).toDateString();
       const currState = {
-        container: 'Personal',
+        container: '123',
         image: {},
         imageDate: yesterday
       };
@@ -81,14 +81,58 @@ describe('reducers', () => {
 
     it('adds new dial to dialsReducer', () => {
       const payload = {
-        container: 'Personal',
+        container: '123',
         siteName: 'Goodreads',
         siteUrl: 'https://goodreads.com',
-        favicon: 'https://www.goodreads.com/favicon.ico'
+        favicon: 'https://www.goodreads.com/favicon.ico',
+        id: 1,
+        sortIndex: 0
       };
       const action = { type: 'ADD_DIAL', payload };
       const state = dialsReducer([], action);
       expect(state).toEqual([payload]);
+    });
+
+    it('updates dial sort order', () => {
+      const currState = [
+        {
+          container: '123',
+          siteName: 'Goodreads',
+          siteUrl: 'https://goodreads.com',
+          favicon: 'https://www.goodreads.com/favicon.ico',
+          id: 1,
+          sortIndex: 0
+        },
+        {
+          container: '123',
+          siteName: 'Gmail',
+          siteUrl: 'https://mail.google.com',
+          favicon: 'error',
+          id: 2,
+          sortIndex: 1
+        }
+      ];
+      const payload = [{ id: 1, sortIndex: 1 }, { id: 2, sortIndex: 0 }];
+      const action = { type: 'UPDATE_DIAL_ORDER', payload };
+      const state = dialsReducer(currState, action);
+      expect(state).toEqual([
+        {
+          container: '123',
+          siteName: 'Goodreads',
+          siteUrl: 'https://goodreads.com',
+          favicon: 'https://www.goodreads.com/favicon.ico',
+          id: 1,
+          sortIndex: 1
+        },
+        {
+          container: '123',
+          siteName: 'Gmail',
+          siteUrl: 'https://mail.google.com',
+          favicon: 'error',
+          id: 2,
+          sortIndex: 0
+        }
+      ]);
     });
   });
 });

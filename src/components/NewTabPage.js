@@ -54,7 +54,6 @@ export class NewTabPage extends React.Component {
 NewTabPage.propTypes = {
   container: PropTypes.objectOf(PropTypes.string),
   theme: PropTypes.objectOf(PropTypes.string),
-  dials: PropTypes.arrayOf(PropTypes.object),
   setContainer: PropTypes.func.isRequired,
   setCurrentDial: PropTypes.func.isRequired,
   startSetBackground: PropTypes.func.isRequired
