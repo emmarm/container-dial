@@ -55,17 +55,39 @@ const Attribution = styled('p')({
   textAlign: 'right'
 });
 
-export const Page = ({ background, container, children }) => (
-  <PageContainer>
-    <Background background={background}>
-      <Overlay>
-        <PageTitle>{container.name}</PageTitle>
-        {children}
-        <Attribution>Photo by Someone on Unsplash</Attribution>
-      </Overlay>
-    </Background>
-  </PageContainer>
+const Link = styled('a')(
+  {
+    textDecoration: 'none'
+  },
+  ({ theme }) => ({
+    color: theme.dark
+  })
 );
+
+export const Page = ({ background, container, children }) => {
+  console.log(background);
+  const user = !!background && !!background.image && background.image.user;
+  return (
+    <PageContainer>
+      <Background background={background}>
+        <Overlay>
+          <PageTitle>{container.name}</PageTitle>
+          {children}
+          <Attribution>
+            Photo by{' '}
+            <Link
+              href={`${user &&
+                user.links.html}?utm_source=container_dial&utm_medium=referral`}
+            >
+              {user && user.first_name} {user && user.last_name}
+            </Link>{' '}
+            on Unsplash
+          </Attribution>
+        </Overlay>
+      </Background>
+    </PageContainer>
+  );
+};
 
 Page.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object),
