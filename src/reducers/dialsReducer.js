@@ -20,6 +20,16 @@ const dialsReducer = (state = DEFAULT_STATE, action) => {
         }
         return true;
       });
+    case 'UPDATE_DIAL_ORDER':
+      return state.map(dial => {
+        const matchingDial = action.payload.find(
+          actionItem => Number(actionItem.id) === dial.id
+        );
+        if (matchingDial) {
+          return { ...dial, sortIndex: matchingDial.sortIndex };
+        }
+        return dial;
+      });
     default:
       return state;
   }

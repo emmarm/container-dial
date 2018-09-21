@@ -2,13 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { NewTabPage } from '../../components/NewTabPage';
-import DIALS from '../seedData/DIALS';
 
 describe('NewTabPage component', () => {
   const props = {
     container: { cookieStoreId: '123' },
     theme: { primary: '#333', dark: '#000', light: '#fff' },
-    dials: DIALS,
     setContainer: jest.fn(),
     setCurrentDial: jest.fn(),
     setTheme: jest.fn(),
@@ -20,22 +18,10 @@ describe('NewTabPage component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('calls setContainer, setTheme, and startSetBackground functions', () => {
+  it('calls setContainer and startSetBackground functions', () => {
     const { setContainer, startSetBackground } = props;
     expect(setContainer).toHaveBeenCalled();
     expect(startSetBackground).toHaveBeenCalled();
-  });
-
-  it('renders AddDialButton component', () => {
-    const addDialButton = wrapper.find('AddDialButton');
-    expect(addDialButton.length).toBe(1);
-  });
-
-  it('renders a Dial and EditDialButton component for each dial item', () => {
-    const dialComponents = wrapper.find('Dial');
-    const editDialButtons = wrapper.find('Connect(EditDialButton)');
-    expect(dialComponents.length).toBe(3);
-    expect(editDialButtons.length).toBe(3);
   });
 
   it('does not show DialModal when showDialModal false', () => {

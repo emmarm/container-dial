@@ -72,7 +72,8 @@ export class DialForm extends Component {
       currentDial,
       editDial,
       handleHideDialModal,
-      newId
+      newId,
+      sortIndex
     } = this.props;
 
     const url = normalizeUrl(siteUrl);
@@ -88,11 +89,12 @@ export class DialForm extends Component {
     const id = currentDial ? currentDial.id : newId;
 
     const newDial = {
-      siteName,
-      siteUrl: url,
       container: container.cookieStoreId,
       favicon,
-      id
+      id,
+      siteName,
+      siteUrl: url,
+      sortIndex
     };
 
     currentDial ? editDial(currentDial, newDial) : addDial(newDial);
@@ -189,7 +191,10 @@ const mapStateToProps = state => ({
   newId:
     state.dials.length > 0
       ? Math.max(...state.dials.map(dial => dial.id)) + 1
-      : 1
+      : 1,
+  sortIndex: state.dials.filter(
+    dial => dial.container === state.container.cookieStoreId
+  ).length
 });
 
 export default connect(

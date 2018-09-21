@@ -1,27 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import styled from 'react-emotion';
 import { ThemeProvider } from 'emotion-theming';
 
 import * as actions from '../actions';
 import Page from './Page';
-import GridList from './GridList';
-import Dial from './Dial';
-import AddDialButton from './AddDialButton';
+import DialList from './DialList';
 import DialModal from './DialModal';
-import EditDialButton from './EditDialButton';
 
-const DialContainer = styled('div')({
-  position: 'relative',
-  ':hover': {
-    '& .edit-button': {
-      opacity: 1
-    }
-  }
-});
-
-const DEFAULT_STATE = { showDialModal: false, dial: null };
+const DEFAULT_STATE = { showDialModal: false };
 
 export class NewTabPage extends React.Component {
   state = DEFAULT_STATE;
@@ -47,22 +34,8 @@ export class NewTabPage extends React.Component {
     this.setState(() => DEFAULT_STATE);
   };
 
-  renderDials = (dials, container) => {
-    return dials
-      .filter(dial => dial.container === container.cookieStoreId)
-      .map(dial => (
-        <DialContainer key={dial.siteName}>
-          <Dial ariaLabel={dial.siteName} dial={dial} />
-          <EditDialButton
-            dial={dial}
-            handleShowDialModal={this.handleShowDialModal}
-          />
-        </DialContainer>
-      ));
-  };
-
   render() {
-    const { container, theme, dials } = this.props;
+    const { container, theme } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <Page>
@@ -71,10 +44,7 @@ export class NewTabPage extends React.Component {
             container={container}
             isOpen={this.state.showDialModal}
           />
-          <GridList>
-            {this.renderDials(dials, container)}
-            <AddDialButton handleShowDialModal={this.handleShowDialModal} />
-          </GridList>
+          <DialList handleShowDialModal={this.handleShowDialModal} />
         </Page>
       </ThemeProvider>
     );
@@ -84,17 +54,12 @@ export class NewTabPage extends React.Component {
 NewTabPage.propTypes = {
   container: PropTypes.objectOf(PropTypes.string),
   theme: PropTypes.objectOf(PropTypes.string),
-  dials: PropTypes.arrayOf(PropTypes.object),
   setContainer: PropTypes.func.isRequired,
   setCurrentDial: PropTypes.func.isRequired,
   startSetBackground: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  dials: state.dials
-});
-
 export default connect(
-  mapStateToProps,
+  undefined,
   actions
 )(NewTabPage);

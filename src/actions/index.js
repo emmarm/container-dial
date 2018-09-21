@@ -49,3 +49,8 @@ export const editDial = (oldDial, newDial) => ({
   oldDial,
   newDial
 });
+
+export const updateDialOrder = dialOrder => ({
+  type: 'UPDATE_DIAL_ORDER',
+  payload: dialOrder
+});

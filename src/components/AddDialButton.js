@@ -6,12 +6,8 @@ import Button from './Button';
 
 const AddButton = styled(Button)(
   {
-    // background: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 0,
-    height: '100%',
-    ':hover,:focus': {
-      // background: 'rgba(255,255,255, 0.5)'
-    }
+    height: '100%'
   },
   ({ theme }) => ({
     background: `${theme.light}33`,
@@ -23,10 +19,10 @@ const AddButton = styled(Button)(
 
 const AddDialButton = ({ handleShowDialModal }) => (
   <AddButton
-    onClick={handleShowDialModal}
-    text="Add New"
     icon="add"
+    onClick={handleShowDialModal}
     tabIndex={1}
+    text="Add New"
   />
 );
 
