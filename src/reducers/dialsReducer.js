@@ -2,6 +2,8 @@ const DEFAULT_STATE = [];
 
 const dialsReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
+    case 'SET_DIALS':
+      return action.payload;
     case 'ADD_DIAL':
       return [...state, action.payload];
     case 'EDIT_DIAL':

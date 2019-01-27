@@ -1,3 +1,4 @@
+/* global browser */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,10 +15,21 @@ export class NewTabPage extends React.Component {
   state = DEFAULT_STATE;
 
   componentDidMount() {
-    const { container, setContainer, startSetBackground } = this.props;
+    const {
+      container,
+      setContainer,
+      setDials,
+      startSetBackground
+    } = this.props;
 
     setContainer(container);
     startSetBackground(container);
+
+    browser.storage.local.get().then(dials => {
+      const dialsArr = Object.values(dials);
+
+      setDials(dialsArr);
+    });
   }
 
   handleShowDialModal = dial => {
@@ -56,6 +68,7 @@ NewTabPage.propTypes = {
   theme: PropTypes.objectOf(PropTypes.string),
   setContainer: PropTypes.func.isRequired,
   setCurrentDial: PropTypes.func.isRequired,
+  setDials: PropTypes.func.isRequired,
   startSetBackground: PropTypes.func.isRequired
 };
 

@@ -1,7 +1,7 @@
+/* global browser */
 import getRandomPhoto from '../utils/getRandomPhoto';
 
-export const startSetBackground = container => {
-  return async dispatch => {
+export const startSetBackground = container => async dispatch => {
     let image;
     try {
       image = await getRandomPhoto(container.color);
@@ -17,7 +17,6 @@ export const startSetBackground = container => {
 
     dispatch(setBackground(containerWithImage));
   };
-};
 
 export const setBackground = container => ({
   type: 'SET_BACKGROUND',
@@ -29,10 +28,21 @@ export const setContainer = container => ({
   payload: container
 });
 
+export const setDials = dials => ({
+  type: 'SET_DIALS',
+  payload: dials
+});
+
 export const setCurrentDial = dial => ({
   type: 'SET_CURRENT_DIAL',
   payload: dial
 });
+
+export const startAddDial = dial => async dispatch => {
+  browser.storage.local.set({ [dial.id]: dial });
+
+  dispatch(addDial(dial));
+};
 
 export const addDial = dial => ({
   type: 'ADD_DIAL',

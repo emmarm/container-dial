@@ -1,3 +1,4 @@
+/* global browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
@@ -28,12 +29,28 @@ const store = createStore(
   composeEnhancers(applyMiddleware(reduxThunk))
 );
 
+function logStorageChange(changes, area) {
+  console.log('Change in storage area: ' + area);
+
+  var changedItems = Object.keys(changes);
+
+  for (var item of changedItems) {
+    console.log(item + ' has changed:');
+    console.log('Old value: ');
+    console.log(changes[item].oldValue);
+    console.log('New value: ');
+    console.log(changes[item].newValue);
+  }
+}
+
+browser.storage.onChanged.addListener(logStorageChange);
+
 const renderApp = () => {
   Modal.setAppElement(document.getElementById('page'));
 
   const container = {
-    color: 'pale beige',
-    name: 'Personal',
+    color: 'red',
+    name: 'Default',
     cookieStoreId: '123'
   };
 
