@@ -85,6 +85,7 @@ export class DialList extends Component {
       <Sortable
         className={sortable}
         onChange={order => {
+          console.log('order: ', order);
           const dialsOnly = order.filter(item => !!Number(item));
           const newDialOrder = dialsOnly.map((id, index) => {
             return { id, sortIndex: index };

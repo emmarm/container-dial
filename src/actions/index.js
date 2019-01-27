@@ -2,21 +2,21 @@
 import getRandomPhoto from '../utils/getRandomPhoto';
 
 export const startSetBackground = container => async dispatch => {
-    let image;
-    try {
-      image = await getRandomPhoto(container.color);
-    } catch (err) {
-      image = '';
-    }
+  let image;
+  try {
+    image = await getRandomPhoto(container.color);
+  } catch (err) {
+    image = '';
+  }
 
-    const containerWithImage = {
-      container: container.cookieStoreId,
-      image,
-      imageDate: new Date().toDateString()
-    };
-
-    dispatch(setBackground(containerWithImage));
+  const containerWithImage = {
+    container: container.cookieStoreId,
+    image,
+    imageDate: new Date().toDateString()
   };
+
+  dispatch(setBackground(containerWithImage));
+};
 
 export const setBackground = container => ({
   type: 'SET_BACKGROUND',
@@ -54,10 +54,15 @@ export const deleteDial = dial => ({
   payload: dial
 });
 
+export const startEditDial = (oldDial, newDial) => async dispatch => {
+  browser.storage.local.set({ [oldDial.id]: newDial });
+
+  dispatch(editDial(oldDial, newDial));
+};
+
 export const editDial = (oldDial, newDial) => ({
   type: 'EDIT_DIAL',
-  oldDial,
-  newDial
+  payload: { oldDial, newDial }
 });
 
 export const updateDialOrder = dialOrder => ({
