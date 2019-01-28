@@ -32,6 +32,12 @@ export class NewTabPage extends React.Component {
     });
   }
 
+  // componentWillUnmount() {
+  //   this.props.dials.forEach(dial =>
+  //     browser.storage.local.set({ [dial.id]: dial })
+  //   );
+  // }
+
   handleShowDialModal = dial => {
     dial.siteName && this.setState(() => ({ dial }));
 
@@ -46,17 +52,37 @@ export class NewTabPage extends React.Component {
     this.setState(() => DEFAULT_STATE);
   };
 
+  handleDeleteDial = currentDial => {
+    const { dials, startDeleteDial, updateDialOrder } = this.props;
+    const newDials = dials
+      .filter(dial => dial.id !== currentDial.id)
+      .map((dial, index) => ({ ...dial, sortIndex: index }));
+    const newDialOrder = newDials.map(({ id, sortIndex }) => ({
+      id,
+      sortIndex
+    }));
+
+    startDeleteDial(currentDial);
+    newDials.forEach(dial => browser.storage.local.set({ [dial.id]: dial }));
+    updateDialOrder(newDialOrder);
+    this.handleHideDialModal();
+  };
+
   render() {
-    const { container, theme } = this.props;
+    const { container, dials, theme } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <Page>
           <DialModal
-            handleHideDialModal={this.handleHideDialModal}
             container={container}
+            handleDeleteDial={this.handleDeleteDial}
+            handleHideDialModal={this.handleHideDialModal}
             isOpen={this.state.showDialModal}
           />
-          <DialList handleShowDialModal={this.handleShowDialModal} />
+          <DialList
+            dials={dials}
+            handleShowDialModal={this.handleShowDialModal}
+          />
         </Page>
       </ThemeProvider>
     );
@@ -65,14 +91,23 @@ export class NewTabPage extends React.Component {
 
 NewTabPage.propTypes = {
   container: PropTypes.objectOf(PropTypes.string),
+  dials: PropTypes.arrayOf(PropTypes.object).isRequired,
   theme: PropTypes.objectOf(PropTypes.string),
   setContainer: PropTypes.func.isRequired,
   setCurrentDial: PropTypes.func.isRequired,
   setDials: PropTypes.func.isRequired,
-  startSetBackground: PropTypes.func.isRequired
+  startSetBackground: PropTypes.func.isRequired,
+  startDeleteDial: PropTypes.func.isRequired,
+  updateDialOrder: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+  dials: state.dials
+    .filter(dial => dial.container === state.container.cookieStoreId)
+    .sort((a, b) => a.sortIndex > b.sortIndex)
+});
+
 export default connect(
-  undefined,
+  mapStateToProps,
   actions
 )(NewTabPage);

@@ -49,6 +49,12 @@ export const addDial = dial => ({
   payload: dial
 });
 
+export const startDeleteDial = dial => async dispatch => {
+  browser.storage.local.remove([dial.id.toString()]);
+
+  dispatch(deleteDial(dial));
+};
+
 export const deleteDial = dial => ({
   type: 'DELETE_DIAL',
   payload: dial

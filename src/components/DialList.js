@@ -56,59 +56,44 @@ const Handle = styled('div')(
   })
 );
 
-export class DialList extends Component {
-  state = {
-    dials: []
-  };
+const renderDials = (dials, handleShowDialModal) =>
+  dials.map(dial => (
+    <DialContainer key={dial.id} data-id={dial.id}>
+      <Handle className="handle" />
+      <Dial ariaLabel={dial.siteName} dial={dial} />
+      <EditDialButton dial={dial} handleShowDialModal={handleShowDialModal} />
+    </DialContainer>
+  ));
 
-  componentDidUpdate(prevProps) {
-    const { dials } = this.props;
-    if (dials !== prevProps.dials) {
-      this.setState(() => ({ dials }));
-    }
-  }
+const DialList = ({ dials, handleShowDialModal, updateDialOrder }) => {
+  console.log(dials);
+  return (
+    <Sortable
+      className={sortable}
+      onChange={order => {
+        console.log('order: ', order);
+        const dialsOnly = order.filter(item => !!Number(item));
+        const newDialOrder = dialsOnly.map((id, index) => {
+          return { id, sortIndex: index };
+        });
 
-  renderDials = () =>
-    this.state.dials.sort((a, b) => a.sortIndex > b.sortIndex).map(dial => (
-      <DialContainer key={dial.id} data-id={dial.id}>
-        <Handle className="handle" />
-        <Dial ariaLabel={dial.siteName} dial={dial} />
-        <EditDialButton
-          dial={dial}
-          handleShowDialModal={this.props.handleShowDialModal}
-        />
-      </DialContainer>
-    ));
-
-  render() {
-    return (
-      <Sortable
-        className={sortable}
-        onChange={order => {
-          console.log('order: ', order);
-          const dialsOnly = order.filter(item => !!Number(item));
-          const newDialOrder = dialsOnly.map((id, index) => {
-            return { id, sortIndex: index };
-          });
-
-          this.props.updateDialOrder(newDialOrder);
-        }}
-        options={{
-          ghostClass: ghost,
-          handle: '.handle',
-          onMove: evt => {
-            if (evt.related.type === 'button') {
-              return false;
-            }
+        updateDialOrder(newDialOrder);
+      }}
+      options={{
+        ghostClass: ghost,
+        handle: '.handle',
+        onMove: evt => {
+          if (evt.related.type === 'button') {
+            return false;
           }
-        }}
-      >
-        {this.renderDials()}
-        <AddDialButton handleShowDialModal={this.props.handleShowDialModal} />
-      </Sortable>
-    );
-  }
-}
+        }
+      }}
+    >
+      {renderDials(dials, handleShowDialModal)}
+      <AddDialButton handleShowDialModal={handleShowDialModal} />
+    </Sortable>
+  );
+};
 
 DialList.propTypes = {
   dials: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -116,13 +101,7 @@ DialList.propTypes = {
   updateDialOrder: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  dials: state.dials.filter(
-    dial => dial.container === state.container.cookieStoreId
-  )
-});
-
 export default connect(
-  mapStateToProps,
+  undefined,
   actions
 )(DialList);
