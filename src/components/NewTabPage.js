@@ -53,18 +53,19 @@ export class NewTabPage extends React.Component {
   };
 
   handleDeleteDial = currentDial => {
-    const { dials, startDeleteDial, updateDialOrder } = this.props;
-    const newDials = dials
+    const { dials, startDeleteDial, startUpdateDialOrder } = this.props;
+    const movedDials = dials
       .filter(dial => dial.id !== currentDial.id)
-      .map((dial, index) => ({ ...dial, sortIndex: index }));
-    const newDialOrder = newDials.map(({ id, sortIndex }) => ({
-      id,
-      sortIndex
-    }));
+      .map((dial, index) => {
+        if (index !== dial.sortIndex) {
+          return { ...dial, sortIndex: index };
+        }
+        return false;
+      })
+      .filter(movedDial => !!movedDial);
 
     startDeleteDial(currentDial);
-    newDials.forEach(dial => browser.storage.local.set({ [dial.id]: dial }));
-    updateDialOrder(newDialOrder);
+    startUpdateDialOrder(movedDials);
     this.handleHideDialModal();
   };
 
@@ -98,7 +99,7 @@ NewTabPage.propTypes = {
   setDials: PropTypes.func.isRequired,
   startSetBackground: PropTypes.func.isRequired,
   startDeleteDial: PropTypes.func.isRequired,
-  updateDialOrder: PropTypes.func.isRequired
+  startUpdateDialOrder: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

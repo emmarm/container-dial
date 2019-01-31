@@ -71,7 +71,15 @@ export const editDial = (oldDial, newDial) => ({
   payload: { oldDial, newDial }
 });
 
-export const updateDialOrder = dialOrder => ({
+export const startUpdateDialOrder = dials => async dispatch => {
+  dials.forEach(dial => {
+    browser.storage.local.set({ [dial.id]: dial });
+  });
+
+  dispatch(updateDialOrder(dials));
+};
+
+export const updateDialOrder = dials => ({
   type: 'UPDATE_DIAL_ORDER',
-  payload: dialOrder
+  payload: dials
 });

@@ -65,19 +65,26 @@ const renderDials = (dials, handleShowDialModal) =>
     </DialContainer>
   ));
 
-const DialList = ({ dials, handleShowDialModal, updateDialOrder }) => {
-  console.log(dials);
+const DialList = ({ dials, handleShowDialModal, startUpdateDialOrder }) => {
   return (
     <Sortable
       className={sortable}
       onChange={order => {
-        console.log('order: ', order);
-        const dialsOnly = order.filter(item => !!Number(item));
-        const newDialOrder = dialsOnly.map((id, index) => {
-          return { id, sortIndex: index };
-        });
+        const dialOrder = order.slice(0, order.length - 1);
+        const movedDials = dialOrder
+          .map((id, index) => {
+            const matchingDial = dials.find(dial => dial.id == id);
 
-        updateDialOrder(newDialOrder);
+            if (index !== matchingDial.sortIndex) {
+              return { ...matchingDial, sortIndex: index };
+            }
+
+            return false;
+          })
+          .filter(movedDial => !!movedDial);
+        console.log('movedDials', movedDials);
+
+        startUpdateDialOrder(movedDials);
       }}
       options={{
         ghostClass: ghost,
@@ -98,7 +105,7 @@ const DialList = ({ dials, handleShowDialModal, updateDialOrder }) => {
 DialList.propTypes = {
   dials: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleShowDialModal: PropTypes.func.isRequired,
-  updateDialOrder: PropTypes.func.isRequired
+  startUpdateDialOrder: PropTypes.func.isRequired
 };
 
 export default connect(

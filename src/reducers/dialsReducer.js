@@ -25,10 +25,10 @@ const dialsReducer = (state = DEFAULT_STATE, { type, payload }) => {
     case 'UPDATE_DIAL_ORDER':
       return state.map(dial => {
         const matchingDial = payload.find(
-          actionItem => Number(actionItem.id) === dial.id
+          payloadDial => payloadDial.id === dial.id
         );
         if (matchingDial) {
-          return { ...dial, sortIndex: matchingDial.sortIndex };
+          return matchingDial;
         }
         return dial;
       });
