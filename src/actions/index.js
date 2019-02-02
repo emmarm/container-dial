@@ -2,20 +2,44 @@
 import getRandomPhoto from '../utils/getRandomPhoto';
 
 export const startSetBackground = container => async dispatch => {
-  let image;
-  try {
-    image = await getRandomPhoto(container.color);
-  } catch (err) {
-    image = '';
+  const currentBackground = await browser.storage.sync.get([
+    container.cookieStoreId
+  ]);
+
+  let backgroundObject;
+
+  if (
+    !currentBackground ||
+    currentBackground[container.cookieStoreId].imageDate !==
+      new Date().toDateString()
+  ) {
+    let image;
+    try {
+      image = await getRandomPhoto(container.color);
+    } catch (err) {
+      image = '';
+    }
+
+    browser.storage.sync.set({
+      [container.cookieStoreId]: {
+        image,
+        imageDate: new Date().toDateString()
+      }
+    });
+
+    backgroundObject = {
+      container: container.cookieStoreId,
+      image,
+      imageDate: new Date().toDateString()
+    };
+  } else {
+    backgroundObject = {
+      container: container.cookieStoreId,
+      ...currentBackground[container.cookieStoreId]
+    };
   }
 
-  const containerWithImage = {
-    container: container.cookieStoreId,
-    image,
-    imageDate: new Date().toDateString()
-  };
-
-  dispatch(setBackground(containerWithImage));
+  dispatch(setBackground(backgroundObject));
 };
 
 export const setBackground = container => ({

@@ -32,12 +32,6 @@ export class NewTabPage extends React.Component {
     });
   }
 
-  // componentWillUnmount() {
-  //   this.props.dials.forEach(dial =>
-  //     browser.storage.local.set({ [dial.id]: dial })
-  //   );
-  // }
-
   handleShowDialModal = dial => {
     dial.siteName && this.setState(() => ({ dial }));
 
