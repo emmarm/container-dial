@@ -99,7 +99,8 @@ export const editDial = (oldDial, newDial) => ({
 
 export const startUpdateDialOrder = dials => async dispatch => {
   dials.forEach(dial => {
-    browser.storage.local.set({ [dial.id]: dial });
+    const dialKey = `${dial.id}${dial.container}`;
+    browser.storage.local.set({ [dialKey]: dial });
   });
 
   dispatch(updateDialOrder(dials));
