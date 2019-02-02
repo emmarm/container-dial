@@ -10,6 +10,7 @@ export const startSetBackground = container => async dispatch => {
 
   if (
     !currentBackground ||
+    !currentBackground[container.cookieStoreId] ||
     currentBackground[container.cookieStoreId].imageDate !==
       new Date().toDateString()
   ) {
@@ -63,7 +64,8 @@ export const setCurrentDial = dial => ({
 });
 
 export const startAddDial = dial => async dispatch => {
-  browser.storage.local.set({ [dial.id]: dial });
+  const dialKey = `${dial.id}${dial.container}`;
+  browser.storage.local.set({ [dialKey]: dial });
 
   dispatch(addDial(dial));
 };

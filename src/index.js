@@ -48,7 +48,8 @@ browser.storage.onChanged.addListener(logStorageChange);
 const renderApp = async () => {
   Modal.setAppElement(document.getElementById('page'));
 
-  const { cookieStoreId } = await browser.tabs.getCurrent();
+  const currentTab = await browser.tabs.getCurrent();
+  const { cookieStoreId } = currentTab;
   /* eslint-disable indent */
   const container =
     cookieStoreId !== 'firefox-default'
