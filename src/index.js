@@ -45,14 +45,24 @@ function logStorageChange(changes, area) {
 
 browser.storage.onChanged.addListener(logStorageChange);
 
-const renderApp = () => {
+const renderApp = async () => {
   Modal.setAppElement(document.getElementById('page'));
 
-  const container = {
-    color: 'red',
-    name: 'Default',
-    cookieStoreId: '123'
-  };
+  const { cookieStoreId } = await browser.tabs.getCurrent();
+  /* eslint-disable indent */
+  const container =
+    cookieStoreId !== 'firefox-default'
+      ? await browser.contextualIdentities.get(cookieStoreId)
+      : // firefox-default container doesn't contain any object data, create own default so no error
+        {
+          color: 'pale beige',
+          colorCode: '#c4b793',
+          cookieStoreId: 'firefox-default',
+          icon: '',
+          iconUrl: '',
+          name: 'Default'
+        };
+  /* eslint-enable indent */
 
   const containerTheme = getTheme(container.color);
   const theme = {
