@@ -1,3 +1,4 @@
+/* global browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
@@ -28,14 +29,41 @@ const store = createStore(
   composeEnhancers(applyMiddleware(reduxThunk))
 );
 
-const renderApp = () => {
+function logStorageChange(changes, area) {
+  console.log('Change in storage area: ' + area);
+
+  var changedItems = Object.keys(changes);
+
+  for (var item of changedItems) {
+    console.log(item + ' has changed:');
+    console.log('Old value: ');
+    console.log(changes[item].oldValue);
+    console.log('New value: ');
+    console.log(changes[item].newValue);
+  }
+}
+
+browser.storage.onChanged.addListener(logStorageChange);
+
+const renderApp = async () => {
   Modal.setAppElement(document.getElementById('page'));
 
-  const container = {
-    color: 'pale beige',
-    name: 'Personal',
-    cookieStoreId: '123'
-  };
+  const currentTab = await browser.tabs.getCurrent();
+  const { cookieStoreId } = currentTab;
+  /* eslint-disable indent */
+  const container =
+    cookieStoreId !== 'firefox-default'
+      ? await browser.contextualIdentities.get(cookieStoreId)
+      : // firefox-default container doesn't contain any object data, create own default so no error
+        {
+          color: 'pale beige',
+          colorCode: '#c4b793',
+          cookieStoreId: 'firefox-default',
+          icon: '',
+          iconUrl: '',
+          name: 'Default'
+        };
+  /* eslint-enable indent */
 
   const containerTheme = getTheme(container.color);
   const theme = {

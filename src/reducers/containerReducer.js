@@ -1,11 +1,4 @@
-const DEFAULT_STATE = {
-  color: 'black',
-  colorCode: '#333',
-  cookieStoreId: 'firefox-default',
-  icon: '',
-  iconUrl: '',
-  name: 'Default'
-};
+const DEFAULT_STATE = {};
 
 const containerReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {

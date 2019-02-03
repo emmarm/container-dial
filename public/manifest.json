@@ -1,15 +1,8 @@
 {
-  "manifest_version": 1,
+  "manifest_version": 2,
   "short_name": "container-dial",
   "name": "Container Dial Web Extension",
   "version": "0.1.0",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
   "chrome_settings_overrides": {
     "homepage": "index.html"
   },

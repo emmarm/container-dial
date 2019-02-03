@@ -22,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "web-ext": "yarn run build && web-ext run -s build"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",

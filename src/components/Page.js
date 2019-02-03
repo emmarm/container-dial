@@ -34,7 +34,7 @@ const Background = styled('div')(
 );
 
 const Overlay = styled('div')({
-  background: 'rgba(255,255,255,0.1)',
+  background: 'rgba(0,0,0,0.1)',
   height: '100%',
   left: 0,
   position: 'absolute',

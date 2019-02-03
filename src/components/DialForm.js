@@ -67,13 +67,13 @@ export class DialForm extends Component {
     this.setState(() => ({ submitting: true }));
     const { siteName, siteUrl } = this.state;
     const {
-      addDial,
       container,
       currentDial,
-      editDial,
       handleHideDialModal,
       newId,
-      sortIndex
+      sortIndex,
+      startAddDial,
+      startEditDial
     } = this.props;
 
     const url = normalizeUrl(siteUrl);
@@ -94,10 +94,10 @@ export class DialForm extends Component {
       id,
       siteName,
       siteUrl: url,
-      sortIndex
+      sortIndex: currentDial ? currentDial.sortIndex : sortIndex
     };
 
-    currentDial ? editDial(currentDial, newDial) : addDial(newDial);
+    currentDial ? startEditDial(currentDial, newDial) : startAddDial(newDial);
     handleHideDialModal();
   };
 

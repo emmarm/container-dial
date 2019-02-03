@@ -61,10 +61,9 @@ export class DialModal extends Component {
   };
 
   handleDelete = () => {
-    const { currentDial, deleteDial, handleHideDialModal } = this.props;
-    deleteDial(currentDial);
+    const { currentDial, handleDeleteDial } = this.props;
+    handleDeleteDial(currentDial);
     this.toggleShowDeleteConfirm();
-    handleHideDialModal();
   };
 
   render() {
@@ -114,7 +113,7 @@ DialModal.propTypes = {
     siteName: PropTypes.string,
     siteUrl: PropTypes.string
   }),
-  deleteDial: PropTypes.func.isRequired
+  startDeleteDial: PropTypes.func.isRequired
 };
 
 Modal.propTypes = {
