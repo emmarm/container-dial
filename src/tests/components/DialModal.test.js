@@ -16,7 +16,7 @@ describe('DialModal component', () => {
       light: '#fff',
       dark: '#000'
     },
-    deleteDial: jest.fn()
+    startDeleteDial: jest.fn()
   };
   const wrapper = shallow(<DialModal {...props} />);
 

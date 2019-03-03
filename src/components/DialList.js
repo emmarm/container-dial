@@ -65,7 +65,11 @@ const renderDials = (dials, handleShowDialModal) =>
     </DialContainer>
   ));
 
-const DialList = ({ dials, handleShowDialModal, startUpdateDialOrder }) => {
+export const DialList = ({
+  dials,
+  handleShowDialModal,
+  startUpdateDialOrder
+}) => {
   return (
     <Sortable
       className={sortable}
@@ -82,7 +86,6 @@ const DialList = ({ dials, handleShowDialModal, startUpdateDialOrder }) => {
             return false;
           })
           .filter(movedDial => !!movedDial);
-        console.log('movedDials', movedDials);
 
         startUpdateDialOrder(movedDials);
       }}

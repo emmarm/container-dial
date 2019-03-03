@@ -18,6 +18,15 @@ exports[`Page component matches snapshot 1`] = `
       <Styled(h1)>
         Default
       </Styled(h1)>
+      <Attribution
+        image={
+          Object {
+            "urls": Object {
+              "full": "image.jpg",
+            },
+          }
+        }
+      />
     </Styled(div)>
   </Styled(div)>
 </Styled(div)>

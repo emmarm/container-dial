@@ -48,14 +48,7 @@ describe('reducers', () => {
   });
 
   describe('containerReducer', () => {
-    const defaultState = {
-      color: 'black',
-      colorCode: '#333',
-      cookieStoreId: 'firefox-default',
-      icon: '',
-      iconUrl: '',
-      name: 'Default'
-    };
+    const defaultState = {};
 
     it('sets up containerReducer default state', () => {
       const state = containerReducer(undefined, { type: '@@INIT' });
@@ -112,10 +105,7 @@ describe('reducers', () => {
           sortIndex: 1
         }
       ];
-      const payload = [{ id: 1, sortIndex: 1 }, { id: 2, sortIndex: 0 }];
-      const action = { type: 'UPDATE_DIAL_ORDER', payload };
-      const state = dialsReducer(currState, action);
-      expect(state).toEqual([
+      const payload = [
         {
           container: '123',
           siteName: 'Goodreads',
@@ -132,7 +122,10 @@ describe('reducers', () => {
           id: 2,
           sortIndex: 0
         }
-      ]);
+      ];
+      const action = { type: 'UPDATE_DIAL_ORDER', payload };
+      const state = dialsReducer(currState, action);
+      expect(state).toEqual(payload);
     });
   });
 });

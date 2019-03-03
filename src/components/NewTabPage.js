@@ -25,11 +25,13 @@ export class NewTabPage extends React.Component {
     setContainer(container);
     startSetBackground(container);
 
-    browser.storage.local.get().then(dials => {
-      const dialsArr = Object.values(dials);
+    if (process.env.NODE_ENV !== 'test') {
+      browser.storage.local.get().then(dials => {
+        const dialsArr = Object.values(dials);
 
-      setDials(dialsArr);
-    });
+        setDials(dialsArr);
+      });
+    }
   }
 
   handleShowDialModal = dial => {

@@ -2,6 +2,16 @@
 import getRandomPhoto from '../utils/getRandomPhoto';
 
 export const startSetBackground = container => async dispatch => {
+  if (process.env.NODE_ENV === 'test') {
+    const backgroundObject = {
+      container: container.cookieStoreId,
+      image: '',
+      imageDate: new Date().toDateString()
+    };
+
+    return dispatch(setBackground(backgroundObject));
+  }
+
   const currentBackground = await browser.storage.sync.get([
     container.cookieStoreId
   ]);
