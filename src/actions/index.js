@@ -2,6 +2,16 @@
 import getRandomPhoto from '../utils/getRandomPhoto';
 
 export const startSetBackground = container => async dispatch => {
+  if (process.env.NODE_ENV === 'test') {
+    const backgroundObject = {
+      container: container.cookieStoreId,
+      image: '',
+      imageDate: new Date().toDateString()
+    };
+
+    return dispatch(setBackground(backgroundObject));
+  }
+
   const currentBackground = await browser.storage.sync.get([
     container.cookieStoreId
   ]);
@@ -64,7 +74,7 @@ export const setCurrentDial = dial => ({
 });
 
 export const startAddDial = dial => async dispatch => {
-  const dialKey = `${dial.id}${dial.container}`;
+  const dialKey = `${dial.id}_${dial.container}`;
   browser.storage.local.set({ [dialKey]: dial });
 
   dispatch(addDial(dial));
@@ -76,7 +86,8 @@ export const addDial = dial => ({
 });
 
 export const startDeleteDial = dial => async dispatch => {
-  browser.storage.local.remove([dial.id.toString()]);
+  const dialKey = `${dial.id}_${dial.container}`;
+  browser.storage.local.remove([dialKey]);
 
   dispatch(deleteDial(dial));
 };
@@ -87,7 +98,8 @@ export const deleteDial = dial => ({
 });
 
 export const startEditDial = (oldDial, newDial) => async dispatch => {
-  browser.storage.local.set({ [oldDial.id]: newDial });
+  const dialKey = `${oldDial.id}_${oldDial.container}`;
+  browser.storage.local.set({ [dialKey]: newDial });
 
   dispatch(editDial(oldDial, newDial));
 };
@@ -99,7 +111,7 @@ export const editDial = (oldDial, newDial) => ({
 
 export const startUpdateDialOrder = dials => async dispatch => {
   dials.forEach(dial => {
-    const dialKey = `${dial.id}${dial.container}`;
+    const dialKey = `${dial.id}_${dial.container}`;
     browser.storage.local.set({ [dialKey]: dial });
   });
 

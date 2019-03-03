@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import DIALS from '../seedData/DIALS';
 import { NewTabPage } from '../../components/NewTabPage';
 
 describe('NewTabPage component', () => {
@@ -10,7 +11,11 @@ describe('NewTabPage component', () => {
     setContainer: jest.fn(),
     setCurrentDial: jest.fn(),
     setTheme: jest.fn(),
-    startSetBackground: jest.fn()
+    startSetBackground: jest.fn(),
+    dials: DIALS.filter(dial => dial.container === '123'),
+    setDials: jest.fn(),
+    startDeleteDial: jest.fn(),
+    startUpdateDialOrder: jest.fn()
   };
   const wrapper = shallow(<NewTabPage {...props} />);
 

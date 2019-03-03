@@ -17,10 +17,39 @@ exports[`NewTabPage component matches snapshot 1`] = `
           "cookieStoreId": "123",
         }
       }
+      handleDeleteDial={[Function]}
       handleHideDialModal={[Function]}
       isOpen={false}
     />
-    <Connect(DialList)
+    <Connect(Component)
+      dials={
+        Array [
+          Object {
+            "container": "123",
+            "favicon": "https://www.udemy.com/staticx/udemy/images/v6/favicon-196x196.png",
+            "id": 1,
+            "siteName": "Udemy",
+            "siteUrl": "www.udemy.com",
+            "sortIndex": 0,
+          },
+          Object {
+            "container": "123",
+            "favicon": "https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png",
+            "id": 2,
+            "siteName": "Youtube",
+            "siteUrl": "www.youtube.com",
+            "sortIndex": 1,
+          },
+          Object {
+            "container": "123",
+            "favicon": "https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico",
+            "id": 4,
+            "siteName": "Facebook",
+            "siteUrl": "www.facebook.com",
+            "sortIndex": 2,
+          },
+        ]
+      }
       handleShowDialModal={[Function]}
     />
   </Connect(Component)>

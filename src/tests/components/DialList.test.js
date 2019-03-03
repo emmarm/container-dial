@@ -5,14 +5,12 @@ import { DialList } from '../../components/DialList';
 import DIALS from '../seedData/DIALS';
 
 describe('DialList component', () => {
-  const state = { dials: DIALS.filter(dial => dial.container === '123') };
   const props = {
     dials: DIALS.filter(dial => dial.container === '123'),
     handleShowDialModal: () => {},
-    updateDialOrder: () => {}
+    startUpdateDialOrder: () => {}
   };
   const wrapper = shallow(<DialList {...props} />);
-  wrapper.setState(state);
 
   it('matches snapshot', () => {
     expect(wrapper).toMatchSnapshot();
